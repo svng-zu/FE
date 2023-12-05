@@ -2,22 +2,22 @@ import React from "react";
 
 import { Sidebar } from "react-pro-sidebar";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
+// import axios from 'axios';
 import { Img, List, Text } from "components";
 
 const FamilyHomeLightPage = () => {
   const navigate = useNavigate();
 
 
-  const FrontRec = async () => {
-    try{
-      const response = await axios.get('127.0.0.1:8000/rec')
+  // const FrontRec = async () => {
+  //   try{
+  //     const response = await axios.get('127.0.0.1:8000/rec')
 
-    }
-    catch (error){
+  //   }
+  //   catch (error){
 
-    }
-  }
+  //   }
+  // }
 
 
   return (
