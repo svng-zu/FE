@@ -1,15 +1,19 @@
 import React from "react";
-
 import { Input, Text } from "components";
 
+
+
 const C1LoginPageLightIdinput = (props) => {
+
+
+
   return (
     <>
       <div className={props.className}>
         <div className="flex flex-col items-start justify-start pb-2 w-full">
           <Text
             className="text-[15px] text-blue_gray-700 tracking-[0.32px] w-auto"
-            size="txtInterRegular15"
+            size="txtIBMPlexSans15"
           >
             {props?.labeltext}
           </Text>
@@ -23,6 +27,8 @@ const C1LoginPageLightIdinput = (props) => {
           color="white_A700"
           size="xs"
           variant="fill"
+          value ={props.value}
+          onChange={props.onChange}
         ></Input>
       </div>
     </>

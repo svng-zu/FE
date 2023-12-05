@@ -7,7 +7,7 @@ const SignupPageLight = React.lazy(() => import("pages/SignupPageLight"));
 const FrontpageLight = React.lazy(() => import("pages/FrontpageLight"));
 const Light = React.lazy(() => import("pages/Light"));
 const FamilyHomeLight = React.lazy(() => import("pages/FamilyHomeLight"));
-const LoginPageLight = React.lazy(() => import("pages/LoginPageLight"));
+const LoginPageLight = React.lazy(() => import("pages/LoginPageLight/l_login"));
 const ProjectRoutes = () => {
   return (
     <React.Suspense fallback={<>Loading...</>}>

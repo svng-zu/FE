@@ -74,9 +74,7 @@ const LightPage = () => {
                     <>
                       출연
                       <br />
-                      성동일,이일화,라미란,김성균,류혜영,혜리,고경표,
-                      <br />
-                      류준열, 박보검,안재홍,이동휘,최성원
+                      박채나,김은혜,공유경,황성주,김명현,고상희
                     </>
                   </Text>
                   <div className="flex flex-col items-start justify-start md:ml-[0] ml-[164px] mt-[77px] w-[181px]">
