@@ -15,14 +15,14 @@ function FamilyHomeLightPage() {
     const fetchData = async () => {
       try {
         const access = localStorage.getItem('access_token');
-        console.log('access token 은', access);
+        console.log('access token 1은', access);
 
         const response = await axios.get('https://hello00back.net/vodrec/', {
           headers: {
-            Authorization: `Bearer ${access}`,
+            Authorization: `Bearer${access}`,
             
           },
-          withCredentials: true,
+          //withCredentials: true,
           // 인증 정보를 함께 보내도록 설정
         });
 
