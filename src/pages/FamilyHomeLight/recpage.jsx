@@ -25,7 +25,7 @@ function FamilyHomeLightPage() {
 
         const data = response.data.data;
         const selectedItems = data[0].slice(0, 10);
-        const userposter = data[2].slice(0,10);
+        const userItems = data[2].slice(0,10);
         
         const rankItems = data[1];
         console.log(rankItems);
@@ -34,6 +34,7 @@ function FamilyHomeLightPage() {
         
 
         const genposter = selectedItems.map(item => item[2]);
+        const userposter = userItems.map(item=> item[2]);
          //장르
         console.log(genposter);
         // console.log(genposter);
