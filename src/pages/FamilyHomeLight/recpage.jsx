@@ -1,23 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 
 import { Sidebar } from "react-pro-sidebar";
 import { useNavigate } from "react-router-dom";
-// import axios from 'axios';
+import axios from 'axios';
 import { Img, List, Text } from "components";
 
-const FamilyHomeLightPage = () => {
+function FamilyHomeLightPage() {
+  const [recommendations, setRecommendations] = useState([]);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        //const response = await axios.get('https://hello00back.net/vodrec/');
+        const response = await axios.get('http://127.0.0.1:8000/vodrec/');
+        setRecommendations(response);
+      } catch (error) {
+        // 에러 처리
+        console.error('Error fetching data:', error);
+      }
+    };
 
-  // const FrontRec = async () => {
-  //   try{
-  //     const response = await axios.get('127.0.0.1:8000/rec')
+    fetchData();
+  }, []);
 
-  //   }
-  //   catch (error){
-
-  //   }
-  // }
+  const scrollVideos = (direction) => {
+    const videoContainer = document.querySelector('.video-container');
+    const scrollAmount = 200; // 변경 가능: 스크롤할 양 조절
+    if (direction === 'left') {
+      videoContainer.scrollLeft -= scrollAmount;
+    } else if (direction === 'right') {
+      videoContainer.scrollLeft += scrollAmount;
+    }
+  };
 
 
   return (
@@ -154,71 +169,30 @@ const FamilyHomeLightPage = () => {
                 </div>
                 <div className="flex md:flex-col flex-row font-paytoneone md:gap-10 items-start justify-between w-full">
                   <div className="h-[259px] md:ml-[0] ml-[50px] relative w-1/5 md:w-full">
-                    <Img
-                      className="h-[102%] mt-auto mx-auto object-cover w-full"
-                      src="images/img_image30.png"
-                      alt="imagethirty"
-                    />
-                    <Text
-                      className="absolute bottom-[0] left-[0] md:text-5xl text-[100px] text-center text-shadow-ts text-white-A700 tracking-[-0.50px]"
-                      size="txtPaytoneOneRegular100"
-                    >
-                      1
-                    </Text>
-                  </div>
-                  <div className="h-[228px] md:mt-0 mt-9 relative w-[19%] md:w-full">
-                    <Img
-                      className="common-pointer h-full m-auto object-cover static w-full"
-                      src="images/img_image31.png"
-                      alt="imagethirtyone"
-                      onClick={() => navigate("/light")}
-                    />
-                    <Text
-                      className="absolute bottom-[0] left-[0] md:text-5xl text-[80px] text-center text-shadow-ts text-white-A700 tracking-[-0.40px]"
-                      size="txtPaytoneOneRegular80"
-                    >
-                      2
-                    </Text>
-                  </div>
-                  <div className="h-[228px] md:mt-0 mt-9 relative w-[19%] md:w-full">
-                    <Img
-                      className="h-full m-auto object-cover w-full"
-                      src="images/img_image32.png"
-                      alt="imagethirtytwo"
-                    />
-                    <Text
-                      className="absolute bottom-[0] left-[0] md:text-5xl text-[80px] text-center text-shadow-ts text-white-A700 tracking-[-0.40px]"
-                      size="txtPaytoneOneRegular80"
-                    >
-                      3
-                    </Text>
-                  </div>
-                  <div className="h-[228px] md:mt-0 mt-9 relative w-[19%] md:w-full">
-                    <Img
-                      className="h-full inset-[0] justify-center m-auto object-cover static w-full"
-                      src="images/img_image31.png"
-                      alt="imagethirtythre"
-                    />
-                    <Text
-                      className="absolute bottom-[0] left-[0] md:text-5xl text-[80px] text-center text-shadow-ts text-white-A700 tracking-[-0.40px]"
-                      size="txtPaytoneOneRegular80"
-                    >
-                      4
-                    </Text>
-                  </div>
-                  <div className="h-[228px] md:mt-0 mt-9 relative w-[19%] md:w-full">
-                    <Img
-                      className="h-full m-auto object-cover w-full"
-                      src="images/img_image32.png"
-                      alt="imagethirtyfour"
-                    />
-                    <Text
-                      className="absolute bottom-[0] left-[0] md:text-5xl text-[80px] text-center text-shadow-ts text-white-A700 tracking-[-0.40px]"
-                      size="txtPaytoneOneRegular80"
-                    >
-                      {" "}
-                      5
-                    </Text>
+                    {/* 이미지를 출력하는 장소 여기서는 주간 베스트 (랭킹 모델) */}
+                    <div>
+                      <div className="scroll-buttons">
+                        <button className="scroll-button" onClick={() => scrollVideos('left')}>
+                          ◀
+                        </button>
+                        <button className="scroll-button" onClick={() => scrollVideos('right')}>
+                        ▶
+                        </button>
+                      </div>
+
+                      <div className="video-container">
+                        {recommendations.map((video, index) => (
+                          <div className="video-item" key={index}>
+                            {video[0] && video[1] && (
+                              <a href={`/video_detail/${video[4]}`}>
+                                <img src={video[1]} alt={video[0]} />
+                                <h2>{video[0]}</h2>
+                              </a>
+                            )}
+                          </div>
+                          ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -241,37 +215,9 @@ const FamilyHomeLightPage = () => {
                     </Text>
                   </div>
                   <div className="flex md:flex-col flex-row md:gap-10 items-center justify-between m-0 pr-[200px] w-full">
-                    <Img
-                      className="sm:flex-1 h-[235px] md:h-auto mb-[3px] md:ml-[0] ml-[50px] md:mt-0 my-[3px] object-cover w-[200px] sm:w-full"
-                      src="images/img_image30.png"
-                      alt="imagethirty"
-                    />
-                    <Img
-                      className="sm:flex-1 h-[235px] md:h-auto md:mt-0 my-[3px] object-cover w-[200px] sm:w-full"
-                      src="images/img_image28.png"
-                      alt="imagetwentyeigh"
-                    />
-                    <Img
-                      className="common-pointer sm:flex-1 h-[235px] md:h-auto md:mt-0 mt-[7px] object-cover w-[200px] sm:w-full"
-                      src="images/img_image31.png"
-                      alt="imagethirtyone"
-                      onClick={() => navigate("/light")}
-                    />
-                    <Img
-                      className="sm:flex-1 h-[235px] md:h-auto md:mt-0 my-[3px] object-cover w-[200px] sm:w-full"
-                      src="images/img_image32.png"
-                      alt="imagethirtytwo"
-                    />
-                    <Img
-                      className="sm:flex-1 h-[235px] md:h-auto md:mt-0 my-[3px] object-cover w-[200px] sm:w-full"
-                      src="images/img_image31.png"
-                      alt="imagethirtythre"
-                    />
-                    <Img
-                      className="sm:flex-1 h-[235px] md:h-auto mb-[7px] object-cover w-[200px] sm:w-full"
-                      src="images/img_image32.png"
-                      alt="imagethirtyfour"
-                    />
+                    {/* 이미지를 출력하는 장소 여기서는 장르 (장르 모델) */}
+                    
+                
                   </div>
                 </div>
                 <div className="flex flex-1 flex-col items-start justify-start w-full">
@@ -289,36 +235,8 @@ const FamilyHomeLightPage = () => {
                     </Text>
                   </div>
                   <div className="flex md:flex-col flex-row md:gap-10 items-center justify-between pl-[60px] pr-[200px] w-full">
-                    <Img
-                      className="sm:flex-1 h-[235px] md:h-auto md:mt-0 mt-2 object-cover w-[200px] sm:w-full"
-                      src="images/img_image5.png"
-                      alt="imagefive"
-                    />
-                    <Img
-                      className="sm:flex-1 h-[235px] md:h-auto md:mt-0 mt-2 object-cover w-[200px] sm:w-full"
-                      src="images/img_image30.png"
-                      alt="imagethirty"
-                    />
-                    <Img
-                      className="sm:flex-1 h-[235px] md:h-auto md:mt-0 mt-2 object-cover w-[200px] sm:w-full"
-                      src="images/img_image31.png"
-                      alt="imagethirtyone"
-                    />
-                    <Img
-                      className="sm:flex-1 h-[235px] md:h-auto md:mt-0 my-1 object-cover w-[200px] sm:w-full"
-                      src="images/img_image32.png"
-                      alt="imagethirtytwo"
-                    />
-                    <Img
-                      className="sm:flex-1 h-[235px] md:h-auto md:mt-0 my-1 object-cover w-[200px] sm:w-full"
-                      src="images/img_image31.png"
-                      alt="imagethirtythre"
-                    />
-                    <Img
-                      className="sm:flex-1 h-[235px] md:h-auto mb-2 object-cover w-[200px] sm:w-full"
-                      src="images/img_image32.png"
-                      alt="imagethirtyfour"
-                    />
+                    {/*여기는 유저 기반 모델? */}
+                    
                   </div>
                 </div>
               </List>
@@ -331,3 +249,63 @@ const FamilyHomeLightPage = () => {
 };
 
 export default FamilyHomeLightPage;
+
+
+
+
+
+// function VideoComponent() {
+//   const [recommendations, setRecommendations] = useState([]);
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const response = await axios.get('http://VOD-Recommendation-Backend-lb-642729755.ap-northeast-2.elb.amazonaws.com/vodrec');
+//         setRecommendations(response.data);
+//       } catch (error) {
+//         // 에러 처리
+//         console.error('Error fetching data:', error);
+//       }
+//     };
+
+//     fetchData();
+//   }, []);
+
+//   const scrollVideos = (direction) => {
+//     const videoContainer = document.querySelector('.video-container');
+//     const scrollAmount = 200; // 변경 가능: 스크롤할 양 조절
+//     if (direction === 'left') {
+//       videoContainer.scrollLeft -= scrollAmount;
+//     } else if (direction === 'right') {
+//       videoContainer.scrollLeft += scrollAmount;
+//     }
+//   };
+
+//   return (
+//     <div>
+//       <div className="scroll-buttons">
+//         <button className="scroll-button" onClick={() => scrollVideos('left')}>
+//           ◀
+//         </button>
+//         <button className="scroll-button" onClick={() => scrollVideos('right')}>
+//           ▶
+//         </button>
+//       </div>
+
+//       <div className="video-container">
+//         {recommendations.map((video, index) => (
+//           <div className="video-item" key={index}>
+//             {video[0] && video[1] && (
+//               <a href={`/video_detail/${video[4]}`}>
+//                 <img src={video[1]} alt={video[0]} />
+//                 <h2>{video[0]}</h2>
+//               </a>
+//             )}
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default VideoComponent;
