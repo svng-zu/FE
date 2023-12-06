@@ -43,7 +43,7 @@ const LoginPageLightPage = () => {
           navigate('FrontpageLight')
         }
       } catch (postError) {
-        console.error('로그인 POST 요청 실패:', postError, postresponse.status);
+        console.error('로그인 POST 요청 실패:', postError);
         setId('');
         alert("아이디를 다시 입력해주세요");
       }
