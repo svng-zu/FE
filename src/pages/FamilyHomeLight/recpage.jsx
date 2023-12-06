@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Sidebar } from "react-pro-sidebar";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import { Img, List, Text } from "components";
+import { Img, Text } from "components";
 import { useRef } from 'react';
 
 function FamilyHomeLightPage() {
@@ -15,27 +15,30 @@ function FamilyHomeLightPage() {
     const fetchData = async () => {
       try {
         const access = localStorage.getItem('access_token');
-        
+        console.log('access token 은', access);
 
         const response = await axios.get('https://hello00back.net/vodrec/', {
           headers: {
-            Authorization: `Bearer${access}`,
+            Authorization: `Bearer ${access}`,
+            
           },
+          withCredentials: true,
+          // 인증 정보를 함께 보내도록 설정
         });
 
         const data = response.data.data;
-        const selectedItems = data[0].slice(0, 10);
-        const userItems = data[2].slice(0,10);
         
+        const selectedItems = data[0].slice(0, 10);
         const rankItems = data[1];
+        const userItems = data[2].slice(0, 10);
+        
+
         console.log(rankItems);
 
         const rankposter = rankItems.map(item => item[2]); //주간 랭킹
-        
-
-        const genposter = selectedItems.map(item => item[2]);
-        const userposter = userItems.map(item=> item[2]);
-         //장르
+        const genposter = selectedItems.map(item => item[2]); // 장르별
+        const userposter = userItems.map(item=> item[2]); // 사용자 개인
+         
         console.log(genposter);
         // console.log(genposter);
         // 이후 사용하거나 반환할 때 활용
@@ -57,7 +60,7 @@ function FamilyHomeLightPage() {
   }
   
   // Component
-
+  
   const buttonStyle = {
     border: 'none',
     backgroundColor: 'transparent',
@@ -232,67 +235,67 @@ function FamilyHomeLightPage() {
                   <div className="h-[259px] md:ml-[0] ml-[50px] relative w-1/5 md:w-full">
                     <div>
                       <div className="video-container">
-                        {/* {recommendations.map((video, index) => (
-                          <div className="video-item" key={index}>
-                            {video[0] && video[1] && (
-                              <a href={`/video_detail/${video[4]}`}>
-                                <img src={video[1]} alt={video[0]} />
-                                <h2>{video[0]}</h2>
-                              </a>
-                            )}
-                          </div>
-                            ))} */}
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <List
+              {/* <List
                 className="flex flex-col gap-[7px] items-center w-full"
                 orientation="vertical"
-              >
-                <div className="flex flex-1 flex-col items-start justify-start w-full">
-                  <div className="flex flex-col items-center justify-start">
-                    <Text
-                      className="leading-[100.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
-                      size="txtABeeZeeRegular25"
-                    >
-                      <span className="text-black-900 font-abeezee text-left font-normal">
-                        장르 기반 추천{" "}
-                      </span>
-                      <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
-                        Wow{" "}
-                      </span>
-                    </Text>
-                  </div>
-                  <div className="flex md:flex-col flex-row md:gap-10 items-center justify-between m-0 pr-[200px] w-full">
+              > */}
+              <div className="flex flex-1 flex-col items-start justify-start w-full">
+                <div className="flex flex-col items-center justify-start">
+                  <Text
+                    className="leading-[100.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
+                    size="txtABeeZeeRegular25"
+                  >
+                    <span className="text-black-900 font-abeezee text-left font-normal">
+                      장르 기반 추천{" "}
+                    </span>
+                    <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
+                      Wow{" "}
+                    </span>
+                  </Text>
+                </div>
+                <div className="flex md:flex-col flex-row md:gap-10 items-start justify-between m-0 pr-[200px] w-full">
                     {/* 이미지를 출력하는 장소 여기서는 장르 (장르 모델) */}
                     
-                    <HorizontalPosters rankposter={genposter} />
-                      
-                    
+                  <HorizontalPosters rankposter={genposter} />
+                <div className="h-[259px] md:ml-[0] ml-[50px] relative w-1/5 md:w-full">
+                  <div>
+                    <div className="video-container">
+                    </div>
                   </div>
                 </div>
-                <div className="flex flex-1 flex-col items-start justify-start w-full">
-                  <div className="flex flex-col items-center justify-start">
-                    <Text
-                      className="leading-[100.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
-                      size="txtABeeZeeRegular25"
-                    >
-                      <span className="text-black-900 font-abeezee text-left font-normal">
-                        나를 위한 추천{" "}
-                      </span>
-                      <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
-                        For You{" "}
-                      </span>
-                    </Text>
-                  </div>
-                  <div className="flex md:flex-col flex-row md:gap-10 items-center justify-between pl-[60px] pr-[200px] w-full">
-                    <HorizontalPosters rankposter={userposter} />
+              </div>
+            </div>
+              <div className="flex flex-1 flex-col items-start justify-start w-full">
+                <div className="flex flex-col items-center justify-start">
+                  <Text
+                    className="leading-[100.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
+                    size="txtABeeZeeRegular25"
+                  >
+                    <span className="text-black-900 font-abeezee text-left font-normal">
+                      나를 위한 추천{" "}
+                    </span>
+                    <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
+                      For You{" "}
+                    </span>
+                  </Text>
+                </div>
+                <div className="flex md:flex-col flex-row md:gap-10 items-start justify-between pr-[200px] w-full">
+                  <HorizontalPosters rankposter={userposter} />
                     
+                <div className="h-[259px] md:ml-[0] ml-[50px] relative w-1/5 md:w-full">
+                  <div>
+                    <div className="video-container">
+                    </div>
                   </div>
                 </div>
-              </List>
+              </div>
+            </div>
+              {/* </List> */}
             </div>
           </div>
         </div>

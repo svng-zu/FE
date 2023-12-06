@@ -60,5 +60,8 @@
   },
   "overrides": {
     "autoprefixer": "10.4.5"
-  }
+  },
+  
+  "proxy": "https://hello00back.net"
+  
 }

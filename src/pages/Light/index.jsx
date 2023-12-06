@@ -105,9 +105,7 @@ const LightPage = () => {
               size="txtInterSemiBold24Bluegray900"
             >
               <span className="text-blue_gray-900 font-inter text-left font-semibold">
-                괴물들한테 한 가지 치명적인 문제가 있다면 인간 어린이들이
-                자신들에게 맹독성 독을 감염시킬 수 있다는 것이다. 그래서
-                괴물들은 어린이와 접촉해서
+                {/*  */}
               </span>
               <span className="text-blue_gray-900 tracking-[-1.20px] font-inter text-left font-semibold">
                 는
