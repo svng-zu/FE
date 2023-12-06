@@ -33,7 +33,7 @@ const LoginPageLightPage = () => {
       }
     }catch (error) {
     console.error('Error 발생 :', error);
-    if (error.response.status === 400){
+    if (error.response.status !== 200){
       try {
         const postresponse = await axios.post('VOD-Recommendation-Backend-lb-642729755.ap-northeast-2.elb.amazonaws.com/login/', {
             'subsr' : id
