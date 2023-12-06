@@ -3,17 +3,21 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { Button, Img } from "components"; //Input, Text
 import C1LoginPageLightIdinput from "components/C1LoginPageLightIdinput/login_input";
+import { useCookies } from 'react-cookie';
+
 
 const LoginPageLightPage = () => {
   const navigate = useNavigate();
+  
+
   const [id, setId] = useState('');
   
   useEffect(() => {
-    const accessCookie = localStorage.getItem('access');
-    const refreshCookie = localStorage.getItem('refresh');
+    const accessToken = localStorage.getItem('access_token');
 
-    if (accessCookie && refreshCookie) {
-      navigate('/FrontpageLightpage');
+    if (accessToken) {
+      // access_token이 있다면 원하는 URL로 이동
+      navigate('/FrontpageLight');
     }
   }, [navigate]);
 
@@ -23,10 +27,13 @@ const LoginPageLightPage = () => {
     setId(e);
     console.log(e);
   }
-  
+  const [cookies, setCookie] = useCookies(['access'])
   const handleLogin = async () => {
     try {
-      const response = await axios.get('https://hello00back.net/scheck/') // 백 endpoint 주소
+      
+      const response = await axios.get('https://hello00back.net/scheck/').then((res) => {
+        setCookie('access', res.data.token)});
+      //const response = await axios.get('http://127.0.0.1:8000/scheck/') // 백 endpoint 주소
       console.log(response.status);
       if (response.status === 200){
         navigate('FrontpageLight');
@@ -35,15 +42,31 @@ const LoginPageLightPage = () => {
     console.error('Error 발생 :', error);
     
     if (error.response.status !== 200){
-      alert("아이디를 확인하여 주세요");
+      
       try {
         const postresponse = await axios.post('https://hello00back.net/login/', {
-            'subsr' : id
-          });
-        if (postresponse.status ===  200){
-          console.log('룰루 랄라');
-          navigate('FrontpageLight')
+          'subsr': id
+        });
+        
+        if (postresponse.status === 200) {
+          console.log(postresponse.data)
+          setCookie('access', postresponse.data.token.access)
+          const accessToken = postresponse.data.token.access; // 예상되는 응답에서 access_token을 가져옴
+          const refreshToken = postresponse.data.token.refresh;
+          // 쿠키 및 로컬 스토리지에 토큰 저장
+          localStorage.setItem('ip', postresponse.data.ip);
+          localStorage.setItem('access_token', accessToken);
+          localStorage.setItem('refresh_token', refreshToken);
+          localStorage.setItem('subsr', postresponse.data.user.subsr);
+          localStorage.setItem('subsr_id', postresponse.data.user.subsr_id);
+          // axios의 인스턴스에 헤더 추가
+          axios.defaults.headers.common['Authorization'] = 'JWT ' + accessToken;
+          console.log("로그인 성공적")
+          // navigate(""); // 페이지 이동
+          // location.reload(); // 페이지 새로고침
+          navigate('FrontpageLight'); // 원하는 페이지로 이동
         }
+      
       } catch (postError) {
         console.error('로그인 POST 요청 실패:', postError);
         setId('');
@@ -52,7 +75,7 @@ const LoginPageLightPage = () => {
     } else {
       console.error('GET 요청 실패:', error.response);
       setId('');
-        alert("아이디를 다시 입력해주세요");
+      alert("아이디를 다시 입력해주세요");
     }
   }
 };

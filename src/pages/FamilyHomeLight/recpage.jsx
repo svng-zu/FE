@@ -4,19 +4,45 @@ import { Sidebar } from "react-pro-sidebar";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { Img, List, Text } from "components";
+import { useRef } from 'react';
 
 function FamilyHomeLightPage() {
-  const [recommendations, setRecommendations] = useState([]);
+  const [genposter, setGenposter] = useState([]);
+  const [rankposter, setRankposter] = useState([]);
+  const [userposter, setUserposter] = useState([]);
   const navigate = useNavigate();
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        //const response = await axios.get('https://hello00back.net/vodrec/');
-        const response = await axios.get('http://127.0.0.1:8000/vodrec/');
-        setRecommendations(response);
+        const access = localStorage.getItem('access_token');
+        
+
+        const response = await axios.get('https://hello00back.net/vodrec/', {
+          headers: {
+            Authorization: `Bearer${access}`,
+          },
+        });
+
+        const data = response.data.data;
+        const selectedItems = data[0].slice(0, 10);
+        const userposter = data[2].slice(0,10);
+        
+        const rankItems = data[1];
+        console.log(rankItems);
+
+        const rankposter = rankItems.map(item => item[2]); //주간 랭킹
+        
+
+        const genposter = selectedItems.map(item => item[2]);
+         //장르
+        console.log(genposter);
+        // console.log(genposter);
+        // 이후 사용하거나 반환할 때 활용
+        setGenposter(genposter);
+        setUserposter(userposter);
+        setRankposter(rankposter);
+       
       } catch (error) {
-        // 에러 처리
         console.error('Error fetching data:', error);
       }
     };
@@ -24,16 +50,49 @@ function FamilyHomeLightPage() {
     fetchData();
   }, []);
 
-  const scrollVideos = (direction) => {
-    const videoContainer = document.querySelector('.video-container');
-    const scrollAmount = 200; // 변경 가능: 스크롤할 양 조절
-    if (direction === 'left') {
-      videoContainer.scrollLeft -= scrollAmount;
-    } else if (direction === 'right') {
-      videoContainer.scrollLeft += scrollAmount;
-    }
-  };
 
+  const Click = () => {
+    navigate('/Light')
+  }
+  
+  // Component
+
+  const buttonStyle = {
+    border: 'none',
+    backgroundColor: 'transparent',
+    cursor: 'pointer',
+    fontSize: '24px',
+    outline: 'none',
+    padding: '10px',
+    color: '#555',
+  };
+  
+  const HorizontalPosters = ({ rankposter }) => {
+    const containerRef = useRef(null);
+  
+    const scrollTo = (scrollOffset) => {
+      const container = containerRef.current;
+      container.scrollLeft += scrollOffset;
+    };
+  
+    return (
+      <div style={{ display: 'flex', alignItems: 'center', marginLeft: '40px', marginRight: '-250px' }}>
+        <button onClick={() => scrollTo(-200)} style={buttonStyle}>◀</button>
+        <div style={{ display: 'flex', overflowX: 'auto', marginRight: '50px' }} ref={containerRef}>
+          {rankposter.map((imageUrl, index) => (
+            <img
+              key={index}
+              style={{ width: '300px', height: '450px', marginRight: '50px', border: '2px solid #ccc', borderRadius: '5px', cursor: 'pointer' }}
+              src={imageUrl}
+              alt={`Image ${index}`}
+              onClick={Click}
+            />
+          ))}
+        </div>
+        <button onClick={() => scrollTo(200)} style={buttonStyle}>▶</button>
+      </div>
+    );
+  };
 
   return (
     <>
@@ -168,20 +227,11 @@ function FamilyHomeLightPage() {
                   </Text>
                 </div>
                 <div className="flex md:flex-col flex-row font-paytoneone md:gap-10 items-start justify-between w-full">
+                    <HorizontalPosters rankposter={rankposter} />
                   <div className="h-[259px] md:ml-[0] ml-[50px] relative w-1/5 md:w-full">
-                    {/* 이미지를 출력하는 장소 여기서는 주간 베스트 (랭킹 모델) */}
                     <div>
-                      <div className="scroll-buttons">
-                        <button className="scroll-button" onClick={() => scrollVideos('left')}>
-                          ◀
-                        </button>
-                        <button className="scroll-button" onClick={() => scrollVideos('right')}>
-                        ▶
-                        </button>
-                      </div>
-
                       <div className="video-container">
-                        {recommendations.map((video, index) => (
+                        {/* {recommendations.map((video, index) => (
                           <div className="video-item" key={index}>
                             {video[0] && video[1] && (
                               <a href={`/video_detail/${video[4]}`}>
@@ -190,7 +240,7 @@ function FamilyHomeLightPage() {
                               </a>
                             )}
                           </div>
-                          ))}
+                            ))} */}
                       </div>
                     </div>
                   </div>
@@ -217,7 +267,9 @@ function FamilyHomeLightPage() {
                   <div className="flex md:flex-col flex-row md:gap-10 items-center justify-between m-0 pr-[200px] w-full">
                     {/* 이미지를 출력하는 장소 여기서는 장르 (장르 모델) */}
                     
-                
+                    <HorizontalPosters rankposter={genposter} />
+                      
+                    
                   </div>
                 </div>
                 <div className="flex flex-1 flex-col items-start justify-start w-full">
@@ -235,7 +287,7 @@ function FamilyHomeLightPage() {
                     </Text>
                   </div>
                   <div className="flex md:flex-col flex-row md:gap-10 items-center justify-between pl-[60px] pr-[200px] w-full">
-                    {/*여기는 유저 기반 모델? */}
+                    <HorizontalPosters rankposter={userposter} />
                     
                   </div>
                 </div>
