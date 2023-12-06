@@ -55,7 +55,9 @@ function FamilyHomeLightPage() {
   const Click = () => {
     navigate('/Light')
   }
-  
+  // const Click = (programId) => {
+  //   navigate(`/Light/${programId}`);
+  // }
   // Component
   
   const buttonStyle = {
@@ -75,7 +77,15 @@ function FamilyHomeLightPage() {
       const container = containerRef.current;
       container.scrollLeft += scrollOffset;
     };
-  
+//   // {rankItems.map((item, index) => (
+//   <img
+//   key={index}
+//   style={{ width: '300px', height: '450px', marginRight: '50px', border: '2px solid #ccc', borderRadius: '5px', cursor: 'pointer' }}
+//   src={item[2]} // 이미지 URL
+//   alt={`${index}`}
+//   onClick={() => Click(item[1])} // program_id 전달
+// />
+//))}
     return (
       <div style={{ display: 'flex', alignItems: 'center', marginLeft: '40px', marginRight: '-250px' }}>
         <button onClick={() => scrollTo(-200)} style={buttonStyle}>◀</button>
