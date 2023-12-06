@@ -27,16 +27,18 @@ const LoginPageLightPage = () => {
     setId(e);
     console.log(e);
   }
-  const [cookies, setCookie] = useCookies(['access'])
-  const handleLogin = async () => {
-    try {
-      
-      const response = await axios.get('https://hello00back.net/scheck/').then((res) => {
-        setCookie('access', res.data.token)});
+  const [cookie, setCookie] = useCookies(['access']);
+
+const handleLogin = async () => {
+  try {
+    const response = await axios.get('https://hello00back.net/scheck/');
+    const newCookie = response.data.token;
+    setCookie('access', newCookie);
       //const response = await axios.get('http://127.0.0.1:8000/scheck/') // 백 endpoint 주소
       console.log(response.status);
       if (response.status === 200){
         navigate('FrontpageLight');
+        console.log(cookie);
       }
     }catch (error) {
     console.error('Error 발생 :', error);

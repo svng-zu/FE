@@ -84,7 +84,7 @@ function FamilyHomeLightPage() {
               key={index}
               style={{ width: '300px', height: '450px', marginRight: '50px', border: '2px solid #ccc', borderRadius: '5px', cursor: 'pointer' }}
               src={imageUrl}
-              alt={`Image ${index}`}
+              alt={`${index}`}
               onClick={Click}
             />
           ))}
