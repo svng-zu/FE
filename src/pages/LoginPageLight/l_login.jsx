@@ -26,7 +26,7 @@ const LoginPageLightPage = () => {
   
   const handleLogin = async () => {
     try {
-      const response = await axios.get('VOD-Recommendation-Backend-lb-642729755.ap-northeast-2.elb.amazonaws.com/scheck/') // 백 endpoint 주소
+      const response = await axios.get('http://VOD-Recommendation-Backend-lb-642729755.ap-northeast-2.elb.amazonaws.com/scheck/') // 백 endpoint 주소
       console.log(response.status);
       if (response.status === 200){
         navigate('FrontpageLight');
@@ -35,7 +35,7 @@ const LoginPageLightPage = () => {
     console.error('Error 발생 :', error);
     if (error.response.status !== 200){
       try {
-        const postresponse = await axios.post('VOD-Recommendation-Backend-lb-642729755.ap-northeast-2.elb.amazonaws.com/login/', {
+        const postresponse = await axios.post('http://VOD-Recommendation-Backend-lb-642729755.ap-northeast-2.elb.amazonaws.com/login/', {
             'subsr' : id
           });
         if (postresponse.status ===  200){
