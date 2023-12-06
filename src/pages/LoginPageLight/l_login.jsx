@@ -43,12 +43,14 @@ const LoginPageLightPage = () => {
           navigate('FrontpageLight')
         }
       } catch (postError) {
-        console.error('로그인 POST 요청 실패:', postError);
+        console.error('로그인 POST 요청 실패:', postError, postresponse.status);
         setId('');
         alert("아이디를 다시 입력해주세요");
       }
     } else {
       console.error('GET 요청 실패:', error.response);
+      setId('');
+        alert("아이디를 다시 입력해주세요");
     }
   }
 };
