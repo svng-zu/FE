@@ -19,7 +19,7 @@ function FamilyHomeLightPage() {
 
         const response = await axios.get('https://hello00back.net/vodrec/', {
           headers: {
-            "Authorization" : `Bearer ${access}`,
+            Authorization : access,
           }
         });
 
