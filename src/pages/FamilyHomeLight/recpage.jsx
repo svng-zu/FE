@@ -10,8 +10,10 @@ function FamilyHomeLightPage() {
   const [genposter, setGenposter] = useState([]);
   const [rankposter, setRankposter] = useState([]);
   const [userposter, setUserposter] = useState([]);
+  const [startIndex, setStartIndex] = useState(0);
   const navigate = useNavigate();
   useEffect(() => {
+    
     const fetchData = async () => {
       try {
         const access = localStorage.getItem('access_token');
@@ -26,10 +28,12 @@ function FamilyHomeLightPage() {
         
         const data = response.data.data;
         
-        const selectedItems = data[0].slice(0, 10);
-        const rankItems = data[1];
-        const userItems = data[2].slice(0, 10);
+
         
+        const rankItems = data[1];
+        
+        const selectedItems = data[0].slice(startIndex, startIndex + 10); // 2. 시작 인덱스부터 10씩 데이터 추출
+        const userItems = data[2].slice(startIndex, startIndex + 10);
 
         console.log(rankItems);
 
@@ -48,15 +52,23 @@ function FamilyHomeLightPage() {
         console.error('Error fetching data:', error);
       }
     };
-
+    
     fetchData();
-  }, []);
+  }, [startIndex]); 
 
+    const Rerec = () => {
+      if (startIndex < 90) {
+        setStartIndex(prevIndex => prevIndex + 10);
+        navigate('FamilyHomeLight')
+      }
+    };
+
+  
 
   const Click = () => {
     navigate('/Light')
   }
-  // const Click = (programId) => {
+  // const Click = (vod_id) => {
   //   navigate(`/Light/${programId}`);
   // }
   // Component
@@ -218,6 +230,7 @@ function FamilyHomeLightPage() {
                 <Text
                   className="text-[22px] text-center sm:text-lg text-red-A400 md:text-xl tracking-[-3px]"
                   size="txtABeeZeeRegular22RedA400"
+                  onClick = {Rerec}
                 >
                   재추천
                 </Text>
