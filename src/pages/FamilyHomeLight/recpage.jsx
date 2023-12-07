@@ -23,6 +23,7 @@ function FamilyHomeLightPage() {
           },
         });
 
+        
         const data = response.data.data;
         
         const selectedItems = data[0].slice(0, 10);
