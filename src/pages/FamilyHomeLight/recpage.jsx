@@ -59,7 +59,7 @@ function FamilyHomeLightPage() {
     const Rerec = () => {
       if (startIndex < 90) {
         setStartIndex(prevIndex => prevIndex + 10);
-        navigate('FamilyHomeLight')
+        window.location.reload();
       }
     };
 
@@ -226,11 +226,12 @@ function FamilyHomeLightPage() {
                   className="h-[42px]"
                   src="images/img_qrcode.svg"
                   alt="contrast"
+                  onClick = {Rerec}
                 />
                 <Text
                   className="text-[22px] text-center sm:text-lg text-red-A400 md:text-xl tracking-[-3px]"
                   size="txtABeeZeeRegular22RedA400"
-                  onClick = {Rerec}
+                  
                 >
                   재추천
                 </Text>
