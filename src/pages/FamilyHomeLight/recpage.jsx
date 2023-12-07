@@ -17,7 +17,7 @@ function FamilyHomeLightPage() {
         const access = localStorage.getItem('access_token');
         console.log('access token 1은', access);
 
-        const response = await axios.get('https://hello00back.net/vodrec/', {
+        const response = await axios.get('http://127.0.0.1:8000/vodrec/', {
           headers: {
             Authorization : access,
           }
@@ -266,7 +266,7 @@ function FamilyHomeLightPage() {
                     </span>
                   </Text>
                 </div>
-                <div className="flex md:flex-col flex-row md:gap-10 items-start justify-between m-0 pr-[200px] w-full">
+                <div className="flex md:flex-col flex-row font-paytoneone md:gap-10 items-start justify-between m-0 pr-[200px] w-full">
                     {/* 이미지를 출력하는 장소 여기서는 장르 (장르 모델) */}
                     
                   <HorizontalPosters rankposter={genposter} />
@@ -292,9 +292,9 @@ function FamilyHomeLightPage() {
                     </span>
                   </Text>
                 </div>
-                <div className="flex md:flex-col flex-row md:gap-10 items-start justify-between pr-[200px] w-full">
+                <div className="flex md:flex-col flex-row md:gap-10 items-start justify-between m-0 pr-[200px] w-full">
                   <HorizontalPosters rankposter={userposter} />
-                    
+                 
                 <div className="h-[259px] md:ml-[0] ml-[50px] relative w-1/5 md:w-full">
                   <div>
                     <div className="video-container">
