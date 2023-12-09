@@ -31,7 +31,11 @@ const LoginPageLightPage = () => {
 
 const handleLogin = async () => {
   try {
-    const response = await axios.get('https://hello00back.net/scheck/');
+    const response = await axios.get('https://hello00back.net/vodrec/', {
+      headers: {
+        Authorization : accessToken,
+      }
+    });
     const newCookie = response.data.token;
     setCookie('access', newCookie);
       //const response = await axios.get('http://127.0.0.1:8000/scheck/') // 백 endpoint 주소
