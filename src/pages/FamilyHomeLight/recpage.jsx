@@ -121,7 +121,7 @@ function FamilyHomeLightPage() {
 //))}
     return (
       <div style={{ display: 'flex', alignItems: 'center', marginLeft: '40px', marginRight: '-250px' }}>
-        <button onClick={() => scrollTo(-200)} style={buttonStyle}>◀</button>
+        <button onClick={() => scrollTo(-1000)} style={buttonStyle}>◀</button>
         <div style={{ display: 'flex', overflowX: 'auto', marginRight: '50px' }} ref={containerRef}>
           {rankposter.map((imageUrl, index) => (
             <img
@@ -133,7 +133,7 @@ function FamilyHomeLightPage() {
             />
           ))}
         </div>
-        <button onClick={() => scrollTo(200)} style={buttonStyle}>▶</button>
+        <button onClick={() => scrollTo(1000)} style={buttonStyle}>▶</button>
       </div>
     );
   };
