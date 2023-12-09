@@ -17,7 +17,7 @@ function FamilyHomeLightPage() {
         const access = localStorage.getItem('access_token');
         console.log('access token 1은', access);
 
-        const response = await axios.get('http://127.0.0.1:8000/vodrec/', {
+        const response = await axios.get('https://hello00back.net/vodrec/', {
           headers: {
             Authorization : access,
           }
