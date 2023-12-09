@@ -16,11 +16,11 @@ const ProjectRoutes = () => {
           <Route path="/" element={<LoginPageLight />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/familyhomelight" element={<FamilyHomeLight />} />
-          <Route path="/light" element={<Light />} />
           <Route path="/frontpagelight" element={<FrontpageLight />} />
           <Route path="/signuppagelight" element={<SignupPageLight />} />
           <Route path="/silverclublight" element={<SilverclubLight />} />
           <Route path="/dhiwise-dashboard" element={<Home />} />
+          <Route path="/Light/:programId" element={<Light />} />
         </Routes>
       </Router>
     </React.Suspense>

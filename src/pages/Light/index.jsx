@@ -1,19 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
 import { Button, Img, Text } from "components";
+import { useParams } from 'react-router-dom';
+import axios from "axios"
 
-const LightPage = () => {
+  
+
+
+function LightPage() {
   const navigate = useNavigate();
+  const { programId } = useParams();
+  const [data, setData] = useState(null);
 
-  function handleNavigate() {
-    const win = window.open(
-      "https://www.youtube.com/watch?v=Cmmux9XUKJo",
-      "_blank",
-    );
-    win.focus();
-  }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`https://hello00back.net/vod_detail/${programId}/`);
+        console.log(response);
+        if (response.status === 200) {
+
+        
+          setData(response.data.data);
+          console.log(response.data.data);
+
+        }
+      } catch (error) {
+        console.error('데이터 읽기 실패 원인:', error);
+      }
+    };
+    fetchData();
+
+  }, [programId]);
 
   return (
     <>
@@ -21,8 +40,8 @@ const LightPage = () => {
         <div className="flex flex-col items-center justify-start mb-[42px] w-full">
           <div className="bg-red-A400 flex md:flex-col flex-row md:gap-5 items-start justify-end pb-1.5 px-1.5 w-full">
             <Img
-              className="common-pointer h-[37px] mr-[130px] md:mt-0 mt-6"
-              src="images/img_arrowdown.svg"
+              className="common-pointer h-[37px] mr-[400px] md:mt-0 mt-6"
+              src={`${process.env.PUBLIC_URL}/images/img_arrowdown.svg`}
               alt="arrowdown"
               onClick={() => navigate(-1)}
             />
@@ -35,7 +54,7 @@ const LightPage = () => {
               </Text>
               <Img
                 className="absolute h-[84px] inset-y-[0] my-auto right-[0] w-[84px]"
-                src="images/img_fluentweather.svg"
+                src={`${process.env.PUBLIC_URL}/images/img_fluentweather.svg`}
                 alt="fluentweather"
               />
             </div>
@@ -50,37 +69,66 @@ const LightPage = () => {
             <div className="flex flex-col items-center justify-start md:ml-[0] ml-[43px] mt-[22px] w-[83%] md:w-full">
               <div className="flex md:flex-col flex-row md:gap-10 items-center justify-between w-full">
                 <Img
-                  className="h-[673px] md:h-auto object-cover rounded-[38px]"
-                  src="images/img_image33.png"
-                  alt="imagethirtythre"
+                  className="ml-auto h-[673px] md:h-auto object-cover rounded-[38px]"
+                  // src={data[2]}
+                  src={data ? data[2] : ""}
+                  
                 />
                 <div className="flex flex-col items-start justify-start">
                   <Text
-                    className="sm:text-[40px] md:text-[46px] text-[50px] text-white-A700 tracking-[-0.25px]"
+                    className="ml-[200px] sm:text-[40px] md:text-[46px] text-[50px] text-white-A700 tracking-[-0.25px]"
                     size="txtInterBold50"
                   >
-                    몬스터 주식회사 3D
+                    {data ? data[0] : ""}
+                    <p><br/></p>
                   </Text>
                   <Text
-                    className="mt-[18px] text-white-A700 text-xl tracking-[-0.10px]"
+                    className="ml-[200px] mt-[12px] text-white-A700 text-2xl tracking-[-0.10px]"
                     size="txtInterSemiBold20"
                   >
-                    2015, 한국, 15세, 드라마, 로맨스
+                    <p>장르 : {data ? data[1] : ""}</p>
+                    
                   </Text>
                   <Text
-                    className="leading-[40.00px] mt-[51px] text-2xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]"
+                    className="ml-[200px] leading-[30.00px] mt-[51px] text-xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]"
+                    size="txtInterSemiBold10"
+                  >
+                    <>
+                    {data ? data[3] : ""} <br /> {data ? data[4] : ""}
+                    </>
+                  </Text>
+                  <Text
+                    className="ml-[200px] leading-[40.00px] mt-[51px] text-2xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]"
                     size="txtInterSemiBold24"
                   >
                     <>
                       출연
-                      <br />
-                      박채나,김은혜,공유경,황성주,김명현,고상희
                     </>
+                  </Text>
+                  <Text
+                    className="ml-[200px] leading-[40.00px] mt-[5px] text-xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]"
+                    size="txtInterSemiBold10"
+                  >
+                    <>
+                      {data ? data[8] : ""}
+                    </>
+                  </Text>
+                  <Text
+                    className="ml-[200px] leading-[40.00px] mt-[50px] text-2xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px] "
+                    size="txtInterSemiBold20">
+                      <p>줄거리 : </p>
+                    
+                  </Text>
+                  <Text
+                    className="ml-[200px] leading-[40.00px] mt-[50px] text-xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px] "
+                    size="txtInterSemiBold10">
+                  
+                    {data ? data[7] : ""}
                   </Text>
                   <div className="flex flex-col items-start justify-start md:ml-[0] ml-[164px] mt-[77px] w-[181px]">
                     <Button
                       className="common-pointer cursor-pointer font-semibold h-[50px] text-center text-lg tracking-[-0.09px] w-[175px]"
-                      onClick={handleNavigate}
+                      // onClick={handleNavigate}
                       shape="round"
                       color="red_A400"
                       size="lg"
@@ -94,11 +142,12 @@ const LightPage = () => {
             </div>
           </div>
           <div className="flex md:flex-col flex-row md:gap-10 items-center justify-between max-w-[1306px] mt-[55px] mx-auto md:px-5 w-full">
-            <Text
-              className="sm:text-[31px] md:text-[33px] text-[35px] text-blue_gray-900 tracking-[-0.18px] w-[100px]"
+            {/* <Text
+              className="sm:text-[31px] md:text-[33px] text-[35px] text-blue_gray-900 tracking-[-0.5px] w-[100px] text-center inline-block"
               size="txtInterSemiBold35"
             >
-              1화
+              줄거리
+              <p><br/></p>
             </Text>
             <Text
               className="leading-[50.00px] p-2.5 text-2xl md:text-[22px] text-blue_gray-900 sm:text-xl tracking-[-0.12px]"
@@ -106,21 +155,16 @@ const LightPage = () => {
             >
               <span className="text-blue_gray-900 font-inter text-left font-semibold">
                 {/*  */}
-              </span>
+              {/* </span>
               <span className="text-blue_gray-900 tracking-[-1.20px] font-inter text-left font-semibold">
-                는
+                
               </span>
               <span className="text-blue_gray-900 font-inter text-left font-semibold">
-                {" "}
-                절대로 안되는데...
+                
+                {data ? data[7] : ""}
               </span>
-            </Text>
-            <Text
-              className="text-2xl md:text-[22px] text-blue_gray-900 sm:text-xl tracking-[-0.12px] w-[100px]"
-              size="txtInterSemiBold24Bluegray900"
-            >
-              60분
-            </Text>
+            </Text> */} 
+
           </div>
         </div>
       </div>

@@ -39,7 +39,7 @@ function FamilyHomeLightPage() {
           navigate('/');
           return; // 로그인 페이지로 이동 후 함수 종료
         }
-        console.log('access token 1은', access);
+        console.log('access token 은', access);
         setLoading(true);
         const response = await axios.get('https://hello00back.net/vodrec/', {
           headers: {
@@ -56,13 +56,13 @@ function FamilyHomeLightPage() {
           const userItems = data[2].slice(0, 10);
         
 
-          console.log(rankItems);
+          console.log(data);
 
-          const rankposter = rankItems.map(item => item[2]); //주간 랭킹
-          const genposter = selectedItems.map(item => item[2]); // 장르별
-          const userposter = userItems.map(item=> item[2]); // 사용자 개인
+          const rankposter = rankItems.map(item => item); //주간 랭킹
+          const genposter = selectedItems.map(item => item); // 장르별
+          const userposter = userItems.map(item=> item); // 사용자 개인
          
-          console.log(genposter);
+          
         // console.log(genposter);
         // 이후 사용하거나 반환할 때 활용
           setGenposter(genposter);
@@ -85,12 +85,9 @@ function FamilyHomeLightPage() {
   }, [navigate]);
 
 
-  const Click = () => {
-    navigate('/Light')
+   const Click = (dataItem) => {
+     navigate(`/Light/${dataItem}`);
   }
-  // const Click = (programId) => {
-  //   navigate(`/Light/${programId}`);
-  // }
   // Component
   
   const buttonStyle = {
@@ -110,26 +107,18 @@ function FamilyHomeLightPage() {
       const container = containerRef.current;
       container.scrollLeft += scrollOffset;
     };
-//   // {rankItems.map((item, index) => (
-//   <img
-//   key={index}
-//   style={{ width: '300px', height: '450px', marginRight: '50px', border: '2px solid #ccc', borderRadius: '5px', cursor: 'pointer' }}
-//   src={item[2]} // 이미지 URL
-//   alt={`${index}`}
-//   onClick={() => Click(item[1])} // program_id 전달
-// />
-//))}
+
     return (
       <div style={{ display: 'flex', alignItems: 'center', marginLeft: '60px', marginRight: '-300px' }}>
         <button onClick={() => scrollTo(-600)} style={buttonStyle}>◀</button>
         <div style={{ display: 'flex', overflowX: 'auto', marginRight: '50px' }} ref={containerRef}>
-          {rankposter.map((imageUrl, index) => (
+          {rankposter.map((item, index) => (
             <img
               key={index}
               style={{ width: '200px', height: '250px', marginRight: '50px', border: '2px solid #ccc', borderRadius: '5px', cursor: 'pointer' }}
-              src={imageUrl}
+              src={item[2]}
               alt={`${index}`}
-              onClick={Click}
+              onClick={() => Click(item[0])}
             />
           ))}
         </div>
