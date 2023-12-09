@@ -120,20 +120,20 @@ function FamilyHomeLightPage() {
 // />
 //))}
     return (
-      <div style={{ display: 'flex', alignItems: 'center', marginLeft: '40px', marginRight: '-250px' }}>
-        <button onClick={() => scrollTo(-1000)} style={buttonStyle}>◀</button>
+      <div style={{ display: 'flex', alignItems: 'center', marginLeft: '60px', marginRight: '-300px' }}>
+        <button onClick={() => scrollTo(-600)} style={buttonStyle}>◀</button>
         <div style={{ display: 'flex', overflowX: 'auto', marginRight: '50px' }} ref={containerRef}>
           {rankposter.map((imageUrl, index) => (
             <img
               key={index}
-              style={{ width: '300px', height: '450px', marginRight: '50px', border: '2px solid #ccc', borderRadius: '5px', cursor: 'pointer' }}
+              style={{ width: '200px', height: '250px', marginRight: '50px', border: '2px solid #ccc', borderRadius: '5px', cursor: 'pointer' }}
               src={imageUrl}
               alt={`${index}`}
               onClick={Click}
             />
           ))}
         </div>
-        <button onClick={() => scrollTo(1000)} style={buttonStyle}>▶</button>
+        <button onClick={() => scrollTo(600)} style={buttonStyle}>▶</button>
       </div>
     );
   };
@@ -280,12 +280,7 @@ function FamilyHomeLightPage() {
                     </span>
                   </Text>
                 </div>
-                <div className="flex md:flex-col flex-row font-paytoneone md:gap-10 items-start justify-between w-full">
-                  
-
-
-                    
-                  
+                <div className="flex md:flex-col flex-row font-paytoneone md:gap-5 items-start justify-between w-full">
                     <HorizontalPosters rankposter={rankposter} />
                   
                   <div className="h-[259px] md:ml-[0] ml-[50px] relative w-1/5 md:w-full">
@@ -314,7 +309,7 @@ function FamilyHomeLightPage() {
                     </span>
                   </Text>
                 </div>
-                <div className="flex md:flex-col flex-row font-paytoneone md:gap-10 items-start justify-between m-0 pr-[200px] w-full">
+                <div className="flex md:flex-col flex-row font-paytoneone md:gap-5 items-start justify-between pr-[100px] w-full">
                     {/* 이미지를 출력하는 장소 여기서는 장르 (장르 모델) */}
                     
                   <HorizontalPosters rankposter={genposter} />
@@ -340,7 +335,7 @@ function FamilyHomeLightPage() {
                     </span>
                   </Text>
                 </div>
-                <div className="flex md:flex-col flex-row md:gap-10 items-start justify-between m-0 pr-[200px] w-full">
+                <div className="flex md:flex-col flex-row md:gap-5 items-start justify-between pr-[100px] w-full">
                   <HorizontalPosters rankposter={userposter} />
                  
                 <div className="h-[259px] md:ml-[0] ml-[50px] relative w-1/5 md:w-full">
