@@ -8,16 +8,17 @@ import { useCookies } from 'react-cookie';
 
 const LoginPageLightPage = () => {
   const navigate = useNavigate();
-  
+  const [accessToken, setAccessToken] = useState('');
 
   const [id, setId] = useState('');
   
   useEffect(() => {
-    const accessToken = localStorage.getItem('access_token');
+    const storedToken = localStorage.getItem('access_token');
 
-    if (accessToken) {
+    if (storedToken) {
       // access_token이 있다면 원하는 URL로 이동
       navigate('/FrontpageLight');
+      setAccessToken(storedToken)
     }
   }, [navigate]);
 

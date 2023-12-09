@@ -1,51 +1,79 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import { Sidebar } from "react-pro-sidebar";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { Img, Text } from "components";
-import { useRef } from 'react';
+import 'styles/loading.css';
+
+const LoadingScreen = () => {
+    return (
+        <div className='lodaing-screen'>
+            
+            <img src='/images/spinner.gif' alt='로딩 중' />
+        </div>
+        );
+    };
+ 
 
 function FamilyHomeLightPage() {
+  const [loading, setLoading] = useState(true);
   const [genposter, setGenposter] = useState([]);
   const [rankposter, setRankposter] = useState([]);
   const [userposter, setUserposter] = useState([]);
   const navigate = useNavigate();
+  
   useEffect(() => {
+    // const mainApi = async () = {
+    //   setLoading(true);
+    //   try {
+    //     const response = await fetch(`api url`)
+    //   }
+    // }
+    
+    
     const fetchData = async () => {
       try {
         const access = localStorage.getItem('access_token');
         console.log('access token 1은', access);
-
+        setLoading(true);
         const response = await axios.get('https://hello00back.net/vodrec/', {
           headers: {
             Authorization : access,
           }
         });
-
+        if (response.status === 200) {
+          
         
-        const data = response.data.data;
         
-        const selectedItems = data[0].slice(0, 10);
-        const rankItems = data[1];
-        const userItems = data[2].slice(0, 10);
+          const data = response.data.data;
+          const selectedItems = data[0].slice(0, 10);
+          const rankItems = data[1];
+          const userItems = data[2].slice(0, 10);
         
 
-        console.log(rankItems);
+          console.log(rankItems);
 
-        const rankposter = rankItems.map(item => item[2]); //주간 랭킹
-        const genposter = selectedItems.map(item => item[2]); // 장르별
-        const userposter = userItems.map(item=> item[2]); // 사용자 개인
+          const rankposter = rankItems.map(item => item[2]); //주간 랭킹
+          const genposter = selectedItems.map(item => item[2]); // 장르별
+          const userposter = userItems.map(item=> item[2]); // 사용자 개인
          
-        console.log(genposter);
+          console.log(genposter);
         // console.log(genposter);
         // 이후 사용하거나 반환할 때 활용
-        setGenposter(genposter);
-        setUserposter(userposter);
-        setRankposter(rankposter);
-       
+          setGenposter(genposter);
+          setUserposter(userposter);
+          setRankposter(rankposter);
+          setLoading(false);
+        }
+        
       } catch (error) {
+        setTimeout(() => {
+          setLoading(true); // 로딩 완료
+          // 여기에 실패 화면을 보여주는 상태를 업데이트하는 로직을 추가할 수 있음
+        }, 10000);
         console.error('Error fetching data:', error);
+        
       }
     };
 
@@ -223,9 +251,19 @@ function FamilyHomeLightPage() {
                 </Text>
               </div>
             </Sidebar>
+         
+            {loading ? (
+              <div className='overlay'>
+                <LoadingScreen />
+              </div>
+            ) : ( 
+                  
             <div className="flex flex-1 flex-col gap-[11px] items-start justify-start w-full">
               <div className="flex flex-col items-start justify-start w-[94%] md:w-full">
                 <div className="flex flex-col items-center justify-start">
+                
+                  
+                  
                   <Text
                     className="leading-[100.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
                     size="txtABeeZeeRegular25"
@@ -239,7 +277,13 @@ function FamilyHomeLightPage() {
                   </Text>
                 </div>
                 <div className="flex md:flex-col flex-row font-paytoneone md:gap-10 items-start justify-between w-full">
+                  
+
+
+                    
+                  
                     <HorizontalPosters rankposter={rankposter} />
+                  
                   <div className="h-[259px] md:ml-[0] ml-[50px] relative w-1/5 md:w-full">
                     <div>
                       <div className="video-container">
@@ -299,15 +343,18 @@ function FamilyHomeLightPage() {
                   <div>
                     <div className="video-container">
                     </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+
               {/* </List> */}
             </div>
+            )}
           </div>
         </div>
       </div>
+      
     </>
   );
 };
