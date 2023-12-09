@@ -6,7 +6,11 @@ import { Img, Text } from "components";
 
 const FrontpageLightPage = () => {
   const navigate = useNavigate();
-
+  const access = localStorage.getItem('access_token');
+  if (!access) {
+    navigate('/');
+    return; // 로그인 페이지로 이동 후 함수 종료
+  }
   return (
     <>
       <div className="bg-gray-100 border border-black-900 border-solid flex flex-col font-inter items-center justify-start mx-auto w-full">

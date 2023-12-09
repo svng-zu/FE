@@ -35,6 +35,10 @@ function FamilyHomeLightPage() {
     const fetchData = async () => {
       try {
         const access = localStorage.getItem('access_token');
+        if (!access) {
+          navigate('/');
+          return; // 로그인 페이지로 이동 후 함수 종료
+        }
         console.log('access token 1은', access);
         setLoading(true);
         const response = await axios.get('https://hello00back.net/vodrec/', {
