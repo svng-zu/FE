@@ -82,7 +82,7 @@ function FamilyHomeLightPage() {
     };
 
     fetchData();
-  }, []);
+  }, [navigate]);
 
 
   const Click = () => {
