@@ -92,13 +92,6 @@ const handleLogin = async () => {
     }
   }
 };
-  const handleKeyPress = async (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      e.stopPropagation();
-      await handleLogin();
-    } 
-  };
 
   return (
     <>
