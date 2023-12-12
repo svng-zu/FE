@@ -20,9 +20,12 @@ function FamilyHomeLightPage() {
   const [loading, setLoading] = useState(true);
   const [genposter, setGenposter] = useState([]);
   const [rankposter, setRankposter] = useState([]);
+  const [movie, setMovie] = useState([]);
+  const [drama, setDrama] = useState([]);
+  const [startIndex, setStartIndex] = useState(localStorage.getItem('startIndex'));
   const [userposter, setUserposter] = useState([]);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     // const mainApi = async () = {
     //   setLoading(true);
@@ -30,9 +33,49 @@ function FamilyHomeLightPage() {
     //     const response = await fetch(`api url`)
     //   }
     // }
-    
-    
+
+  
     const fetchData = async () => {
+      try{
+        const access = localStorage.getItem('access_token');
+        if (!access) {
+          navigate('/');
+          return; // 로그인 페이지로 이동 후 함수 종료
+        }
+
+        setLoading(true);
+        const mresponse = await axios.get('https://hello00back.net/home/영화')
+        console.log("영화 추천 :", mresponse.data)
+        const dresponse = await axios.get('https://hello00back.net/home/TV드라마')
+        console.log("드라마 수신 여부", dresponse.status)
+        if (mresponse.status && dresponse.status === 200){
+          const mdata = mresponse.data.data;
+          const ddata = dresponse.data.data;
+          const movie = mdata.map(item => item); //주간 랭킹
+          const drama = ddata.map(item => item); // 장르별
+          
+          
+          
+
+          setMovie(movie);
+          setDrama(drama);
+          console.log("영화", movie, "드라마",drama);
+        
+          setLoading(false);
+        }
+
+
+      }
+      catch (error) {
+        setTimeout(() => {
+          setLoading(false); // 로딩 완료
+          // 실패 로직 필요시 추가
+        }, 10000);
+        console.error('Error fetching data:', error);
+        
+      };
+
+      
       try {
         const access = localStorage.getItem('access_token');
         if (!access) {
@@ -44,16 +87,20 @@ function FamilyHomeLightPage() {
         const response = await axios.get('https://hello00back.net/vodrec/', {
           headers: {
             Authorization : access,
-          }
+          },
+
+
         });
+
+      
         if (response.status === 200) {
-          
+
         
         
           const data = response.data.data;
-          const selectedItems = data[0].slice(0, 10);
+          const selectedItems = data[0].slice(startIndex, startIndex + 10);
           const rankItems = data[1];
-          const userItems = data[2].slice(0, 10);
+          const userItems = data[2].slice(startIndex, startIndex + 10);
         
 
           console.log(data);
@@ -62,29 +109,55 @@ function FamilyHomeLightPage() {
           const genposter = selectedItems.map(item => item); // 장르별
           const userposter = userItems.map(item=> item); // 사용자 개인
          
-          
-        // console.log(genposter);
-        // 이후 사용하거나 반환할 때 활용
           setGenposter(genposter);
           setUserposter(userposter);
           setRankposter(rankposter);
           setLoading(false);
         }
-        
+
+      
       } catch (error) {
         setTimeout(() => {
           setLoading(true); // 로딩 완료
-          // 여기에 실패 화면을 보여주는 상태를 업데이트하는 로직을 추가할 수 있음
+          // 실패 로직 필요시 추가
         }, 10000);
         console.error('Error fetching data:', error);
         
       }
+      
+      
     };
 
     fetchData();
-  }, [navigate]);
+  }, [navigate, startIndex]);
+
+  // useEffect(() => {
+  //   const unlisten = navigate.listen(() => {
+  //     const savedStartIndex = parseInt(localStorage.getItem('startIndex'), 10) || 0;
+  //     setStartIndex(savedStartIndex);
+  //     });
+  //   return () => {
+  //     unlisten();
+  //   };
+  
 
 
+  const Rerec = () => {
+    const saveToLocalStorage = (startIndex) => {
+      localStorage.setItem('startIndex', startIndex);
+    };
+    
+    const currentStartIndex = parseInt(localStorage.getItem('startIndex'), 10) || 0;
+  
+    if (currentStartIndex < 90) {
+      const updatedStartIndex = currentStartIndex + 10;
+      setStartIndex(updatedStartIndex);
+      saveToLocalStorage(updatedStartIndex);
+    } else {
+      setStartIndex(0);
+      localStorage.setItem('startIndex', startIndex);
+    }
+  }
    const Click = (dataItem) => {
      navigate(`/Light/${dataItem}`);
   }
@@ -109,13 +182,13 @@ function FamilyHomeLightPage() {
     };
 
     return (
-      <div style={{ display: 'flex', alignItems: 'center', marginLeft: '60px', marginRight: '-300px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', marginLeft: '20px', marginRight: '-1100px' }}>
         <button onClick={() => scrollTo(-600)} style={buttonStyle}>◀</button>
-        <div style={{ display: 'flex', overflowX: 'auto', marginRight: '50px' }} ref={containerRef}>
+        <div style={{ display: 'flex', overflowX: 'auto', marginRight: '30px' }} ref={containerRef}>
           {rankposter.map((item, index) => (
             <img
               key={index}
-              style={{ width: '200px', height: '250px', marginRight: '50px', border: '2px solid #ccc', borderRadius: '5px', cursor: 'pointer' }}
+              style={{ width: '220px', height: '270px', marginRight: '20px', border: '2px solid #ccc', borderRadius: '5px', cursor: 'pointer' }}
               src={item[2]}
               alt={`${index}`}
               onClick={() => Click(item[0])}
@@ -217,28 +290,18 @@ function FamilyHomeLightPage() {
                   </Text>
                 </div>
               </div>
-              <div className="flex flex-col gap-[17px] items-center justify-start mt-[77px] mx-auto w-[63%]">
-                <Img
-                  className="h-[52px]"
-                  src="images/img_thumbsup_gray_800.svg"
-                  alt="thumbsup"
-                />
-                <Text
-                  className="text-[22px] text-center text-gray-800 sm:text-lg md:text-xl tracking-[-3px]"
-                  size="txtABeeZeeRegular22"
-                >
-                  시리즈물
-                </Text>
-              </div>
+
               <div className="flex flex-col gap-[17px] items-center justify-start mb-[38px] mt-[66px] mx-auto w-[48%]">
                 <Img
                   className="h-[42px]"
                   src="images/img_qrcode.svg"
                   alt="contrast"
+                  onClick={Rerec}
                 />
                 <Text
                   className="text-[22px] text-center sm:text-lg text-red-A400 md:text-xl tracking-[-3px]"
                   size="txtABeeZeeRegular22RedA400"
+                  onClick={Rerec}
                 >
                   재추천
                 </Text>
@@ -251,16 +314,12 @@ function FamilyHomeLightPage() {
               </div>
             ) : ( 
                   
-            <div className="flex flex-1 flex-col gap-[11px] items-start justify-start w-full">
-              <div className="flex flex-col items-start justify-start w-[94%] md:w-full">
+              <div className="flex flex-1 flex-col items-start justify-start w-full mr-[20px]">
                 <div className="flex flex-col items-center justify-start">
-                
-                  
-                  
-                  <Text
-                    className="leading-[100.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
-                    size="txtABeeZeeRegular25"
-                  >
+                <Text
+                  className="leading-[100.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
+                  size="txtABeeZeeRegular25"
+                >
                     <span className="text-black-900 font-abeezee text-left font-normal">
                       주간베스트{" "}
                     </span>
@@ -269,55 +328,45 @@ function FamilyHomeLightPage() {
                     </span>
                   </Text>
                 </div>
-                <div className="flex md:flex-col flex-row font-paytoneone md:gap-5 items-start justify-between w-full">
-                    <HorizontalPosters rankposter={rankposter} />
-                  
-                  <div className="h-[259px] md:ml-[0] ml-[50px] relative w-1/5 md:w-full">
-                    <div>
+                <div className="flex md:flex-col flex-row font-paytoneone md:gap-5 items-start justify-between w-full">                                      
+                  <div className="flex-shrink-0 h-[250px] mr-[10px] relative w-1/5 md:w-full">
                       <div className="video-container">
+                      <HorizontalPosters rankposter={rankposter} />
                       </div>
-                    </div>
-                  </div>
-                </div>
+                  </div>                
               </div>
-              {/* <List
-                className="flex flex-col gap-[7px] items-center w-full"
-                orientation="vertical"
-              > */}
               <div className="flex flex-1 flex-col items-start justify-start w-full">
-                <div className="flex flex-col items-center justify-start">
+                <div className="flex flex-col items-center justify-start" style={{ marginTop: '50px' }}>
                   <Text
                     className="leading-[100.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
                     size="txtABeeZeeRegular25"
                   >
                     <span className="text-black-900 font-abeezee text-left font-normal">
-                      장르 기반 추천{" "}
+                      시청했던 장르 기반 추천{" "}
                     </span>
                     <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
                       Wow{" "}
                     </span>
                   </Text>
                 </div>
-                <div className="flex md:flex-col flex-row font-paytoneone md:gap-5 items-start justify-between pr-[100px] w-full">
-                    {/* 이미지를 출력하는 장소 여기서는 장르 (장르 모델) */}
-                    
-                  <HorizontalPosters rankposter={genposter} />
-                <div className="h-[259px] md:ml-[0] ml-[50px] relative w-1/5 md:w-full">
-                  <div>
-                    <div className="video-container">
-                    </div>
+                <div className="flex md:flex-col flex-row font-paytoneone md:gap-5 items-start justify-between pr-[100px] w-full">                                  
+                  <div className="flex-shrink-0 h-[250px] mr-[10px] relative w-1/5 md:w-full">
+                  
+                      <div className="video-container">
+                        <HorizontalPosters rankposter={genposter} />
+                      </div>
+                  
                   </div>
                 </div>
-              </div>
             </div>
               <div className="flex flex-1 flex-col items-start justify-start w-full">
-                <div className="flex flex-col items-center justify-start">
+                <div className="flex flex-col items-center justify-start" style={{ marginTop: '50px' }}>
                   <Text
                     className="leading-[100.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
                     size="txtABeeZeeRegular25"
                   >
                     <span className="text-black-900 font-abeezee text-left font-normal">
-                      나를 위한 추천{" "}
+                      {localStorage.getItem('subsr')} 님을 위한 추천{" "}
                     </span>
                     <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
                       For You{" "}
@@ -325,18 +374,71 @@ function FamilyHomeLightPage() {
                   </Text>
                 </div>
                 <div className="flex md:flex-col flex-row md:gap-5 items-start justify-between pr-[100px] w-full">
-                  <HorizontalPosters rankposter={userposter} />
+                  
                  
-                <div className="h-[259px] md:ml-[0] ml-[50px] relative w-1/5 md:w-full">
-                  <div>
+                <div className="h-[250px] mr-[10px] relative w-1/5 md:w-full">
+                  
                     <div className="video-container">
+                    <HorizontalPosters rankposter={userposter} />
                     </div>
+                    
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-1 flex-col items-start justify-start w-full">
+                <div className="flex flex-col items-center justify-start" style={{ marginTop: '50px' }}>
+                  <Text
+                    className="leading-[100.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
+                    size="txtABeeZeeRegular25"
+                  >
+                    <span className="text-black-900 font-abeezee text-left font-normal">
+                      영화 랭킹 추천{" "}
+                    </span>
+                    <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
+                      Best{" "}
+                    </span>
+                  </Text>
+                </div>
+                <div className="flex md:flex-col flex-row md:gap-5 items-start justify-between pr-[100px] w-full">
+                  
+                 
+                <div className="h-[250px] md:ml-[0] mr-[10px] relative w-1/5 md:w-full">
+                  
+                    <div className="video-container">
+                    <HorizontalPosters rankposter={movie} />
                     </div>
+                    
+                  </div>
+                </div>
+              </div>
+              {/* 드라마 추천 장소 */}
+              <div className="flex flex-1 flex-col items-start justify-start w-full">
+                <div className="flex flex-col items-center justify-start" style={{ marginTop: '50px' }}>
+                  <Text
+                    className="leading-[100.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
+                    size="txtABeeZeeRegular25"
+                  >
+                    <span className="text-black-900 font-abeezee text-left font-normal">
+                      TV/드라마 랭킹 추천{" "}
+                    </span>
+                    <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
+                      Best{" "}
+                    </span>
+                  </Text>
+                </div>
+                <div className="flex md:flex-col flex-row md:gap-5 items-start justify-between pb-[200px] pr-[100px] w-full">
+                  
+                 
+                <div className="h-[250px] md:ml-[0] mr-[10px] relative w-1/5 md:w-full">
+                  
+                    <div className="video-container">
+                    <HorizontalPosters rankposter={drama} />
+                    </div>
+                    
                   </div>
                 </div>
               </div>
 
-              {/* </List> */}
             </div>
             )}
           </div>

@@ -40,8 +40,8 @@ function LightPage() {
         <div className="flex flex-col items-center justify-start mb-[42px] w-full">
           <div className="bg-red-A400 flex md:flex-col flex-row md:gap-5 items-start justify-end pb-1.5 px-1.5 w-full">
             <Img
-              className="common-pointer h-[37px] mr-[400px] md:mt-0 mt-6"
-              src={`${process.env.PUBLIC_URL}/images/img_arrowdown.svg`}
+              className="common-pointer h-[37px] mr-[100px] md:mt-0 mt-6"
+              src={process.env.PUBLIC_URL + '/images/img_arrowdown.svg'}
               alt="arrowdown"
               onClick={() => navigate(-1)}
             />
@@ -54,7 +54,7 @@ function LightPage() {
               </Text>
               <Img
                 className="absolute h-[84px] inset-y-[0] my-auto right-[0] w-[84px]"
-                src={`${process.env.PUBLIC_URL}/images/img_fluentweather.svg`}
+                src={process.env.PUBLIC_URL + '/images/img_fluentweather.svg'}
                 alt="fluentweather"
               />
             </div>
@@ -72,6 +72,7 @@ function LightPage() {
                   className="ml-auto h-[673px] md:h-auto object-cover rounded-[38px]"
                   // src={data[2]}
                   src={data ? data[2] : ""}
+                  style={{ width: '500px', height: '600px' , objectFit: 'cover' }}
                   
                 />
                 <div className="flex flex-col items-start justify-start">
