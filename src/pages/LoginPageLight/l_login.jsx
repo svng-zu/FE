@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { Button, Img } from "components"; //Input, Text
 import C1LoginPageLightIdinput from "components/C1LoginPageLightIdinput/login_input";
-import { useCookies } from 'react-cookie';
+// import { useCookies } from 'react-cookie';
 
 
 const LoginPageLightPage = () => {
@@ -28,23 +28,24 @@ const LoginPageLightPage = () => {
     setId(e);
     console.log(e);
   }
-  const [cookie, setCookie] = useCookies(['access']);
+  // const [cookie, setCookie] = useCookies(['access']);
 
 
 const handleLogin = async () => {
   try {
+    
     const response = await axios.get('https://hello00back.net/vodrec/', {
       headers: {
         Authorization : accessToken,
       }
     });
     console.log(accessToken);
-    const newCookie = response.data.token;
-    setCookie('access', newCookie);
-      console.log(response.status);
+    // const newCookie = response.data.token;
+    // setCookie('access', newCookie);
+      // console.log(response.status);
       if (response.status === 200){
         navigate('FrontpageLight');
-        console.log(cookie);
+        // console.log(cookie);
       }
     
     }catch (error) {
@@ -60,7 +61,7 @@ const handleLogin = async () => {
         if (postresponse.status === 200) {
           
           console.log(postresponse.data)
-          setCookie('access', postresponse.data.token.access)
+          // setCookie('access', postresponse.data.token.access)
           const accessToken = postresponse.data.token.access; // 예상되는 응답에서 access_token을 가져옴
           const refreshToken = postresponse.data.token.refresh;
           // 쿠키 및 로컬 스토리지에 토큰 저장
@@ -112,8 +113,8 @@ const handleLogin = async () => {
 };
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      e.preventDefault();
-      e.stopPropagation();
+      // e.preventDefault();
+      // e.stopPropagation();
       handleLogin();
     } 
   };
@@ -135,6 +136,7 @@ const handleLogin = async () => {
               value={id}
               onChange = {handleInputChange}
               onKeyPress = {handleKeyPress}
+              
             />
             <div className="flex flex-col font-inter items-start justify-start mt-0.5 w-auto"
               
@@ -142,13 +144,12 @@ const handleLogin = async () => {
             >
               <Button
                 className="common-pointer cursor-pointer font-semibold h-[50px] text-center text-lg tracking-[-0.09px] w-[175px]"
-                onClick={handleLogin}
                 shape="round"
                 color="blue_gray_100"
                 size="lg"
                 variant="fill"
                 type="submit"
-                
+                onClick={handleLogin}
               >
                 로그인
               </Button>

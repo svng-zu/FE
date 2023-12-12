@@ -21,10 +21,6 @@ const Button = ({
   size = "md",
   variant = "",
   color = "",
-  onKeyDown,
-  onKeyPress,
-  onKeyUp,
-  onClick,
   ...restProps
 }) => {
 
