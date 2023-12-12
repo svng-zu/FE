@@ -41,12 +41,12 @@ const handleLogin = async () => {
     console.log(accessToken);
     const newCookie = response.data.token;
     setCookie('access', newCookie);
-      //const response = await axios.get('http://127.0.0.1:8000/scheck/') // 백 endpoint 주소
       console.log(response.status);
       if (response.status === 200){
         navigate('FrontpageLight');
         console.log(cookie);
       }
+    
     }catch (error) {
     console.error('Error 발생 :', error);
     
@@ -75,7 +75,25 @@ const handleLogin = async () => {
           // navigate(""); // 페이지 이동
           // location.reload(); // 페이지 새로고침
           navigate('FrontpageLight'); // 원하는 페이지로 이동
-        }
+
+        } else if (postresponse.status === 204) {
+          // setCookie('access', postresponse.data.token.access)
+          // const accessToken = postresponse.data.token.access; // 예상되는 응답에서 access_token을 가져옴
+          // const refreshToken = postresponse.data.token.refresh;
+          // // 쿠키 및 로컬 스토리지에 토큰 저장
+          // localStorage.setItem('ip', postresponse.data.ip);
+          // localStorage.setItem('access_token', accessToken);
+          // localStorage.setItem('refresh_token', refreshToken);
+          localStorage.setItem('subsr', id);
+          // localStorage.setItem('subsr_id', postresponse.data.user.subsr_id);
+          // // axios의 인스턴스에 헤더 추가
+          // axios.defaults.headers.common['Authorization'] = 'JWT ' + accessToken;
+
+          
+          navigate('/signuppagelight');
+         
+          
+        };
       
       } catch (postError) {
         console.error('로그인 POST 요청 실패:', postError.response.data);
@@ -92,11 +110,11 @@ const handleLogin = async () => {
     }
   }
 };
-  const handleKeyPress = async (e) => {
+  const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
       e.stopPropagation();
-      await handleLogin();
+      handleLogin();
     } 
   };
 
@@ -135,8 +153,13 @@ const handleLogin = async () => {
                 로그인
               </Button>
             </div>
-            <Button className="bg-transparent cursor-pointer font-mako mb-[62px] min-w-[113px] mt-[17px] text-[15px] text-black-900 text-center tracking-[0.16px]">
+            <Button 
+              className="bg-transparent cursor-pointer font-mako mb-[62px] min-w-[113px] mt-[17px] text-[15px] text-black-900 text-center tracking-[0.16px]"
+              
+              // onClick={() => navigate('/signuppagelight/')} 
+              >
               회원이 아니라면?
+              
             </Button>
           </div>
         </div>

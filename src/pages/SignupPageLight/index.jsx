@@ -1,12 +1,39 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 
 import { Button, Img, List, Text } from "components";
 
 const SignupPageLightPage = () => {
+  const [id, setId] = useState('');
+  const [selectedGenres, setSelectedGenres] = useState([]);
+  const [genre, setGenre] = useState([]);
+  
+  useEffect(() => {
+    const storedId = localStorage.getItem('subsr');
+    if (storedId) {
+      setId(storedId);
+    }
+  }, []);
   const navigate = useNavigate();
 
+  const handleGenreClick = (genre) => {
+    const genreIndex = selectedGenres.indexOf(genre);
+    if (genreIndex === -1) {
+      setSelectedGenres([...selectedGenres, genre]);
+    } else {
+      const updatedGenres = [...selectedGenres];
+      updatedGenres.splice(genreIndex, 1);
+      setSelectedGenres(updatedGenres);
+      setGenre(genre);
+    }  
+  };
+
+  const isSelected = selectedGenres.includes(genre);
+  const buttonClassName = `cursor-pointer font-semibold h-[50px] sm:text-2xl md:text-[26px] text-[28px] text-center tracking-[-0.14px] w-[157px] ${
+    isSelected ? 'selected-class' : 'default-class'
+  }`;
+  
   return (
     <>
       <div className="bg-gray-100 border border-black-900 border-solid flex flex-col font-inter sm:gap-10 md:gap-10 gap-[138px] justify-start mx-auto pb-[120px] w-full">
@@ -27,7 +54,7 @@ const SignupPageLightPage = () => {
               안녕하세요,{" "}
             </span>
             <span className="text-red-A400 font-inter font-semibold">
-              65941000
+              {id}
             </span>
             <span className="text-black-900 font-inter font-semibold">
               <>
@@ -45,10 +72,11 @@ const SignupPageLightPage = () => {
               >
                 <div className="flex flex-1 md:flex-col flex-row md:gap-10 items-center justify-between my-0 w-full">
                   <Button
-                    className="cursor-pointer font-semibold h-[50px] sm:text-2xl md:text-[26px] text-[28px] text-center tracking-[-0.14px] w-[157px]"
+                    className={buttonClassName}
                     shape="round"
                     color="deep_orange_50_fc"
                     variant="fill"
+                    onClick={() => handleGenreClick("액션")}
                   >
                     액션
                   </Button>
@@ -57,6 +85,7 @@ const SignupPageLightPage = () => {
                     shape="round"
                     color="deep_orange_50_fc"
                     variant="fill"
+                    onClick={() => handleGenreClick("코미디")}
                   >
                     코미디
                   </Button>
@@ -65,6 +94,7 @@ const SignupPageLightPage = () => {
                     shape="round"
                     color="deep_orange_50_fc"
                     variant="fill"
+                    onClick={() => handleGenreClick("로맨스")}
                   >
                     로맨스
                   </Button>
@@ -73,6 +103,7 @@ const SignupPageLightPage = () => {
                     shape="round"
                     color="deep_orange_50_fc"
                     variant="fill"
+                    onClick={() => handleGenreClick("스릴러")}
                   >
                     스릴러
                   </Button>
@@ -81,8 +112,9 @@ const SignupPageLightPage = () => {
                     shape="round"
                     color="deep_orange_50_fc"
                     variant="fill"
+                    onClick={() => handleGenreClick("SF/판타지")}
                   >
-                    SF 판타지
+                    SF/판타지
                   </Button>
                 </div>
                 <div className="flex flex-1 md:flex-col flex-row gap-[33px] items-center justify-between my-0 w-full">
@@ -91,6 +123,7 @@ const SignupPageLightPage = () => {
                     shape="round"
                     color="deep_orange_50_fc"
                     variant="fill"
+                    onClick={() => handleGenreClick("시사교양")}
                   >
                     시사교양
                   </Button>
@@ -99,6 +132,7 @@ const SignupPageLightPage = () => {
                     shape="round"
                     color="deep_orange_50_fc"
                     variant="fill"
+                    onClick={() => handleGenreClick("예능")}
                   >
                     예능
                   </Button>
@@ -107,6 +141,7 @@ const SignupPageLightPage = () => {
                     shape="round"
                     color="deep_orange_50_fc"
                     variant="fill"
+                    onClick={() => handleGenreClick("스포츠")}
                   >
                     스포츠
                   </Button>
@@ -115,6 +150,7 @@ const SignupPageLightPage = () => {
                     shape="round"
                     color="deep_orange_50_fc"
                     variant="fill"
+                    onClick={() => handleGenreClick("다큐")}
                   >
                     다큐
                   </Button>
@@ -123,6 +159,7 @@ const SignupPageLightPage = () => {
                     shape="round"
                     color="deep_orange_50_fc"
                     variant="fill"
+                    onClick={() => handleGenreClick("애니메이션")}
                   >
                     애니메이션
                   </Button>
@@ -134,6 +171,7 @@ const SignupPageLightPage = () => {
                   shape="round"
                   color="deep_orange_50_fc"
                   variant="fill"
+                  onClick={() => handleGenreClick("키즈")}
                 >
                   키즈
                 </Button>
@@ -142,6 +180,7 @@ const SignupPageLightPage = () => {
                   shape="round"
                   color="deep_orange_50_fc"
                   variant="fill"
+                  onClick={() => handleGenreClick("게임")}
                 >
                   게임
                 </Button>
@@ -150,9 +189,19 @@ const SignupPageLightPage = () => {
                   shape="round"
                   color="deep_orange_50_fc"
                   variant="fill"
+                  onClick={() => handleGenreClick("성인")}
                 >
                   성인
                 </Button>
+                <Button
+                  className="cursor-pointer font-semibold h-[50px] sm:ml-[0] ml-[37px] sm:text-2xl md:text-[26px] text-[28px] text-center tracking-[-0.14px] w-[158px]"
+                  shape="round"
+                  color="deep_orange_50_fc"
+                  variant="fill"
+                  onClick={() => handleGenreClick("가족")}
+                >
+                  가족
+                </Button>                
               </div>
             </div>
           </div>

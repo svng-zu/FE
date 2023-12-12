@@ -20,6 +20,7 @@ function FamilyHomeLightPage() {
   const [loading, setLoading] = useState(true);
   const [genposter, setGenposter] = useState([]);
   const [rankposter, setRankposter] = useState([]);
+  const [recposter, setRecposter] = useState([]);
   const [movie, setMovie] = useState([]);
   const [drama, setDrama] = useState([]);
   const [startIndex, setStartIndex] = useState(localStorage.getItem('startIndex'));
@@ -101,6 +102,8 @@ function FamilyHomeLightPage() {
           const selectedItems = data[0].slice(startIndex, startIndex + 10);
           const rankItems = data[1];
           const userItems = data[2].slice(startIndex, startIndex + 10);
+          const recItems = data[3].slice(startIndex, startIndex + 10);
+
         
 
           console.log(data);
@@ -108,10 +111,11 @@ function FamilyHomeLightPage() {
           const rankposter = rankItems.map(item => item); //주간 랭킹
           const genposter = selectedItems.map(item => item); // 장르별
           const userposter = userItems.map(item=> item); // 사용자 개인
-         
+          const recposter = recItems.map(item=> item); // 관련 추천
           setGenposter(genposter);
           setUserposter(userposter);
           setRankposter(rankposter);
+          setRecposter(recposter);
           setLoading(false);
         }
 
@@ -314,7 +318,7 @@ function FamilyHomeLightPage() {
               </div>
             ) : ( 
                   
-              <div className="flex flex-1 flex-col items-start justify-start w-full mr-[50px]">
+              <div className="flex flex-1 flex-col items-start justify-start w-full">
                 <div className="flex flex-col items-center justify-start">
                 <Text
                   className="leading-[100.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
@@ -329,7 +333,7 @@ function FamilyHomeLightPage() {
                   </Text>
                 </div>
                 <div className="flex md:flex-col flex-row font-paytoneone md:gap-5 items-start justify-between w-full">                                      
-                  <div className="flex-shrink-0 h-[250px] mr-[50px] relative w-1/6 md:w-full">
+                  <div className="flex-shrink-0 h-[250px] relative w-1/6 mr-[10%] md:w-full">
                       <div className="video-container">
                       <HorizontalPosters rankposter={rankposter} />
                       </div>
@@ -345,12 +349,12 @@ function FamilyHomeLightPage() {
                       시청했던 장르 기반 추천{" "}
                     </span>
                     <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
-                      Wow{" "}
+                      For You{" "}
                     </span>
                   </Text>
                 </div>
                 <div className="flex md:flex-col flex-row font-paytoneone md:gap-5 items-start justify-between pr-[100px] w-full">                                  
-                  <div className="flex-shrink-0 h-[250px] mr-[10px] relative w-1/5 md:w-full">
+                  <div className="flex-shrink-0 h-[250px] relative w-1/6 mr-[10%] md:w-full">
                   
                       <div className="video-container">
                         <HorizontalPosters rankposter={genposter} />
@@ -376,7 +380,7 @@ function FamilyHomeLightPage() {
                 <div className="flex md:flex-col flex-row md:gap-5 items-start justify-between pr-[100px] w-full">
                   
                  
-                <div className="h-[250px] mr-[10px] relative w-1/5 md:w-full">
+                <div className="flex-shrink-0 h-[250px] relative w-1/6 md:w-full">
                   
                     <div className="video-container">
                     <HorizontalPosters rankposter={userposter} />
@@ -402,7 +406,7 @@ function FamilyHomeLightPage() {
                 <div className="flex md:flex-col flex-row md:gap-5 items-start justify-between pr-[100px] w-full">
                   
                  
-                <div className="h-[250px] md:ml-[0] mr-[10px] relative w-1/5 md:w-full">
+                <div className="flex-shrink-0 h-[250px] relative w-1/6 md:w-full">
                   
                     <div className="video-container">
                     <HorizontalPosters rankposter={movie} />
@@ -426,13 +430,37 @@ function FamilyHomeLightPage() {
                     </span>
                   </Text>
                 </div>
-                <div className="flex md:flex-col flex-row md:gap-5 items-start justify-between pb-[200px] pr-[100px] w-full">
-                  
-                 
-                <div className="h-[250px] md:ml-[0] mr-[10px] relative w-1/5 md:w-full">
+                <div className="flex md:flex-col flex-row md:gap-5 items-start justify-between w-full">
+                <div className="flex-shrink-0 h-[250px] relative w-1/6 md:w-full">
                   
                     <div className="video-container">
                     <HorizontalPosters rankposter={drama} />
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-1 flex-col items-start justify-start w-full pb-[200px] pr-[100px]">
+                <div className="flex flex-col items-center justify-start" style={{ marginTop: '50px' }}>
+                  <Text
+                    className="leading-[100.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
+                    size="txtABeeZeeRegular25"
+                  >
+                    <span className="text-black-900 font-abeezee text-left font-normal">
+                      최근 시청 VOD 유사 추천{" "}
+                    </span>
+                    <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
+                      For You{" "}
+                    </span>
+                  </Text>
+                </div>
+                <div className="flex md:flex-col flex-row md:gap-5 items-start justify-between pr-[100px] w-full">
+                  
+                 
+                <div className="flex-shrink-0 h-[250px] relative w-1/6 md:w-full">
+                  
+                    <div className="video-container">
+                    <HorizontalPosters rankposter={recposter} />
                     </div>
                     
                   </div>

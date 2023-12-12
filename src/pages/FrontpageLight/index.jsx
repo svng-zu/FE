@@ -50,22 +50,22 @@ const FrontpageLightPage = () => {
           </div>
             
           <Text
-            className="mt-[122px] text-3xl sm:text-[26px] md:text-[28px] text-black-900 text-center tracking-[-0.15px]"
+            className="mt-[70px] text-3xl sm:text-[26px] md:text-[28px] text-black-900 text-center tracking-[-0.15px]"
             size="txtInterSemiBold30Black900"
           >
             Hello tv를 시청할 모드를 선택해주세요.
           </Text>
-          <div className="flex md:flex-col flex-row md:gap-10 gap-[90px] items-center justify-start max-w-[1100px] mt-[51px] mx-auto md:px-5 w-full">
-            <div className="md:h-[640px] h-[644px] relative w-[49%] md:w-full">
+          <div className="flex md:flex-col flex-row md:gap-10 gap-[90px] items-center justify-start max-w-[1100px] mt-[30px] mx-auto md:px-5 w-full">
+            <div className="md:h-[640px] h-[640px] relative w-[50%] md:w-full">
               <div
-                className="common-pointer absolute bg-white-A700 flex flex-col h-full inset-y-[0] items-center justify-center left-[0] my-auto outline outline-[1px] outline-white-A700_4c p-[27px] sm:px-5 rounded-[40px] shadow-bs"
+                className="common-pointer absolute bg-white-A700 flex flex-col h-full inset-y-[0] items-center justify-center left-[0] my-auto outline outline-[1px] outline-white-A700_4c p-[27px] sm:px-5 rounded-[40px] shadow-bs h-[95%]"
                 onClick={() => navigate("/familyhomelight")}
               >
                 <Text
                   className="mt-[97px] md:text-5xl text-[100px] text-red-A400 tracking-[0.16px]"
                   size="txtYellowtailRegular100"
                 >
-                  Family
+                  Basic
                 </Text>
                 <Text
                   className="mb-[322px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px]"
@@ -102,17 +102,17 @@ const FrontpageLightPage = () => {
               </div>
             </div>
             <div
-              className="common-pointer bg-white-A700 flex md:flex-1 flex-col items-center justify-end outline outline-[1px] outline-white-A700_4c pt-12 md:px-10 px-12 sm:px-5 rounded-[40px] shadow-bs w-[44%] md:w-full"
+              className="common-pointer bg-white-A700 flex md:flex-1 flex-col items-center justify-end outline outline-[1px] outline-white-A700_4c pt-3 md:px-5 px-12 sm:px-5 rounded-[40px] shadow-bs w-[50%] h-[50%] md:w-full"
               onClick={() => navigate("/silverclublight")}
             >
               <Text
                 className="mt-[70px] md:text-5xl text-[100px] text-red-A400 tracking-[0.16px]"
                 size="txtYellowtailRegular100"
               >
-                Silver
+                Simple
               </Text>
               <Text
-                className="font-inter sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.5px]"
+                className="font-inter sm:text-[21px] md:text-[23px] text-[24px] text-black-900 tracking-[-0.5px]"
                 size="txtABeeZeeRegular25"
               >
                 핵심 기능만 크게 이용하고 싶다면?
