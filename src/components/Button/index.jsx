@@ -21,8 +21,13 @@ const Button = ({
   size = "md",
   variant = "",
   color = "",
+  onKeyDown,
+  onKeyPress,
+  onKeyUp,
+  onClick,
   ...restProps
 }) => {
+
   return (
     <button
       className={`${className} ${(shape && shapes[shape]) || ""} ${
@@ -49,6 +54,10 @@ Button.propTypes = {
     "red_A400",
     "deep_orange_50_fc",
   ]),
+  onKeyDown: PropTypes.func,
+  onKeyPress: PropTypes.func,
+  onKeyUp: PropTypes.func,
+  onClick: PropTypes.func,
 };
 
 export { Button };

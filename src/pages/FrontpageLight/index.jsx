@@ -4,7 +4,31 @@ import { useNavigate } from "react-router-dom";
 
 import { Img, Text } from "components";
 
+
+
+
 const FrontpageLightPage = () => {
+  
+  
+  const handleLogout = () => {
+    const confirmLogout = window.confirm('로그아웃 하시겠습니까?');
+    if (confirmLogout) {
+
+    
+      localStorage.clear();
+      document.cookie.split(";").forEach(cookie => {
+        document.cookie = cookie.replace(/^ +/, "").replace(/=.*/, `=;expires=${new Date().toUTCString()};path=/`);
+
+      });
+      
+      navigate('/');
+    } else {
+
+    }
+    
+  }
+
+  
   const navigate = useNavigate();
   const access = localStorage.getItem('access_token');
   if (!access) {
@@ -20,9 +44,11 @@ const FrontpageLightPage = () => {
               className="common-pointer h-[37px] mb-[5px] md:ml-[0] ml-[18px]"
               src="images/img_arrowdown.svg"
               alt="arrowdown"
-              onClick={() => navigate(-1)}
+              onClick={() => handleLogout(true)}
             />
+           
           </div>
+            
           <Text
             className="mt-[122px] text-3xl sm:text-[26px] md:text-[28px] text-black-900 text-center tracking-[-0.15px]"
             size="txtInterSemiBold30Black900"

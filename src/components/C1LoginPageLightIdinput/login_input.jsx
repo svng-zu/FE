@@ -5,6 +5,11 @@ import { Input, Text } from "components";
 
 const C1LoginPageLightIdinput = (props) => {
 
+    
+      // Enter 키 눌렸을 때 실행할 함수 호출 (여기에는 handleLogin 함수 또는 원하는 함수 추가)
+  
+    
+  
 
 
   return (
@@ -29,6 +34,7 @@ const C1LoginPageLightIdinput = (props) => {
           variant="fill"
           value ={props.value}
           onChange={props.onChange}
+          onKeyPress={props.onKeyPress}
         ></Input>
       </div>
     </>

@@ -314,7 +314,7 @@ function FamilyHomeLightPage() {
               </div>
             ) : ( 
                   
-              <div className="flex flex-1 flex-col items-start justify-start w-full mr-[20px]">
+              <div className="flex flex-1 flex-col items-start justify-start w-full mr-[50px]">
                 <div className="flex flex-col items-center justify-start">
                 <Text
                   className="leading-[100.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
@@ -329,7 +329,7 @@ function FamilyHomeLightPage() {
                   </Text>
                 </div>
                 <div className="flex md:flex-col flex-row font-paytoneone md:gap-5 items-start justify-between w-full">                                      
-                  <div className="flex-shrink-0 h-[250px] mr-[10px] relative w-1/5 md:w-full">
+                  <div className="flex-shrink-0 h-[250px] mr-[50px] relative w-1/6 md:w-full">
                       <div className="video-container">
                       <HorizontalPosters rankposter={rankposter} />
                       </div>

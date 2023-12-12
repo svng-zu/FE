@@ -30,6 +30,7 @@ const LoginPageLightPage = () => {
   }
   const [cookie, setCookie] = useCookies(['access']);
 
+
 const handleLogin = async () => {
   try {
     const response = await axios.get('https://hello00back.net/vodrec/', {
@@ -57,6 +58,7 @@ const handleLogin = async () => {
         });
         
         if (postresponse.status === 200) {
+          
           console.log(postresponse.data)
           setCookie('access', postresponse.data.token.access)
           const accessToken = postresponse.data.token.access; // 예상되는 응답에서 access_token을 가져옴
@@ -76,17 +78,27 @@ const handleLogin = async () => {
         }
       
       } catch (postError) {
-        console.error('로그인 POST 요청 실패:', postError);
+        console.error('로그인 POST 요청 실패:', postError.response.data);
         setId('');
-        alert("아이디를 다시 입력해주세요");
+        const error_mess = postError.response.data.message;
+        alert(error_mess);
       }
     } else {
+      console.log(error.data);
       console.error('GET 요청 실패:', error.response);
       setId('');
-      alert("아이디를 다시 입력해주세요");
+      const error_mess = error.response.data.message;
+      alert(`${error_mess}`);
     }
   }
 };
+  const handleKeyPress = async (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      e.stopPropagation();
+      await handleLogin();
+    } 
+  };
 
   return (
     <>
@@ -104,8 +116,12 @@ const handleLogin = async () => {
               className="flex flex-col font-ibmplexsans h-[124px] md:h-auto items-start justify-start max-w-[700px] mt-[100px] w-full"
               value={id}
               onChange = {handleInputChange}
+              onKeyPress = {handleLogin}
             />
-            <div className="flex flex-col font-inter items-start justify-start mt-0.5 w-auto">
+            <div className="flex flex-col font-inter items-start justify-start mt-0.5 w-auto"
+              
+              tabIndex={0}
+            >
               <Button
                 className="common-pointer cursor-pointer font-semibold h-[50px] text-center text-lg tracking-[-0.09px] w-[175px]"
                 onClick={handleLogin}
@@ -114,6 +130,7 @@ const handleLogin = async () => {
                 size="lg"
                 variant="fill"
                 type="submit"
+                
               >
                 로그인
               </Button>

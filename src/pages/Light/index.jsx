@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from "react";
-
 import { useNavigate } from "react-router-dom";
-
 import { Button, Img, Text } from "components";
 import { useParams } from 'react-router-dom';
 import axios from "axios"
+import 'styles/loading.css';
+// import LoadingScreen from "components/Loading/Loading";
 
-  
+function LoadingScreen () {
+  return (
+      <div className='lodaing-screen'>
+          <img src='/images/spinner.gif' alt='로딩 중' />
+      </div>
+      );
+  };
 
 
 function LightPage() {
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const { programId } = useParams();
   const [data, setData] = useState(null);
@@ -17,6 +24,12 @@ function LightPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const access = localStorage.getItem('access_token');
+        if (!access) {
+          navigate('/');
+          return;
+        };
+        setLoading(true);
         const response = await axios.get(`https://hello00back.net/vod_detail/${programId}/`);
         console.log(response);
         if (response.status === 200) {
@@ -24,7 +37,7 @@ function LightPage() {
         
           setData(response.data.data);
           console.log(response.data.data);
-
+          setLoading(false);
         }
       } catch (error) {
         console.error('데이터 읽기 실패 원인:', error);
@@ -32,7 +45,7 @@ function LightPage() {
     };
     fetchData();
 
-  }, [programId]);
+  }, [programId, navigate]);
 
   return (
     <>
@@ -65,11 +78,22 @@ function LightPage() {
               16:11
             </Text>
           </div>
+          {loading ? (
+              <div className='overlay'>
+                <LoadingScreen />
+              </div>
+              ) : ( 
+
+          
           <div className="bg-gradient  flex flex-col items-start justify-end p-[45px] md:px-10 sm:px-5 w-full">
+
             <div className="flex flex-col items-center justify-start md:ml-[0] ml-[43px] mt-[22px] w-[83%] md:w-full">
+            
               <div className="flex md:flex-col flex-row md:gap-10 items-center justify-between w-full">
+            
+
                 <Img
-                  className="ml-auto h-[673px] md:h-auto object-cover rounded-[38px]"
+                  className="ml-auto md:-[1000px] object-cover rounded-[25px] mt-[-100px]"
                   // src={data[2]}
                   src={data ? data[2] : ""}
                   style={{ width: '500px', height: '600px' , objectFit: 'cover' }}
@@ -81,22 +105,20 @@ function LightPage() {
                     size="txtInterBold50"
                   >
                     {data ? data[0] : ""}
-                    <p><br/></p>
+                    <p><br /></p>
                   </Text>
                   <Text
                     className="ml-[200px] mt-[12px] text-white-A700 text-2xl tracking-[-0.10px]"
                     size="txtInterSemiBold20"
                   >
-                    <p>장르 : {data ? data[1] : ""}</p>
-                    
+                    장르 : {data ? data[1] : ""}
                   </Text>
                   <Text
-                    className="ml-[200px] leading-[30.00px] mt-[51px] text-xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]"
+                    className="ml-[200px] leading-[30.00px] mt-[30px] text-xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]"
                     size="txtInterSemiBold10"
                   >
-                    <>
-                    {data ? data[3] : ""} <br /> {data ? data[4] : ""}
-                    </>
+                    {data ? data[3] : ""}<br />{data ? data[4] : ""}
+                    
                   </Text>
                   <Text
                     className="ml-[200px] leading-[40.00px] mt-[51px] text-2xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]"
@@ -139,38 +161,17 @@ function LightPage() {
                     </Button>
                   </div>
                 </div>
+                
               </div>
+              
             </div>
-          </div>
-          <div className="flex md:flex-col flex-row md:gap-10 items-center justify-between max-w-[1306px] mt-[55px] mx-auto md:px-5 w-full">
-            {/* <Text
-              className="sm:text-[31px] md:text-[33px] text-[35px] text-blue_gray-900 tracking-[-0.5px] w-[100px] text-center inline-block"
-              size="txtInterSemiBold35"
-            >
-              줄거리
-              <p><br/></p>
-            </Text>
-            <Text
-              className="leading-[50.00px] p-2.5 text-2xl md:text-[22px] text-blue_gray-900 sm:text-xl tracking-[-0.12px]"
-              size="txtInterSemiBold24Bluegray900"
-            >
-              <span className="text-blue_gray-900 font-inter text-left font-semibold">
-                {/*  */}
-              {/* </span>
-              <span className="text-blue_gray-900 tracking-[-1.20px] font-inter text-left font-semibold">
-                
-              </span>
-              <span className="text-blue_gray-900 font-inter text-left font-semibold">
-                
-                {data ? data[7] : ""}
-              </span>
-            </Text> */} 
-
-          </div>
+            
+            </div>
+            )};
+          
         </div>
       </div>
     </>
   );
-};
-
+}
 export default LightPage;
