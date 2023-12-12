@@ -92,6 +92,13 @@ const handleLogin = async () => {
     }
   }
 };
+  const handleKeyPress = async (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      e.stopPropagation();
+      await handleLogin();
+    } 
+  };
 
   return (
     <>
@@ -109,7 +116,7 @@ const handleLogin = async () => {
               className="flex flex-col font-ibmplexsans h-[124px] md:h-auto items-start justify-start max-w-[700px] mt-[100px] w-full"
               value={id}
               onChange = {handleInputChange}
-              onKeyPress = {handleLogin}
+              onKeyPress = {handleKeyPress}
             />
             <div className="flex flex-col font-inter items-start justify-start mt-0.5 w-auto"
               
