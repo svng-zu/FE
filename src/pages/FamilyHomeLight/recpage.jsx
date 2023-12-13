@@ -21,8 +21,9 @@ function FamilyHomeLightPage() {
   const [genposter, setGenposter] = useState([]);
   const [rankposter, setRankposter] = useState([]);
   const [recposter, setRecposter] = useState([]);
-  const [movie, setMovie] = useState([]);
-  const [drama, setDrama] = useState([]);
+  const [yetposter, setYetposter] = useState([]);
+  // const [movie, setMovie] = useState([]);
+  // const [drama, setDrama] = useState([]);
   const [startIndex, setStartIndex] = useState(localStorage.getItem('startIndex'));
   const [userposter, setUserposter] = useState([]);
   const navigate = useNavigate();
@@ -43,38 +44,39 @@ function FamilyHomeLightPage() {
           navigate('/');
           return; // 로그인 페이지로 이동 후 함수 종료
         }
+      
+        // setLoading(true);
+        // const mresponse = await axios.get('https://hello00back.net/home/영화')
+        // console.log("영화 추천 :", mresponse.data)
+        // const dresponse = await axios.get('https://hello00back.net/home/TV드라마')
+        // console.log("드라마 수신 여부", dresponse.status)
+        // if (mresponse.status && dresponse.status === 200){
+        //   const mdata = mresponse.data.data;
+        //   const ddata = dresponse.data.data;
 
-        setLoading(true);
-        const mresponse = await axios.get('https://hello00back.net/home/영화')
-        console.log("영화 추천 :", mresponse.data)
-        const dresponse = await axios.get('https://hello00back.net/home/TV드라마')
-        console.log("드라마 수신 여부", dresponse.status)
-        if (mresponse.status && dresponse.status === 200){
-          const mdata = mresponse.data.data;
-          const ddata = dresponse.data.data;
-          const movie = mdata.map(item => item); //주간 랭킹
-          const drama = ddata.map(item => item); // 장르별
+        //   const movie = mdata.map(item => item); //주간 랭킹
+        //   const drama = ddata.map(item => item); // 장르별
           
           
           
 
-          setMovie(movie);
-          setDrama(drama);
-          console.log("영화", movie, "드라마",drama);
+      //     setMovie(movie);
+      //     setDrama(drama);
+      //     console.log("영화", movie, "드라마",drama);
         
-          setLoading(false);
-        }
+      //     setLoading(false);
+      //   }
 
 
-      }
-      catch (error) {
-        setTimeout(() => {
-          setLoading(false); // 로딩 완료
-          // 실패 로직 필요시 추가
-        }, 10000);
-        console.error('Error fetching data:', error);
-        
-      };
+    } catch (error) {
+      let loadingTimer = setTimeout(() => {
+        setLoading(false); // 10초 후에 로딩 완료
+        // 실패 로직 필요시 추가
+        clearTimeout(loadingTimer); // 타이머 초기화
+      }, 10000);
+      console.error('Error fetching data:', error);
+    }
+      
 
       
       try {
@@ -85,10 +87,16 @@ function FamilyHomeLightPage() {
         }
         console.log('access token 은', access);
         setLoading(true);
+
+        const gen = JSON.parse(localStorage.getItem('genre'))
+        const genre = gen.join(',');
+        console.log(genre)
         const response = await axios.get('https://hello00back.net/vodrec/', {
           headers: {
             Authorization : access,
+            Data : genre,
           },
+    
 
 
         });
@@ -103,7 +111,7 @@ function FamilyHomeLightPage() {
           const rankItems = data[1];
           const userItems = data[2].slice(startIndex, startIndex + 10);
           const recItems = data[3].slice(startIndex, startIndex + 10);
-
+          const yetItems = data[4]
         
 
           console.log(data);
@@ -112,21 +120,24 @@ function FamilyHomeLightPage() {
           const genposter = selectedItems.map(item => item); // 장르별
           const userposter = userItems.map(item=> item); // 사용자 개인
           const recposter = recItems.map(item=> item); // 관련 추천
+          const yetposter= yetItems.map(item=> item); //덜 본거
+          console.log("아직 시청중",yetposter);
           setGenposter(genposter);
           setUserposter(userposter);
           setRankposter(rankposter);
           setRecposter(recposter);
+          setYetposter(yetposter);
           setLoading(false);
         }
 
       
       } catch (error) {
-        setTimeout(() => {
-          setLoading(true); // 로딩 완료
+        let loadingTimer = setTimeout(() => {
+          setLoading(false); // 10초 후에 로딩 완료
           // 실패 로직 필요시 추가
+          clearTimeout(loadingTimer); // 타이머 초기화
         }, 10000);
-        console.error('Error fetching data:', error);
-        
+        console.error('Error fetching:', error);
       }
       
       
@@ -389,6 +400,7 @@ function FamilyHomeLightPage() {
                   </div>
                 </div>
               </div>
+              {yetposter !== null && yetposter.length > 0 && (
               <div className="flex flex-1 flex-col items-start justify-start w-full">
                 <div className="flex flex-col items-center justify-start" style={{ marginTop: '50px' }}>
                   <Text
@@ -396,10 +408,10 @@ function FamilyHomeLightPage() {
                     size="txtABeeZeeRegular25"
                   >
                     <span className="text-black-900 font-abeezee text-left font-normal">
-                      영화 랭킹 추천{" "}
+                      시청중인 콘텐츠{" "}
                     </span>
                     <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
-                      Best{" "}
+                      For You{" "}
                     </span>
                   </Text>
                 </div>
@@ -409,37 +421,15 @@ function FamilyHomeLightPage() {
                 <div className="flex-shrink-0 h-[250px] relative w-1/6 md:w-full">
                   
                     <div className="video-container">
-                    <HorizontalPosters rankposter={movie} />
+                    <HorizontalPosters rankposter={yetposter} />
                     </div>
                     
                   </div>
                 </div>
               </div>
+              )}
               {/* 드라마 추천 장소 */}
-              <div className="flex flex-1 flex-col items-start justify-start w-full">
-                <div className="flex flex-col items-center justify-start" style={{ marginTop: '50px' }}>
-                  <Text
-                    className="leading-[100.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
-                    size="txtABeeZeeRegular25"
-                  >
-                    <span className="text-black-900 font-abeezee text-left font-normal">
-                      TV/드라마 랭킹 추천{" "}
-                    </span>
-                    <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
-                      Best{" "}
-                    </span>
-                  </Text>
-                </div>
-                <div className="flex md:flex-col flex-row md:gap-5 items-start justify-between w-full">
-                <div className="flex-shrink-0 h-[250px] relative w-1/6 md:w-full">
-                  
-                    <div className="video-container">
-                    <HorizontalPosters rankposter={drama} />
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
+
               <div className="flex flex-1 flex-col items-start justify-start w-full pb-[200px] pr-[100px]">
                 <div className="flex flex-col items-center justify-start" style={{ marginTop: '50px' }}>
                   <Text

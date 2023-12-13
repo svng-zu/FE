@@ -11,23 +11,27 @@ const FrontpageLightPage = () => {
   
   
   const handleLogout = () => {
-    const confirmLogout = window.confirm('로그아웃 하시겠습니까?');
-    if (confirmLogout) {
+    if (localStorage.getItem('new') === null){
+      const confirmLogout = window.confirm('로그아웃 하시겠습니까?');
+      if (confirmLogout) {
 
     
-      localStorage.clear();
-      document.cookie.split(";").forEach(cookie => {
-        document.cookie = cookie.replace(/^ +/, "").replace(/=.*/, `=;expires=${new Date().toUTCString()};path=/`);
+        localStorage.clear();
+        document.cookie.split(";").forEach(cookie => {
+          document.cookie = cookie.replace(/^ +/, "").replace(/=.*/, `=;expires=${new Date().toUTCString()};path=/`);
 
-      });
+        });
       
-      navigate('/');
-    } else {
+        navigate('/');
+      } else {
 
     }
     
-  }
+  } else {
 
+    navigate('/SignupPageLight');
+  }
+}
   
   const navigate = useNavigate();
   const access = localStorage.getItem('access_token');

@@ -6,6 +6,23 @@ import { Button, Img, List, Text } from "components";
 import '../../styles/button.css'
 
 const SignupPageLightPage = () => {
+  const handleLogout = () => {
+    const confirmLogout = window.confirm('로그아웃 하시겠습니까?');
+    if (confirmLogout) {    
+      localStorage.clear();
+      document.cookie.split(";").forEach(cookie => {
+        document.cookie = cookie.replace(/^ +/, "").replace(/=.*/, `=;expires=${new Date().toUTCString()};path=/`);
+      });
+      
+        navigate('/');
+      } else {
+
+    }
+   };
+  
+
+
+
   const [id, setId] = useState('');
   const [selectedGenres, setSelectedGenres] = useState([]);
 
@@ -27,17 +44,25 @@ const SignupPageLightPage = () => {
   // }, [selectedGenres, genre]);
   
   const handleGenreClick = (clickedGenre) => {
+    let updatedGenres = [...selectedGenres];
+  
     if (selectedGenres.includes(clickedGenre)) {
-      setSelectedGenres(selectedGenres.filter(genre => genre !== clickedGenre));
-      
+      updatedGenres = selectedGenres.filter((genre) => genre !== clickedGenre);
     } else {
-      setSelectedGenres([...selectedGenres, clickedGenre]);
-      // setGenre(clickedGenre); // 클릭한 장르로 업데이트
+      updatedGenres = [...selectedGenres, clickedGenre];
     }
-    console.log(selectedGenres);
+    
+    setSelectedGenres(updatedGenres);
+    localStorage.setItem('genre', JSON.stringify(updatedGenres.map(genre => genres.indexOf(genre))));
   };
+  
+
   const isSelected = (genre) => selectedGenres.includes(genre);
   const getButton = (genre) => isSelected(genre) ? 'selected-class' : 'default-class';
+  
+  
+  
+  
   return (
     <>
       <div className="bg-gray-100 border border-black-900 border-solid flex flex-col font-inter sm:gap-10 md:gap-10 gap-[138px] justify-start mx-auto pb-[120px] w-full">
@@ -47,7 +72,7 @@ const SignupPageLightPage = () => {
               className="common-pointer h-[37px] mb-[3px] md:ml-[0] ml-[17px]"
               src="images/img_arrowdown.svg"
               alt="arrowdown"
-              onClick={() => navigate('/')}
+              onClick={() => handleLogout(true)}
             />
           </div>
           <Text
@@ -89,8 +114,10 @@ const SignupPageLightPage = () => {
                   <button
                   key={genre}
                   className={getButton(genre)}
-                  onClick={() => handleGenreClick(genre)}
-                  >
+                  onClick={() => {handleGenreClick(genre); 
+                    localStorage.setItem('new', 'new')}
+                  }
+                    >
                   {genre}
                   </button>
                   ))}

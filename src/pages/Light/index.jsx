@@ -20,6 +20,7 @@ function LightPage() {
   const navigate = useNavigate();
   const { programId } = useParams();
   const [data, setData] = useState(null);
+  const [data1, setData1] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,9 +34,10 @@ function LightPage() {
         const response = await axios.get(`https://hello00back.net/vod_detail/${programId}/`);
         console.log(response);
         if (response.status === 200) {
-
+          
         
           setData(response.data.data);
+          setData1(response.data.recommend);
           console.log(response.data.data);
           setLoading(false);
         }
@@ -160,6 +162,7 @@ function LightPage() {
                       바로 시청하기
                     </Button>
                   </div>
+                  {/* data1[0] program id  */}
                 </div>
                 
               </div>
