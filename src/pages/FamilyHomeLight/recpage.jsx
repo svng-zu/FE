@@ -85,12 +85,16 @@ function FamilyHomeLightPage() {
           navigate('/');
           return; // 로그인 페이지로 이동 후 함수 종료
         }
+
         console.log('access token 은', access);
         setLoading(true);
+        
+        const gen = JSON.parse(localStorage.getItem('genre'));
+        const genre = gen ? gen.join(',') : null;
+        console.log(genre);
 
-        const gen = JSON.parse(localStorage.getItem('genre'))
-        const genre = gen.join(',');
-        console.log(genre)
+        
+        
         const response = await axios.get('https://hello00back.net/vodrec/', {
           headers: {
             Authorization : access,
@@ -99,11 +103,11 @@ function FamilyHomeLightPage() {
     
 
 
-        });
+      });
 
       
         if (response.status === 200) {
-
+          console.log("여긴 문제가 아니야")
         
         
           const data = response.data.data;
@@ -121,7 +125,8 @@ function FamilyHomeLightPage() {
           const userposter = userItems.map(item=> item); // 사용자 개인
           const recposter = recItems.map(item=> item); // 관련 추천
           const yetposter= yetItems.map(item=> item); //덜 본거
-          console.log("아직 시청중",yetposter);
+          console.log("아직 시청중", yetposter);
+
           setGenposter(genposter);
           setUserposter(userposter);
           setRankposter(rankposter);
