@@ -20,7 +20,7 @@ function LightPage() {
   const navigate = useNavigate();
   const { programId } = useParams();
   const [data, setData] = useState(null);
-  // const [data1, setData1] = useState(null);
+  const [data1, setData1] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,7 +37,7 @@ function LightPage() {
           
         
           setData(response.data.data);
-          // setData1(response.data.recommend);
+          setData1(response.data.recommend);
           console.log(response.data.data);
           setLoading(false);
         }
@@ -162,7 +162,16 @@ function LightPage() {
                       바로 시청하기
                     </Button>
                   </div>
-                  {/* data1[0] program id  */}
+                  {data1.map((dataItem, index) => (
+                    <Img
+                      key={index}
+                      className="ml-auto md:-[1000px] object-cover rounded-[25px] mt-[-100px]"
+                      src={dataItem}
+                      style={{ width: '50px', height: '60px', objectFit: 'cover' }}
+                    />
+                    ))}
+                  
+
                 </div>
                 
               </div>
