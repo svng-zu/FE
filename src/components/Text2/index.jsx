@@ -21,13 +21,13 @@ const sizeClasses = {
   txtYesevaOneRegular35: "font-normal font-yesevaone",
 };
 
-const Text = ({ children, className = "", size, as, ...restProps }) => {
+const Text2 = ({ children, className = "", size, as, ...restProps }) => {
   const Component = as || "p";
 
   return (
     <Component
       className={`text-left ${className} ${size && sizeClasses[size]}`}
-
+      style = {{ color : 'white'}}
       {...restProps}
     >
       {children}
@@ -35,4 +35,4 @@ const Text = ({ children, className = "", size, as, ...restProps }) => {
   );
 };
 
-export { Text };
+export { Text2 };

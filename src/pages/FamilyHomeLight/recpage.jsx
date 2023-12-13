@@ -95,7 +95,7 @@ function FamilyHomeLightPage() {
 
         
         
-        const response = await axios.get('https://hello00back.net/vodrec/', {
+        const response = await axios.get('https://hello00back.net/vodrec', {
           headers: {
             Authorization : access,
             Data : genre,
@@ -229,7 +229,7 @@ function FamilyHomeLightPage() {
               className="common-pointer absolute h-[33px] left-10 md:mt-0 mt-[26px]"
               src="images/img_arrowdown.svg"
               alt="arrowdown"
-              onClick={() => navigate(-1)}
+              onClick={() => navigate('/frontpagelight')}
             />
             <div className="h-[84px] md:ml-[0] ml-[1097px] md:px-5 relative w-[9%] md:w-full">
               <Text
@@ -434,7 +434,7 @@ function FamilyHomeLightPage() {
               </div>
               )}
               {/* 드라마 추천 장소 */}
-
+              {recposter !== null && recposter.length > 0 && (
               <div className="flex flex-1 flex-col items-start justify-start w-full pb-[200px] pr-[100px]">
                 <div className="flex flex-col items-center justify-start" style={{ marginTop: '50px' }}>
                   <Text
@@ -461,7 +461,7 @@ function FamilyHomeLightPage() {
                   </div>
                 </div>
               </div>
-
+              )}
             </div>
             )}
           </div>
