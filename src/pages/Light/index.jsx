@@ -20,7 +20,7 @@ function LightPage() {
   const navigate = useNavigate();
   const { programId } = useParams();
   const [data, setData] = useState(null);
-  const [data1, setData1] = useState(null);
+  // const [data1, setData1] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
