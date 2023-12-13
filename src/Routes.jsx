@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "pages/Home";
 import NotFound from "pages/NotFound";
-const SilverclubLight = React.lazy(() => import("pages/SilverclubLight"));
+const Simple = React.lazy(() => import("pages/Simple"));
 const SignupPageLight = React.lazy(() => import("pages/SignupPageLight"));
 const FrontpageLight = React.lazy(() => import("pages/FrontpageLight"));
 const Light = React.lazy(() => import("pages/Light"));
@@ -18,7 +18,7 @@ const ProjectRoutes = () => {
           <Route path="/familyhomelight" element={<FamilyHomeLight />} />
           <Route path="/frontpagelight" element={<FrontpageLight />} />
           <Route path="/signuppagelight" element={<SignupPageLight />} />
-          <Route path="/silverclublight" element={<SilverclubLight />} />
+          <Route path="/simple" element={<Simple />} />
           <Route path="/dhiwise-dashboard" element={<Home />} />
           <Route path="/Light/:programId" element={<Light />} />
         </Routes>

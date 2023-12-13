@@ -58,7 +58,7 @@ const handleLogin = async () => {
           'subsr': id
         });
         
-        if (postresponse.status === 200) {
+        if (postresponse.status === 200 && postresponse.data.message === 0) {
           
           console.log(postresponse.data)
           // setCookie('access', postresponse.data.token.access)
@@ -77,16 +77,18 @@ const handleLogin = async () => {
           // location.reload(); // 페이지 새로고침
           navigate('FrontpageLight'); // 원하는 페이지로 이동
 
-        } else if (postresponse.status === 204) {
+        } else if (postresponse.status === 200 && postresponse.data.message === 1) {
+          const accessToken1 = postresponse.data.token.access; // 예상되는 응답에서 access_token을 가져옴
+          const refreshToken1 = postresponse.data.token.refresh;
+          console.log(postresponse.data);
           // setCookie('access', postresponse.data.token.access)
-          // const accessToken = postresponse.data.token.access; // 예상되는 응답에서 access_token을 가져옴
-          // const refreshToken = postresponse.data.token.refresh;
+
           // // 쿠키 및 로컬 스토리지에 토큰 저장
-          // localStorage.setItem('ip', postresponse.data.ip);
-          // localStorage.setItem('access_token', accessToken);
-          // localStorage.setItem('refresh_token', refreshToken);
+          localStorage.setItem('ip', postresponse.data.ip);
+          localStorage.setItem('access_token', accessToken1);
+          localStorage.setItem('refresh_token', refreshToken1);
           localStorage.setItem('subsr', id);
-          // localStorage.setItem('subsr_id', postresponse.data.user.subsr_id);
+          localStorage.setItem('subsr_id', postresponse.data.user.subsr_id);
           // // axios의 인스턴스에 헤더 추가
           // axios.defaults.headers.common['Authorization'] = 'JWT ' + accessToken;
 

@@ -3,12 +3,16 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Button, Img, List, Text } from "components";
+import '../../styles/button.css'
 
 const SignupPageLightPage = () => {
   const [id, setId] = useState('');
   const [selectedGenres, setSelectedGenres] = useState([]);
-  const [genre, setGenre] = useState([]);
-  
+
+  const genres = ['드라마', '액션', '모험', '코미디', '로맨스', '애니메이션', '스릴러', '해외시리즈', '멜로', '판타지',
+   '공포', '범죄', 'SF', '미스터리', '가족', '예능', '시대극', '다큐', '시사교양', '키즈']
+  // const [genre, setGenre] = useState([]);
+  // const [buttonClassName, setButton] = useState(); 
   useEffect(() => {
     const storedId = localStorage.getItem('subsr');
     if (storedId) {
@@ -16,24 +20,24 @@ const SignupPageLightPage = () => {
     }
   }, []);
   const navigate = useNavigate();
-
-  const handleGenreClick = (genre) => {
-    const genreIndex = selectedGenres.indexOf(genre);
-    if (genreIndex === -1) {
-      setSelectedGenres([...selectedGenres, genre]);
-    } else {
-      const updatedGenres = [...selectedGenres];
-      updatedGenres.splice(genreIndex, 1);
-      setSelectedGenres(updatedGenres);
-      setGenre(genre);
-    }  
-  };
-
-  const isSelected = selectedGenres.includes(genre);
-  const buttonClassName = `cursor-pointer font-semibold h-[50px] sm:text-2xl md:text-[26px] text-[28px] text-center tracking-[-0.14px] w-[157px] ${
-    isSelected ? 'selected-class' : 'default-class'
-  }`;
+  // useEffect(() => {
+  //   const isSelected = selectedGenres.includes(genre);
+  //   const button =isSelected ? 'selected-class' : 'default-class';
+  //   setButton(button);
+  // }, [selectedGenres, genre]);
   
+  const handleGenreClick = (clickedGenre) => {
+    if (selectedGenres.includes(clickedGenre)) {
+      setSelectedGenres(selectedGenres.filter(genre => genre !== clickedGenre));
+      
+    } else {
+      setSelectedGenres([...selectedGenres, clickedGenre]);
+      // setGenre(clickedGenre); // 클릭한 장르로 업데이트
+    }
+    console.log(selectedGenres);
+  };
+  const isSelected = (genre) => selectedGenres.includes(genre);
+  const getButton = (genre) => isSelected(genre) ? 'selected-class' : 'default-class';
   return (
     <>
       <div className="bg-gray-100 border border-black-900 border-solid flex flex-col font-inter sm:gap-10 md:gap-10 gap-[138px] justify-start mx-auto pb-[120px] w-full">
@@ -43,11 +47,11 @@ const SignupPageLightPage = () => {
               className="common-pointer h-[37px] mb-[3px] md:ml-[0] ml-[17px]"
               src="images/img_arrowdown.svg"
               alt="arrowdown"
-              onClick={() => navigate(-1)}
+              onClick={() => navigate('/')}
             />
           </div>
           <Text
-            className="leading-[50.00px] mt-[135px] text-4xl sm:text-[32px] md:text-[34px] text-black-900 text-center tracking-[-0.18px]"
+            className="leading-[50.00px] mt-[50px] text-3xl sm:text-[32px] md:text-[34px] text-black-900 text-center tracking-[-0.18px]"
             size="txtInterSemiBold36"
           >
             <span className="text-black-900 font-inter font-semibold">
@@ -68,148 +72,39 @@ const SignupPageLightPage = () => {
             <div className="flex flex-col md:gap-10 gap-16 items-start justify-start w-full">
               <List
                 className="flex flex-col gap-16 items-center w-full"
-                orientation="vertical"
+                orientation="horizontal"
               >
-                <div className="flex flex-1 md:flex-col flex-row md:gap-10 items-center justify-between my-0 w-full">
-                  <Button
-                    className={buttonClassName}
-                    shape="round"
-                    color="deep_orange_50_fc"
-                    variant="fill"
+                {/* <div className="flex flex-1 md:flex-col flex-row md:gap-10 items-center justify-between my-0 w-full"> */}
+                  {/* <button
+                    className={getButton(genre)}
+                    // shape="round"
+                    // color="deep_orange_50_fc"
+                    // variant="fill"
                     onClick={() => handleGenreClick("액션")}
                   >
                     액션
-                  </Button>
-                  <Button
-                    className="cursor-pointer font-semibold h-[50px] sm:text-2xl md:text-[26px] text-[28px] text-center tracking-[-0.14px] w-[158px]"
-                    shape="round"
-                    color="deep_orange_50_fc"
-                    variant="fill"
-                    onClick={() => handleGenreClick("코미디")}
+                  </button> */}
+              <div className="button-container">
+                {genres.map((genre) => (
+                  <button
+                  key={genre}
+                  className={getButton(genre)}
+                  onClick={() => handleGenreClick(genre)}
                   >
-                    코미디
-                  </Button>
-                  <Button
-                    className="cursor-pointer font-semibold h-[50px] sm:text-2xl md:text-[26px] text-[28px] text-center tracking-[-0.14px] w-[158px]"
-                    shape="round"
-                    color="deep_orange_50_fc"
-                    variant="fill"
-                    onClick={() => handleGenreClick("로맨스")}
-                  >
-                    로맨스
-                  </Button>
-                  <Button
-                    className="cursor-pointer font-semibold h-[50px] sm:text-2xl md:text-[26px] text-[28px] text-center tracking-[-0.14px] w-[158px]"
-                    shape="round"
-                    color="deep_orange_50_fc"
-                    variant="fill"
-                    onClick={() => handleGenreClick("스릴러")}
-                  >
-                    스릴러
-                  </Button>
-                  <Button
-                    className="cursor-pointer font-semibold h-[50px] sm:text-2xl md:text-[26px] text-[28px] text-center tracking-[-0.14px] w-[158px]"
-                    shape="round"
-                    color="deep_orange_50_fc"
-                    variant="fill"
-                    onClick={() => handleGenreClick("SF/판타지")}
-                  >
-                    SF/판타지
-                  </Button>
-                </div>
-                <div className="flex flex-1 md:flex-col flex-row gap-[33px] items-center justify-between my-0 w-full">
-                  <Button
-                    className="cursor-pointer font-semibold h-[51px] sm:text-2xl md:text-[26px] text-[28px] text-center tracking-[-0.14px] w-[157px]"
-                    shape="round"
-                    color="deep_orange_50_fc"
-                    variant="fill"
-                    onClick={() => handleGenreClick("시사교양")}
-                  >
-                    시사교양
-                  </Button>
-                  <Button
-                    className="cursor-pointer font-semibold h-[51px] sm:text-2xl md:text-[26px] text-[28px] text-center tracking-[-0.14px] w-[158px]"
-                    shape="round"
-                    color="deep_orange_50_fc"
-                    variant="fill"
-                    onClick={() => handleGenreClick("예능")}
-                  >
-                    예능
-                  </Button>
-                  <Button
-                    className="cursor-pointer font-semibold h-[51px] sm:text-2xl md:text-[26px] text-[28px] text-center tracking-[-0.14px] w-[158px]"
-                    shape="round"
-                    color="deep_orange_50_fc"
-                    variant="fill"
-                    onClick={() => handleGenreClick("스포츠")}
-                  >
-                    스포츠
-                  </Button>
-                  <Button
-                    className="cursor-pointer font-semibold h-[51px] sm:text-2xl md:text-[26px] text-[28px] text-center tracking-[-0.14px] w-[158px]"
-                    shape="round"
-                    color="deep_orange_50_fc"
-                    variant="fill"
-                    onClick={() => handleGenreClick("다큐")}
-                  >
-                    다큐
-                  </Button>
-                  <Button
-                    className="cursor-pointer font-semibold h-[51px] sm:text-2xl md:text-[26px] text-[28px] text-center tracking-[-0.14px] w-[158px]"
-                    shape="round"
-                    color="deep_orange_50_fc"
-                    variant="fill"
-                    onClick={() => handleGenreClick("애니메이션")}
-                  >
-                    애니메이션
-                  </Button>
+                  {genre}
+                  </button>
+                  ))}
                 </div>
               </List>
-              <div className="flex sm:flex-col flex-row sm:gap-5 items-center justify-start w-[59%] md:w-full">
-                <Button
-                  className="cursor-pointer font-semibold h-[50px] sm:text-2xl md:text-[26px] text-[28px] text-center tracking-[-0.14px] w-[158px]"
-                  shape="round"
-                  color="deep_orange_50_fc"
-                  variant="fill"
-                  onClick={() => handleGenreClick("키즈")}
-                >
-                  키즈
-                </Button>
-                <Button
-                  className="cursor-pointer font-semibold h-[50px] sm:ml-[0] ml-[31px] sm:text-2xl md:text-[26px] text-[28px] text-center tracking-[-0.14px] w-[158px]"
-                  shape="round"
-                  color="deep_orange_50_fc"
-                  variant="fill"
-                  onClick={() => handleGenreClick("게임")}
-                >
-                  게임
-                </Button>
-                <Button
-                  className="cursor-pointer font-semibold h-[50px] sm:ml-[0] ml-[34px] sm:text-2xl md:text-[26px] text-[28px] text-center tracking-[-0.14px] w-[158px]"
-                  shape="round"
-                  color="deep_orange_50_fc"
-                  variant="fill"
-                  onClick={() => handleGenreClick("성인")}
-                >
-                  성인
-                </Button>
-                <Button
-                  className="cursor-pointer font-semibold h-[50px] sm:ml-[0] ml-[37px] sm:text-2xl md:text-[26px] text-[28px] text-center tracking-[-0.14px] w-[158px]"
-                  shape="round"
-                  color="deep_orange_50_fc"
-                  variant="fill"
-                  onClick={() => handleGenreClick("가족")}
-                >
-                  가족
-                </Button>                
-              </div>
+              
+              
             </div>
           </div>
         </div>
-        <div className="flex flex-col items-end md:px-10 sm:px-5 px-[134px] w-full">
+        <div className="flex flex-col items-center mt-[-10px]  px-[160px] w-full">
           <Button
             className="common-pointer cursor-pointer font-semibold h-[50px] sm:text-2xl md:text-[26px] text-[28px] text-center tracking-[-0.14px] w-[158px]"
-            onClick={() => navigate("/frontpagelight")}
+            onClick={() => navigate("/FrontpageLight")}
             shape="round"
             color="red_A400"
             variant="fill"
