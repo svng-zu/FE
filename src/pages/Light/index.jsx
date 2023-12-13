@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef  } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Img, Text, Text2 } from "components";
 import { useParams } from 'react-router-dom';
@@ -53,13 +53,53 @@ function LightPage() {
   const Click = (dataItem) => {
     navigate(`/Light/${dataItem}`);
  }
+
+ const buttonStyle = {
+  border: 'none',
+  backgroundColor: 'transparent',
+  cursor: 'pointer',
+  fontSize: '24px',
+  outline: 'none',
+  padding: '10px',
+  color: '#555',
+  width: '50px', // 원하는 너비 설정
+  height: '50px',
+};
+
+ const HorizontalPosters = ({ simposter }) => {
+  const containerRef = useRef(null);
+
+  const scrollTo = (scrollOffset) => {
+    const container = containerRef.current;
+    container.scrollLeft += scrollOffset;
+  };
+
+  return (
+    <div style={{postion: 'relative', display:'flex', alignItems: 'center', marginLeft: '20px', marginRight: '-550%' }}>
+      <button onClick={() => scrollTo(-600)} style={{...buttonStyle, position: 'absolute', left: '0'}}><img src="https://seasonmarket.co.kr/img/slider_left.png" alt="Previous"/></button>
+      <div style={{postion: 'relative', display: 'flex', overflowX: 'auto', marginLeft: '5%', marginRight: '0%', minWidth: '97%', maxWidth: '97%'}} ref={containerRef}>
+        {simposter.map((item, index) => (
+          <img
+            key={index}
+            style={{ width: '220px', height: '270px', marginRight: '20px', border: '2px solid #ccc', borderRadius: '5px', cursor: 'pointer' }}
+            src={item[2]}
+            alt={`${index}`}
+            onClick={() => Click(item[0])}
+          />
+        ))}
+      </div>
+      <button onClick={() => scrollTo(600)} style={{...buttonStyle, position: 'absolute', right: '-450%'}}>
+        <img src="https://seasonmarket.co.kr/img/slider_right.png" alt="next"/></button>
+    </div>
+  );
+};
   return (
     <>
       <div className="bg-gray-100 border border-black-900 border-solid flex flex-col font-inter items-center justify-start mx-auto w-full">
         <div className="flex flex-col items-center justify-start w-full">
           <div className="bg-red-A400 flex md:flex-col flex-row md:gap-5 items-start justify-end pb-1.5 px-1.5 w-full">
             <Img
-              className="common-pointer h-[37px] mr-[100px] md:mt-0 mt-6"
+              className="absolute h-[37px] mr-[94%] mt-6"
               src={process.env.PUBLIC_URL + '/images/img_arrowdown.svg'}
               alt="arrowdown"
               onClick={() => navigate('/FamilyHomeLight')}
@@ -95,39 +135,39 @@ function LightPage() {
 
             <div className="flex flex-col items-center justify-start md:ml-[0] ml-[43px] mt-[22px] w-[83%] md:w-full">
             
-              <div className="flex md:flex-col flex-row md:gap-10 items-center justify-between w-full">
+              <div className="flex md:flex-col flex-row  mt-[-1%] md:gap-10 items-center justify-between w-full">
             
 
                 <Img
-                  className="ml-auto object-cover rounded-[25px] mt-[-130px]"
+                  className="ml-[5%] object-cover rounded-[25px] mt-[-5%]"
                   // src={data[2]}
                   src={data ? data[2] : ""}
-                  style={{ width: '440px', height: '550px' , objectFit: 'cover' }}
+                  style={{ width: '500px', height: '600px' , objectFit: 'cover' }}
                   
                 />
                 <div className="flex flex-col items-start justify-start">
                   <Text
-                    className="ml-[150px] sm:text-[40px] md:text-[46px] text-[50px] text-white-A700 tracking-[-0.25px]"
+                    className="ml-[25%] sm:text-[40px] md:text-[46px] text-[50px] text-white-A700 tracking-[-0.25px]"
                     size="txtInterBold50"
                   >
                     {data ? data[0] : ""}
                     <p><br /></p>
                   </Text>
                   <Text
-                    className="ml-[150px] mt-[0px] text-white-A700 text-2xl tracking-[-0.10px]"
+                    className="ml-[20%] mt-[0px] text-white-A700 text-2xl tracking-[-0.10px]"
                     size="txtInterSemiBold20"
                   >
                     장르 
                   </Text>
                   <Text
-                    className="ml-[170px] leading-[30.00px] mt-[10px] text-xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]"
+                    className="ml-[23%] leading-[30.00px] mt-[10px] text-xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]"
                     size="txtInterSemiBold10"
                   >
                     {data ? data[1] : ""},{data ? data[4] : ""}<br/> {data ? data[3] : ""}
                     
                   </Text>
                   <Text
-                    className="ml-[150px] leading-[40.00px] mt-[30px] text-2xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]"
+                    className="ml-[20%] leading-[40.00px] mt-[30px] text-2xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]"
                     size="txtInterSemiBold24"
                   >
                     <>
@@ -135,7 +175,7 @@ function LightPage() {
                     </>
                   </Text>
                   <Text
-                    className="ml-[170px] leading-[40.00px] mt-[0px] text-xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]"
+                    className="ml-[23%] leading-[40.00px] mt-[0px] text-xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]"
                     size="txtInterSemiBold10"
                   >
                     <>
@@ -143,18 +183,18 @@ function LightPage() {
                     </>
                   </Text>
                   <Text
-                    className="ml-[150px] leading-[40.00px] mt-[20px] text-2xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px] "
+                    className="ml-[20%] leading-[40.00px] mt-[20px] text-2xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]"
                     size="txtInterSemiBold24">
                       <p>줄거리 : </p>
                     
                   </Text>
                   <Text
-                    className="ml-[170px] leading-[40.00px] mt-[10px] text-xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px] "
+                    className="ml-[23%] leading-[40.00px] mt-[10px] text-xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]  mr-[2%]"
                     size="txtInterSemiBold10">
                   
                     {data ? data[7] : ""}
                   </Text>
-                  <div className="flex flex-col items-start justify-start md:ml-[0] ml-[164px] mt-[77px] w-[181px]">
+                  <div className="flex flex-col items-start justify-start md:ml-[0] ml-[25%] mt-[8%] w-[181px]">
                     <Button
                       className="common-pointer cursor-pointer font-semibold h-[50px] text-center text-lg tracking-[-0.09px] w-[175px]"
                       // onClick={handleNavigate}
@@ -175,7 +215,7 @@ function LightPage() {
               
             </div>
               <Text2
-                  className="sm:text-[21px] md:text-[20px] text-[40px] text-white tracking-[-0.13px] w-full"
+                  className="sm:text-[21px] md:text-[20px] mt-[1%] text-[40px] text-white tracking-[-0.13px] w-full"
                   size="txtABeeZeeRegular25"
                 >
                     <span className="text-white font-abeezee text-left font-normal">
@@ -185,7 +225,8 @@ function LightPage() {
                       VOD
                     </span>
                   </Text2>
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  
+                {/* <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   {data1.map((dataItem, index) => (
                     <div
                         key={index}
@@ -208,7 +249,16 @@ function LightPage() {
                       />
                   </div>
                  ))}
-                </div>
+                </div> */}
+                  <div className="flex-shrink-0 h-[250px] relative w-1/6 ml-[2%] mt-[2%] md:w-full">
+                  
+                      <div className="video-container">
+                        <HorizontalPosters simposter={data1} />
+                      </div>
+                  
+                  </div>
+
+            
             </div>
             
             )}

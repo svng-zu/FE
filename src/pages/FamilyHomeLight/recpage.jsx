@@ -191,6 +191,8 @@ function FamilyHomeLightPage() {
     outline: 'none',
     padding: '10px',
     color: '#555',
+    width: '50px', // 원하는 너비 설정
+    height: '50px',
   };
   
   const HorizontalPosters = ({ rankposter }) => {
@@ -202,9 +204,9 @@ function FamilyHomeLightPage() {
     };
 
     return (
-      <div style={{ display: 'flex', alignItems: 'center', marginLeft: '20px', marginRight: '-1100px' }}>
-        <button onClick={() => scrollTo(-600)} style={buttonStyle}>◀</button>
-        <div style={{ display: 'flex', overflowX: 'auto', marginRight: '30px' }} ref={containerRef}>
+      <div style={{postion: 'relative', display:'flex', alignItems: 'center', marginLeft: '15%', marginRight: '-500%' }}>
+        <button onClick={() => scrollTo(-600)} style={{...buttonStyle, position: 'absolute', left: '5%'}}><img src="https://seasonmarket.co.kr/img/slider_left.png" alt="Previous"/></button>
+        <div style={{postion: 'relative', display: 'flex', overflowX: 'auto', marginLeft: '2%', marginRight: '0', minWidth: '96%', maxWidth: '96%'}} ref={containerRef}>
           {rankposter.map((item, index) => (
             <img
               key={index}
@@ -215,7 +217,8 @@ function FamilyHomeLightPage() {
             />
           ))}
         </div>
-        <button onClick={() => scrollTo(600)} style={buttonStyle}>▶</button>
+        <button onClick={() => scrollTo(600)} style={{...buttonStyle, position: 'absolute', right: '-520%'}}>
+          <img src="https://seasonmarket.co.kr/img/slider_right.png" alt="next"/></button>
       </div>
     );
   };
@@ -335,26 +338,30 @@ function FamilyHomeLightPage() {
             ) : ( 
                   
               <div className="flex flex-1 flex-col items-start justify-start w-full">
-                <div className="flex flex-col items-center justify-start">
-                <Text
-                  className="leading-[100.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
-                  size="txtABeeZeeRegular25"
-                >
+                <div className="flex flex-1 flex-col items-start justify-start w-full">
+                <div className="flex flex-col items-center justify-start" style={{ marginTop: '50px' }}>
+                  <Text
+                    className="leading-[100.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
+                    size="txtABeeZeeRegular25"
+                  >
                     <span className="text-black-900 font-abeezee text-left font-normal">
-                      주간베스트{" "}
+                      주간 베스트{" "}
                     </span>
                     <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
-                      Best
+                      Ranking{" "}
                     </span>
                   </Text>
                 </div>
-                <div className="flex md:flex-col flex-row font-paytoneone md:gap-5 items-start justify-between w-full">                                      
+                <div className="flex md:flex-col flex-row font-paytoneone md:gap-5 items-start justify-between pr-[100px] w-full">                                  
                   <div className="flex-shrink-0 h-[250px] relative w-1/6 mr-[10%] md:w-full">
+                  
                       <div className="video-container">
-                      <HorizontalPosters rankposter={rankposter} />
+                        <HorizontalPosters rankposter={rankposter} />
                       </div>
-                  </div>                
-              </div>
+                  
+                  </div>
+                </div>
+            </div>
               <div className="flex flex-1 flex-col items-start justify-start w-full">
                 <div className="flex flex-col items-center justify-start" style={{ marginTop: '50px' }}>
                   <Text
@@ -365,7 +372,7 @@ function FamilyHomeLightPage() {
                       시청했던 장르 기반 추천{" "}
                     </span>
                     <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
-                      For You{" "}
+                      Genre{" "}
                     </span>
                   </Text>
                 </div>
@@ -389,7 +396,7 @@ function FamilyHomeLightPage() {
                       {localStorage.getItem('subsr')} 님을 위한 추천{" "}
                     </span>
                     <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
-                      For You{" "}
+                      User{" "}
                     </span>
                   </Text>
                 </div>
@@ -405,7 +412,7 @@ function FamilyHomeLightPage() {
                   </div>
                 </div>
               </div>
-              {yetposter !== null && yetposter.length > 0 && (
+              {recposter !== null && recposter.length > 0 && (
               <div className="flex flex-1 flex-col items-start justify-start w-full">
                 <div className="flex flex-col items-center justify-start" style={{ marginTop: '50px' }}>
                   <Text
@@ -413,39 +420,11 @@ function FamilyHomeLightPage() {
                     size="txtABeeZeeRegular25"
                   >
                     <span className="text-black-900 font-abeezee text-left font-normal">
-                      시청중인 콘텐츠{" "}
-                    </span>
-                    <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
-                      For You{" "}
-                    </span>
-                  </Text>
-                </div>
-                <div className="flex md:flex-col flex-row md:gap-5 items-start justify-between pr-[100px] w-full">
-                  
-                 
-                <div className="flex-shrink-0 h-[250px] relative w-1/6 md:w-full">
-                  
-                    <div className="video-container">
-                    <HorizontalPosters rankposter={yetposter} />
-                    </div>
                     
-                  </div>
-                </div>
-              </div>
-              )}
-              {/* 드라마 추천 장소 */}
-              {recposter !== null && recposter.length > 0 && (
-              <div className="flex flex-1 flex-col items-start justify-start w-full pb-[200px] pr-[100px]">
-                <div className="flex flex-col items-center justify-start" style={{ marginTop: '50px' }}>
-                  <Text
-                    className="leading-[100.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
-                    size="txtABeeZeeRegular25"
-                  >
-                    <span className="text-black-900 font-abeezee text-left font-normal">
-                      최근 시청 VOD 유사 추천{" "}
+                    최근 시청한 것과 유사한{" "}
                     </span>
                     <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
-                      For You{" "}
+                      VOD{" "}
                     </span>
                   </Text>
                 </div>
@@ -456,6 +435,35 @@ function FamilyHomeLightPage() {
                   
                     <div className="video-container">
                     <HorizontalPosters rankposter={recposter} />
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+              )}
+              {/* 드라마 추천 장소 */}
+              {yetposter !== null && yetposter.length > 0 && (
+              <div className="flex flex-1 flex-col items-start justify-start w-full pb-[200px]">
+                <div className="flex flex-col items-center justify-start" style={{ marginTop: '50px' }}>
+                  <Text
+                    className="leading-[100.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
+                    size="txtABeeZeeRegular25"
+                  >
+                    <span className="text-black-900 font-abeezee text-left font-normal">
+                    {localStorage.getItem('subsr')} 님이 시청중인{" "}
+                    </span>
+                    <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
+                      VOD{" "}
+                    </span>
+                  </Text>
+                </div>
+                <div className="flex md:flex-col flex-row md:gap-5 items-start justify-between pr-[100px] w-full">
+                  
+                 
+                <div className="flex-shrink-0 h-[250px] relative w-1/6 md:w-full">
+                  
+                    <div className="video-container">
+                    <HorizontalPosters rankposter={yetposter} />
                     </div>
                     
                   </div>

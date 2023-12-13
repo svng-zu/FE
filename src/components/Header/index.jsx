@@ -14,7 +14,7 @@ const Header = (props) => {
           className="common-pointer h-[33px] mb-[27px] md:ml-[0] ml-[42px] md:mt-0 mt-[30px]"
           src="images/img_arrowdown.svg"
           alt="arrowdown"
-          onClick={() => navigate(-1)}
+          onClick={() => navigate('/FrontpageLight')}
         />
         <Text
           className="mb-[3px] md:ml-[0] ml-[381px] md:mt-0 mt-[17px] md:text-5xl text-6xl text-white-A700 tracking-[-0.30px]"
