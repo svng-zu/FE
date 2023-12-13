@@ -98,10 +98,10 @@ const handleLogin = async () => {
           
         };
       
-      } catch (postError) {
-        console.error('로그인 POST 요청 실패:', postError.response.data);
+      } catch (error) {
+        console.error('로그인 POST 요청 실패:', error.response.data);
         setId('');
-        const error_mess = postError.response.data.message;
+        const error_mess = error.response.data.message;
         alert(error_mess);
       }
     } else {
