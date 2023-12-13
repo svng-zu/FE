@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Sidebar } from "react-pro-sidebar";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import { Img, Text } from "components";
+import { Img, Text, TimeComponent } from "components";
 import 'styles/loading.css';
 
 const LoadingScreen = () => {
@@ -234,15 +234,15 @@ function FamilyHomeLightPage() {
               alt="arrowdown"
               onClick={() => navigate('/frontpagelight')}
             />
-            <div className="h-[84px] md:ml-[0] ml-[1097px] md:px-5 relative w-[9%] md:w-full">
+            <div className="relative h-[84px] mr-[1%] md:px-5 w-[9%] md:w-full">
               <Text
-                className="absolute bottom-[13%] left-[0] text-3xl sm:text-[26px] md:text-[28px] text-center text-white-A700_dd tracking-[-0.15px]"
+                className="absolute bottom-[13%] left-0 text-3xl sm:text-26px md:text-28px text-center text-white-A700_dd tracking-[-0.15px]"
                 size="txtInterSemiBold30"
               >
                 17°
               </Text>
               <Img
-                className="absolute h-[84px] inset-y-[0] my-auto right-[0] w-[84px]"
+                className="absolute h-[84px] inset-y-0 my-auto right-0 w-[84px]"
                 src="images/img_fluentweather.svg"
                 alt="fluentweather"
               />
@@ -251,7 +251,7 @@ function FamilyHomeLightPage() {
               className="ml-9 md:ml-[0] mr-[15px] md:mt-0 mt-[30px] md:text-3xl sm:text-[28px] text-[32px] text-center text-white-A700 tracking-[-0.16px]"
               size="txtInterSemiBold32"
             >
-              16:11
+              <TimeComponent/>
             </Text>
           </div>
           <div className="flex md:flex-col flex-row font-abeezee md:gap-10 items-start justify-between mx-auto md:px-5 w-full">

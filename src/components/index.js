@@ -4,3 +4,4 @@ export { Input } from "./Input";
 export { List } from "./List";
 export { Text } from "./Text";
 export { Text2 } from "./Text2";
+export { TimeComponent } from "./TimeComponent";
