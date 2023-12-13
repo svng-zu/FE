@@ -369,12 +369,13 @@ function FamilyHomeLightPage() {
                     size="txtABeeZeeRegular25"
                   >
                     <span className="text-black-900 font-abeezee text-left font-normal">
-                      시청했던 장르 기반 추천{" "}
+                      {localStorage.getItem('new') ? `${localStorage.getItem('subsr')}이 선택한 장르 기반 추천 ` : `${localStorage.getItem('subsr')}이 시청한 장르 기반 추천 `}
                     </span>
                     <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
-                      Genre{" "}
+                      {localStorage.getItem('new') ? `Genre` : `Genre `}
                     </span>
                   </Text>
+
                 </div>
                 <div className="flex md:flex-col flex-row font-paytoneone md:gap-5 items-start justify-between pr-[100px] w-full">                                  
                   <div className="flex-shrink-0 h-[250px] relative w-1/6 mr-[10%] md:w-full">
