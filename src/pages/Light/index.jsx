@@ -37,7 +37,7 @@ function LightPage() {
           
         
           setData(response.data.data);
-          setData1(response.data.recommend);
+          // setData1(response.data.recommend);
           console.log(response.data.data);
           setLoading(false);
         }
