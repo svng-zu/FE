@@ -387,7 +387,7 @@ function FamilyHomeLightPage() {
                 </div>
             </div>
               <div className="flex flex-1 flex-col items-start justify-start w-full">
-                <div className="flex flex-col items-center justify-start" style={{ marginTop: '50px' }}>
+                <div className="flex flex-col items-center justify-start " style={{ marginTop: '50px' }}>
                   <Text
                     className="leading-[100.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
                     size="txtABeeZeeRegular25"
@@ -403,7 +403,7 @@ function FamilyHomeLightPage() {
                 <div className="flex md:flex-col flex-row md:gap-5 items-start justify-between pr-[100px] w-full">
                   
                  
-                <div className="flex-shrink-0 h-[250px] relative w-1/6 md:w-full">
+                <div className="flex-shrink-0 h-[250px] relative w-1/6 md:w-full mb-[2%]">
                   
                     <div className="video-container">
                     <HorizontalPosters rankposter={userposter} />
