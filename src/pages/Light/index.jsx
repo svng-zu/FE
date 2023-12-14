@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef  } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Img, Text, Text2, TimeComponent } from "components";
+import { Button, Img, Text, Text2, TimeComponent, Weather } from "components";
 import { useParams } from 'react-router-dom';
 import axios from "axios"
 import 'styles/loading.css';
@@ -105,17 +105,7 @@ function LightPage() {
               onClick={() => navigate('/FamilyHomeLight')}
             />
           <div className="relative h-[84px] mr-[1%] md:px-5 w-[9%] md:w-full">
-            <Text
-              className="absolute bottom-[13%] left-0 text-3xl sm:text-26px md:text-28px text-center text-white-A700_dd tracking-[-0.15px]"
-              size="txtInterSemiBold30"
-            > 
-              17°
-          </Text>
-            <Img
-            className="absolute h-[84px] inset-y-0 my-auto right-0 w-[84px]"
-            src={process.env.PUBLIC_URL + '/images/img_fluentweather.svg'}
-            alt="fluentweather"
-            />
+            <Weather />
           </div>
 
             <Text
