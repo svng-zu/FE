@@ -148,15 +148,15 @@ function LightPage() {
                 />
                 <div className="flex flex-col items-start justify-start">
                   <Text
-                    className="ml-[25%] sm:text-[40px] md:text-[46px] text-[50px] text-white-A700 tracking-[-0.25px]"
-                    size="txtInterBold50"
+                    className="ml-[22%] sm:text-[40px] md:text-[46px] text-[50px] font-yogi text-white-A700 tracking-[-0.25px]"
+                    size="txtYogi"
                   >
                     {data ? data[0] : ""}
                     <p><br /></p>
                   </Text>
                   <Text
-                    className="ml-[20%] mt-[0px] text-white-A700 text-2xl tracking-[-0.10px]"
-                    size="txtInterSemiBold20"
+                    className="ml-[20%] mt-[0px] font-yogi text-white-A700 text-2xl tracking-[-0.10px]"
+                    size="txtYogi"
                   >
                     장르 
                   </Text>
@@ -168,7 +168,7 @@ function LightPage() {
                     
                   </Text>
                   <Text
-                    className="ml-[20%] leading-[40.00px] mt-[30px] text-2xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]"
+                    className="ml-[20%] leading-[40.00px] font-yogi mt-[30px] text-2xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]"
                     size="txtInterSemiBold24"
                   >
                     <>
@@ -184,7 +184,7 @@ function LightPage() {
                     </>
                   </Text>
                   <Text
-                    className="ml-[20%] leading-[40.00px] mt-[20px] text-2xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]"
+                    className="ml-[20%] leading-[40.00px] mt-[20px] font-yogi text-2xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]"
                     size="txtInterSemiBold24">
                       <p>줄거리 : </p>
                     
@@ -217,9 +217,9 @@ function LightPage() {
             </div>
               <Text2
                   className="sm:text-[21px] md:text-[20px] mt-[1%] text-[40px] text-white tracking-[-0.13px] w-full"
-                  size="txtABeeZeeRegular25"
+                  size="txtYogi"
                 >
-                    <span className="text-white font-abeezee text-left font-normal">
+                    <span className="text-white font-abeezee text-left font-yogi">
                       유사한 콘텐츠{" "}
                     </span>
                     <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">

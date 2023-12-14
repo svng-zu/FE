@@ -19,6 +19,13 @@ const sizeClasses = {
   txtABeeZeeRegular22: "font-abeezee font-normal",
   txtPaytoneOneRegular80: "font-normal font-paytoneone",
   txtYesevaOneRegular35: "font-normal font-yesevaone",
+  txtLGSmartBoldItalic: "font-lg italic font-bold",
+  txtLGSmartBold: "font-lg font-bolder",
+  txtLGSmartLight: "font-lg font-lighter",
+  txtLGSmartRegularItalic: "font-lg italic font-normal",
+  txtLGSmartRegular: "font-lg font-normal",
+  txtLGSmartSemiBold: "font-lg font-bold",
+  txtYogibold: "font-yogi font-bold"
 };
 
 const Text = ({ children, className = "", size, as, ...restProps }) => {

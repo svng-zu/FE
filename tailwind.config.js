@@ -35,6 +35,8 @@ module.exports = {
         yellowtail: "Yellowtail",
         yesevaone: "Yeseva One",
         ibmplexsans: "IBM Plex Sans",
+        lg: "lg",
+        yogi: "yogi",
       },
       textShadow: { ts: "0px 8px  8px #000000ea" },
       backgroundImage: {

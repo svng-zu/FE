@@ -41,8 +41,8 @@
     width: 50px; /* 원하는 너비로 설정 */
     height: 50px;
     z-index: 2;
-
   }
+  
   .purchase-button {
     position: absolute;
     bottom: 60%; /* 원하는 위치 조정 */
