@@ -187,7 +187,7 @@ function LightPage() {
                   </Text>
                   <div className="flex flex-col items-start justify-start md:ml-[0] ml-[25%] mt-[8%] w-[181px]">
                     <Button
-                      className="common-pointer cursor-pointer font-semibold h-[50px] text-center text-lg tracking-[-0.09px] w-[175px]"
+                      className="common-pointer cursor-pointer font-yogi h-[50px] text-center text-lg tracking-[-0.09px] w-[175px]"
                       // onClick={handleNavigate}
                       shape="round"
                       color="red_A400"

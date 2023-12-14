@@ -73,13 +73,13 @@ const SignupPageLightPage = () => {
             className="leading-[50.00px] mt-[50px] text-3xl sm:text-[32px] md:text-[34px] text-black-900 text-center tracking-[-0.18px]"
             size="txtInterSemiBold36"
           >
-            <span className="text-black-900 font-inter font-semibold">
+            <span className="text-black-900 font-inter font-yogi">
               안녕하세요,{" "}
             </span>
-            <span className="text-red-A400 font-inter font-semibold">
+            <span className="text-red-A400 text-[40px] font-inter font-yogi">
               {id}
             </span>
-            <span className="text-black-900 font-inter font-semibold">
+            <span className="text-black-900 font-inter font-yogi">
               <>
                 {" "}
                 님<br />
@@ -103,7 +103,7 @@ const SignupPageLightPage = () => {
                   >
                     액션
                   </button> */}
-              <div className="button-container">
+              <div className="button-container font-yogi">
                 {genres.map((genre) => (
                   <button
                   key={genre}
@@ -124,7 +124,7 @@ const SignupPageLightPage = () => {
         </div>
         <div className="flex flex-col items-center mt-[-10px]  px-[160px] w-full">
         <Button
-          className="common-pointer cursor-pointer font-semibold h-[50px] sm:text-2xl md:text-[26px] text-[28px] text-center tracking-[-0.14px] w-[158px]"
+          className="common-pointer cursor-pointer font-yogi h-[50px] sm:text-2xl md:text-[26px] text-[28px] text-center tracking-[-0.14px] w-[158px]"
           onClick={() => {
           const storedGenres = JSON.parse(localStorage.getItem('genre') || '[]');
           if (storedGenres.length === 0) {

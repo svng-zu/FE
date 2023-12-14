@@ -54,8 +54,8 @@ const FrontpageLightPage = () => {
           </div>
             
           <Text
-            className="mt-[70px] text-3xl sm:text-[26px] md:text-[28px] text-black-900 text-center tracking-[-0.15px]"
-            size="txtInterSemiBold30Black900"
+            className="font-yogi mt-[70px] text-3xl sm:text-[26px] md:text-[28px] text-black-900 text-center tracking-[-0.15px]"
+            size="txtYogi0"
           >
             Hello tv를 시청할 모드를 선택해주세요.
           </Text>
@@ -72,8 +72,8 @@ const FrontpageLightPage = () => {
                   Basic
                 </Text>
                 <Text
-                  className="mb-[322px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px]"
-                  size="txtABeeZeeRegular25"
+                  className="mb-[322px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] font-yogi"
+                  size="txtYogi"
                 >
                   많은 기능을 다양하게 이용하고 싶다면?
                 </Text>
@@ -116,8 +116,8 @@ const FrontpageLightPage = () => {
                 Simple
               </Text>
               <Text
-                className="font-inter sm:text-[21px] md:text-[23px] text-[24px] text-black-900 tracking-[-0.5px]"
-                size="txtABeeZeeRegular25"
+                className="font-yogi sm:text-[21px] md:text-[23px] text-[24px] text-black-900 tracking-[-0.5px]"
+                size="txtYogi"
               >
                 핵심 기능만 크게 이용하고 싶다면?
               </Text>

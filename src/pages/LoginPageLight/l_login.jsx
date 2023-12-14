@@ -145,7 +145,7 @@ const handleLogin = async () => {
               tabIndex={0}
             >
               <Button
-                className="common-pointer cursor-pointer font-semibold h-[50px] text-center text-lg tracking-[-0.09px] w-[175px]"
+                className="common-pointer cursor-pointer font-yogi h-[50px] text-center text-lg tracking-[-0.09px] w-[175px]"
                 shape="round"
                 color="blue_gray_100"
                 size="lg"
@@ -157,11 +157,11 @@ const handleLogin = async () => {
               </Button>
             </div>
             <Button 
-              className="bg-transparent cursor-pointer font-mako mb-[62px] min-w-[113px] mt-[17px] text-[15px] text-black-900 text-center tracking-[0.16px]"
+              className="bg-transparent cursor-pointer font-yogi mb-[62px] min-w-[113px] mt-[17px] text-[15px] text-black-900 text-center tracking-[0.16px]"
               
               // onClick={() => navigate('/signuppagelight/')} 
               >
-              회원이 아니라면?
+              세탑 등록 후 이용해주세요
               
             </Button>
           </div>
