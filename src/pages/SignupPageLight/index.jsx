@@ -128,7 +128,7 @@ const SignupPageLightPage = () => {
           onClick={() => {
           const storedGenres = JSON.parse(localStorage.getItem('genre') || '[]');
           if (storedGenres.length === 0) {
-          alert('리스트가 비어 있습니다.');
+          alert('장르를 1개 이상 골라주세요.');
           } else {
           navigate("/FrontpageLight");
           }
