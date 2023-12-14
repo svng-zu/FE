@@ -275,7 +275,7 @@ function FamilyHomeLightPage() {
                   />
                   <Text
                     className="text-[20px] text-center font-yogi text-gray-800 sm:text-lg md:text-xl tracking-[-0.11px]"
-                    size="txtABeeZeeRegular22"
+                    size="txtYogi"
                   >
                     홈
                   </Text>
