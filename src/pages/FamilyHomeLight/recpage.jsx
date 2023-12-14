@@ -458,8 +458,11 @@ function FamilyHomeLightPage() {
                     className="leading-[100.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
                     size="txtYogi"
                   >
+                    <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yogi text-left text-[50px] font-normal">
+                    {localStorage.getItem('subsr')}&nbsp;
+                    </span>
                     <span className="text-black-900 text-left font-yogi">
-                    {localStorage.getItem('subsr')} 님이 시청중인{" "}
+                     님이 시청중인{" "}
                     </span>
                     <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
                       VOD{" "}
