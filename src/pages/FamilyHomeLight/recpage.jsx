@@ -353,7 +353,7 @@ function FamilyHomeLightPage() {
                   </Text>
                 </div>
                 <div className="flex md:flex-col flex-row font-paytoneone md:gap-5 items-start justify-between pr-[100px] w-full">                                  
-                  <div className="flex-shrink-0 h-[250px] relative w-1/6 mr-[10%] md:w-full">
+                  <div className="flex-shrink-0 h-[250px] relative w-1/6 mr-[10%] mb-[2%] md:w-full">
                   
                       <div className="video-container">
                         <HorizontalPosters rankposter={rankposter} />
@@ -378,7 +378,7 @@ function FamilyHomeLightPage() {
 
                 </div>
                 <div className="flex md:flex-col flex-row font-paytoneone md:gap-5 items-start justify-between pr-[100px] w-full">                                  
-                  <div className="flex-shrink-0 h-[250px] relative w-1/6 mr-[10%] md:w-full">
+                  <div className="flex-shrink-0 h-[250px] relative w-1/6 mr-[10%] mb-[2%] md:w-full">
                   
                       <div className="video-container">
                         <HorizontalPosters rankposter={genposter} />
@@ -429,10 +429,10 @@ function FamilyHomeLightPage() {
                     </span>
                   </Text>
                 </div>
-                <div className="flex md:flex-col flex-row md:gap-5 items-start justify-between pr-[100px] w-full">
+                <div className="flex md:flex-col flex-row md:gap-5 items-start justify-between w-full">
                   
                  
-                <div className="flex-shrink-0 h-[250px] relative w-1/6 md:w-full">
+                <div className="flex-shrink-0 h-[250px] relative w-1/6 mb-[2%] md:w-full">
                   
                     <div className="video-container">
                     <HorizontalPosters rankposter={recposter} />
@@ -461,7 +461,7 @@ function FamilyHomeLightPage() {
                 <div className="flex md:flex-col flex-row md:gap-5 items-start justify-between pr-[100px] w-full">
                   
                  
-                <div className="flex-shrink-0 h-[250px] relative w-1/6 md:w-full">
+                <div className="flex-shrink-0 h-[250px] relative w-1/6 md:w-full mb-[2%]">
                   
                     <div className="video-container">
                     <HorizontalPosters rankposter={yetposter} />
