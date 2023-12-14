@@ -104,12 +104,12 @@ function LightPage() {
               alt="arrowdown"
               onClick={() => navigate('/FamilyHomeLight')}
             />
-          <div className="relative h-[84px] mr-[1%] md:px-5 w-[20%] md:w-full">
+          <div className="relative h-[80px] mt-[5px] mr-[1%] md:px-5 w-[20%] md:w-full">
             <Weather />
           </div>
 
             <Text
-              className="ml-9 md:ml-[0] mr-[15px] md:mt-0 mt-[30px] md:text-3xl sm:text-[28px] text-[32px] text-center text-white-A700 tracking-[-0.16px]"
+              className="ml-9 md:ml-[0] mr-[15px] md:mt-0 mt-[25px] md:text-3xl sm:text-[28px] text-[32px] text-center text-white-A700 tracking-[-0.16px]"
               size="txtInterSemiBold32"
             >
               <TimeComponent/>
@@ -159,7 +159,7 @@ function LightPage() {
                   </Text>
                   <Text
                     className="ml-[20%] leading-[40.00px] font-yogi mt-[30px] text-2xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]"
-                    size="txtInterSemiBold24"
+                    size="txtYogi"
                   >
                     <>
                       출연
@@ -167,21 +167,21 @@ function LightPage() {
                   </Text>
                   <Text
                     className="ml-[23%] leading-[40.00px] mt-[0px] text-xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]"
-                    size="txtInterSemiBold10"
+                    size="txtYogi"
                   >
                     <>
                       {data ? data[8] : ""}
                     </>
                   </Text>
                   <Text
-                    className="ml-[20%] leading-[40.00px] mt-[20px] font-yogi text-2xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]"
-                    size="txtInterSemiBold24">
+                    className="ml-[20%] leading-[40.00px] mt-[25px] font-yogi text-2xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]"
+                    size="txtYogi">
                       <p>줄거리 : </p>
                     
                   </Text>
                   <Text
                     className="ml-[23%] leading-[40.00px] mt-[10px] text-xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]  mr-[2%]"
-                    size="txtInterSemiBold10">
+                    size="txtYogi">
                   
                     {data ? data[7] : ""}
                   </Text>
@@ -191,7 +191,7 @@ function LightPage() {
                       // onClick={handleNavigate}
                       shape="round"
                       color="red_A400"
-                      size="lg"
+                      
                       variant="fill"
                     >
                       바로 시청하기
@@ -206,13 +206,13 @@ function LightPage() {
               
             </div>
               <Text2
-                  className="sm:text-[21px] md:text-[20px] mt-[1%] text-[40px] text-white tracking-[-0.13px] w-full"
+                  className="sm:text-[21px] font-yogi md:text-[20px] mt-[1%] text-[40px] text-white tracking-[-0.13px] w-full"
                   size="txtYogi"
                 >
-                    <span className="text-white font-abeezee text-left font-yogi">
+                    <span className="text-white text-left font-yogi">
                       유사한 콘텐츠{" "}
                     </span>
-                    <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
+                    <span className="md:text-[45px] sm:text-[45px] text-red-A400 font-yogi text-left text-[45px] font-bold">
                       VOD
                     </span>
                   </Text2>

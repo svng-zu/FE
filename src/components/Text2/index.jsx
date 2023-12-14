@@ -19,6 +19,7 @@ const sizeClasses = {
   txtABeeZeeRegular22: "font-abeezee font-normal",
   txtPaytoneOneRegular80: "font-normal font-paytoneone",
   txtYesevaOneRegular35: "font-normal font-yesevaone",
+  txtYogi: "font-yogi font-noraml"
 };
 
 const Text2 = ({ children, className = "", size, as, ...restProps }) => {
