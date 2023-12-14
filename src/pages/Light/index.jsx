@@ -130,7 +130,7 @@ function LightPage() {
             
 
                 <Img
-                  className="ml-[5%] object-cover rounded-[25px] mt-[-5%]"
+                  className="ml-[5%] object-cover rounded-[25px] mt-[-2%]"
                   // src={data[2]}
                   src={data ? data[2] : ""}
                   style={{ width: '500px', height: '600px' , objectFit: 'cover' }}
@@ -148,13 +148,14 @@ function LightPage() {
                     className="ml-[20%] mt-[0px] font-yogi text-white-A700 text-2xl tracking-[-0.10px]"
                     size="txtYogi"
                   >
-                    장르 
+                    장르 : {data ? data[1] : ""}
                   </Text>
                   <Text
-                    className="ml-[23%] leading-[30.00px] mt-[10px] text-xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]"
+                    className="ml-[23%] leading-[30.00px] mt-[10px] text-xl md:text-[20px] text-white-A700 sm:text-xl tracking-[-0.12px]"
                     size="txtInterSemiBold10"
                   >
-                    {data ? data[1] : ""},{data ? data[4] : ""}<br/> {data ? data[3] : ""}
+                    
+                    {data ? data[4] : ""}<br/>{data ? data[3] : ""}
                     
                   </Text>
                   <Text
@@ -206,7 +207,7 @@ function LightPage() {
               
             </div>
               <Text2
-                  className="sm:text-[21px] font-yogi md:text-[20px] mt-[1%] text-[40px] text-white tracking-[-0.13px] w-full"
+                  className="sm:text-[21px] font-yogi md:text-[20px] mt-[2%] text-[40px] text-white tracking-[-0.13px] w-full"
                   size="txtYogi"
                 >
                     <span className="text-white text-left font-yogi">
