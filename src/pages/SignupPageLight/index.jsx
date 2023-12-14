@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-
 import { useNavigate } from "react-router-dom";
-
 import { Button, Img, List, Text } from "components";
 import '../../styles/button.css'
 
@@ -19,13 +17,9 @@ const SignupPageLightPage = () => {
 
     }
    };
-  
-
-
 
   const [id, setId] = useState('');
   const [selectedGenres, setSelectedGenres] = useState([]);
-
   const genres = ['드라마', '액션', '모험', '코미디', '로맨스', '애니메이션', '스릴러', '해외시리즈', '멜로', '판타지',
    '공포', '범죄', 'SF', '미스터리', '가족', '예능', '시대극', '다큐', '시사교양', '키즈']
   // const [genre, setGenre] = useState([]);
@@ -129,12 +123,19 @@ const SignupPageLightPage = () => {
           </div>
         </div>
         <div className="flex flex-col items-center mt-[-10px]  px-[160px] w-full">
-          <Button
-            className="common-pointer cursor-pointer font-semibold h-[50px] sm:text-2xl md:text-[26px] text-[28px] text-center tracking-[-0.14px] w-[158px]"
-            onClick={() => navigate("/FrontpageLight")}
-            shape="round"
-            color="red_A400"
-            variant="fill"
+        <Button
+          className="common-pointer cursor-pointer font-semibold h-[50px] sm:text-2xl md:text-[26px] text-[28px] text-center tracking-[-0.14px] w-[158px]"
+          onClick={() => {
+          const storedGenres = JSON.parse(localStorage.getItem('genre') || '[]');
+          if (storedGenres.length === 0) {
+          alert('리스트가 비어 있습니다.');
+          } else {
+          navigate("/FrontpageLight");
+          }
+          }}
+          shape="round"
+          color="red_A400"
+          variant="fill"
           >
             완료
           </Button>

@@ -255,16 +255,16 @@ function FamilyHomeLightPage() {
             </Text>
           </div>
           <div className="flex md:flex-col flex-row font-abeezee md:gap-10 items-start justify-between mx-auto md:px-5 w-full">
-            <Sidebar className="!sticky !w-[129px] bg-gray-50 flex h-screen md:hidden justify-start overflow-auto top-[0]">
+            <Sidebar className="!sticky !w-[120px] bg-gray-50 flex h-screen md:hidden justify-start overflow-auto top-[0]">
               <div className="flex flex-col items-center justify-start mt-[29px] mx-auto w-[48%]">
                 <div className="flex flex-col gap-[15px] items-start justify-start w-[74%] md:w-full">
                   <Img
-                    className="h-[43px]"
+                    className="h-[45px]"
                     src="images/img_search.svg"
                     alt="rewind"
                   />
                   <Text
-                    className="ml-1 md:ml-[0] text-[22px] text-center text-gray-800 sm:text-lg md:text-xl tracking-[-2px]"
+                    className="ml-1 md:ml-[0] text-[20px] text-center text-gray-800 sm:text-lg md:text-xl tracking-[-2px]"
                     size="txtABeeZeeRegular22"
                   >
                     검색
@@ -275,38 +275,38 @@ function FamilyHomeLightPage() {
                   onClick={() => navigate("/frontpagelight")}
                 >
                   <Img
-                    className="h-[54px]"
+                    className="h-[45px]"
                     src="images/img_home.svg"
                     alt="home"
                   />
                   <Text
-                    className="text-[22px] text-center text-gray-800 sm:text-lg md:text-xl tracking-[-0.11px]"
+                    className="text-[20px] text-center text-gray-800 sm:text-lg md:text-xl tracking-[-0.11px]"
                     size="txtABeeZeeRegular22"
                   >
                     홈
                   </Text>
                 </div>
-                <div className="flex flex-col gap-[11px] items-center justify-start mt-14 w-full">
+                <div className="flex flex-col gap-[11px] items-center justify-start mt-[55px] w-full">
                   <Img
-                    className="h-[50px]"
+                    className="h-[45px]"
                     src="images/img_star.svg"
                     alt="star"
                   />
                   <Text
-                    className="text-[22px] text-center text-gray-800 sm:text-lg md:text-xl tracking-[-3px]"
+                    className="text-[20px] text-center text-gray-800 sm:text-lg md:text-xl tracking-[-3px]"
                     size="txtABeeZeeRegular22"
                   >
                     드라마
                   </Text>
                 </div>
-                <div className="flex flex-col gap-2.5 items-center justify-start mt-[77px] w-[92%] md:w-full">
+                <div className="flex flex-col gap-2.5 items-center justify-start mt-[55px] w-[92%] md:w-full">
                   <Img
-                    className="h-[50px]"
+                    className="h-[45px]"
                     src="images/img_thumbsup.svg"
                     alt="lock"
                   />
                   <Text
-                    className="text-[22px] text-center text-gray-800 sm:text-lg md:text-xl tracking-[-0.11px]"
+                    className="text-[20px] text-center text-gray-800 sm:text-lg md:text-xl tracking-[-0.11px]"
                     size="txtABeeZeeRegular22"
                   >
                     영화
@@ -314,15 +314,15 @@ function FamilyHomeLightPage() {
                 </div>
               </div>
 
-              <div className="flex flex-col gap-[17px] items-center justify-start mb-[38px] mt-[66px] mx-auto w-[48%]">
+              <div className="flex flex-col gap-[17px] items-center justify-start mb-[38px] mt-[55px] mx-auto w-[48%]">
                 <Img
-                  className="h-[42px]"
+                  className="h-[45px]"
                   src="images/img_qrcode.svg"
                   alt="contrast"
                   onClick={Rerec}
                 />
                 <Text
-                  className="text-[22px] text-center sm:text-lg text-red-A400 md:text-xl tracking-[-3px]"
+                  className="text-[20px] text-center sm:text-lg text-red-A400 md:text-xl tracking-[-3px]"
                   size="txtABeeZeeRegular22RedA400"
                   onClick={Rerec}
                 >
@@ -369,7 +369,7 @@ function FamilyHomeLightPage() {
                     size="txtABeeZeeRegular25"
                   >
                     <span className="text-black-900 font-abeezee text-left font-normal">
-                      {localStorage.getItem('new') ? `${localStorage.getItem('subsr')}이 선택한 장르 기반 추천 ` : `${localStorage.getItem('subsr')}이 시청한 장르 기반 추천 `}
+                      {localStorage.getItem('new') ? `${localStorage.getItem('subsr')} 님이 선택한 장르 기반 추천 ` : `${localStorage.getItem('subsr')} 님이 시청한 장르 기반 추천 `}
                     </span>
                     <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
                       {localStorage.getItem('new') ? `Genre` : `Genre `}
