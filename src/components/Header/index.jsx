@@ -11,19 +11,19 @@ const Header = (props) => {
     <>
       <header className={props.className}>
         <Img
-          className="h-[33px] mb-[27px] ml-[0] md:mt-0 mt-[30px]"
+          className="relative h-[33px] mb-[27px] ml-[0.5%] md:mt-0 mt-[30px]"
 
           src="images/img_arrowdown.svg"
           alt="arrowdown"
           onClick={() => navigate('/FrontpageLight')}
         />
         <Text
-          className="mb-[3px] md:ml-[0] ml-[381px] md:mt-0 mt-[17px] md:text-5xl text-6xl text-white-A700 tracking-[-0.30px]"
+          className="mb-[3px] md:ml-[0] ml-[250px] md:mt-0 mt-[17px] md:text-5xl text-6xl text-white-A700 tracking-[-0.30px]"
           size="txtYesevaOneRegular60"
         >
           SIMPLE MODE
         </Text>
-        <div className="h-[82px] md:ml-[0] ml-[5%] mr-[10%] md:mt-0 mt-2 relative w-[25%] md:w-full">
+        <div className="h-[70px] ml-[5%] mr-[10%] relative w-[20%] md:w-full">
           <Weather />
         </div>
         <Text

@@ -75,9 +75,9 @@ function LightPage() {
   };
 
   return (
-    <div style={{postion: 'relative', display:'flex', alignItems: 'center', marginLeft: '20px', marginRight: '-550%' }}>
+    <div style={{postion: 'relative', display:'flex', alignItems: 'center', marginLeft: '20px', marginRight: '-500%' }}>
       <button onClick={() => scrollTo(-600)} style={{...buttonStyle, position: 'absolute', left: '0'}}><img src="https://seasonmarket.co.kr/img/slider_left.png" alt="Previous"/></button>
-      <div style={{postion: 'relative', display: 'flex', overflowX: 'auto', marginLeft: '5%', marginRight: '0%', minWidth: '97%', maxWidth: '97%'}} ref={containerRef}>
+      <div style={{postion: 'relative', display: 'flex', overflowX: 'auto', marginLeft: '5%', marginRight: '-500%', minWidth: '80%', maxWidth: '80%'}} ref={containerRef}>
         {simposter.map((item, index) => (
           <img
             key={index}
@@ -104,7 +104,7 @@ function LightPage() {
               alt="arrowdown"
               onClick={() => navigate('/FamilyHomeLight')}
             />
-          <div className="relative h-[84px] mr-[1%] md:px-5 w-[9%] md:w-full">
+          <div className="relative h-[84px] mr-[1%] md:px-5 w-[20%] md:w-full">
             <Weather />
           </div>
 
@@ -241,7 +241,7 @@ function LightPage() {
                   </div>
                  ))}
                 </div> */}
-                  <div className="flex-shrink-0 h-[250px] relative w-1/6 ml-[2%] mt-[2%] md:w-full">
+                  <div className="flex-shrink-0 h-[250px] relative w-1/6 ml-[2%] ml-[5%] mt-[2%] md:w-full">
                   
                       <div className="video-container">
                         <HorizontalPosters simposter={data1} />

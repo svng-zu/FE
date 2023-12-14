@@ -238,7 +238,7 @@ function FamilyHomeLightPage() {
               alt="arrowdown"
               onClick={() => navigate('/frontpagelight')}
             />
-            <div className="relative h-[80px] w-[280px] mr-[1%] mt-[0.5%] w-[15%] md:w-full">
+            <div className="relative h-[80px] w-[20%] mr-[1%] mt-[0.5%] w-[15%] md:w-full">
               <Weather />
             </div>
             <Text
