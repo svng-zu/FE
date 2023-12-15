@@ -7,6 +7,7 @@ import axios from "axios"
 import 'styles/loading.css';
 import 'styles/animation.css';
 import 'styles/smooth.css';
+import 'styles/img.css';
 // import LoadingScreen from "components/Loading/Loading";
 
 function LoadingScreen () {
@@ -126,7 +127,7 @@ const handleClick = () => {
         <div className="flex flex-col items-center justify-start w-full">
           <div className="bg-red-A400 flex md:flex-col flex-row md:gap-5 items-start justify-end pb-1.5 px-1.5 w-full">
             <Img
-              className="button absolute h-[37px] mr-[94%] mt-6"
+              className="button1 absolute h-[37px] mr-[94%] mt-6"
               src={process.env.PUBLIC_URL + '/images/img_arrowdown.svg'}
               alt="arrowdown"
               onClick={handleClick}
