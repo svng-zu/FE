@@ -17,15 +17,13 @@ const LoadingScreen = () => {
     };
  
 
-function FamilyHomeLightPage() {
+function MoviePage() {
   const [loading, setLoading] = useState(true);
   const [genposter, setGenposter] = useState([]);
   const [rankposter, setRankposter] = useState([]);
   const [recposter, setRecposter] = useState([]);
   const [yetposter, setYetposter] = useState([]);
   const [current, setCurrent] = useState('');
-  // const [movie, setMovie] = useState([]);
-  // const [drama, setDrama] = useState([]);
   const [startIndex, setStartIndex] = useState(localStorage.getItem('startIndex'));
   const [userposter, setUserposter] = useState([]);
   const [showPage, setShowPage] = useState(false);
@@ -36,12 +34,7 @@ function FamilyHomeLightPage() {
   }, []);
 
   useEffect(() => {
-    // const mainApi = async () = {
-    //   setLoading(true);
-    //   try {
-    //     const response = await fetch(`api url`)
-    //   }
-    // }
+
 
   
     const fetchData = async () => {
@@ -52,28 +45,6 @@ function FamilyHomeLightPage() {
           return; // 로그인 페이지로 이동 후 함수 종료
         }
       
-        // setLoading(true);
-        // const mresponse = await axios.get('https://hello00back.net/home/영화')
-        // console.log("영화 추천 :", mresponse.data)
-        // const dresponse = await axios.get('https://hello00back.net/home/TV드라마')
-        // console.log("드라마 수신 여부", dresponse.status)
-        // if (mresponse.status && dresponse.status === 200){
-        //   const mdata = mresponse.data.data;
-        //   const ddata = dresponse.data.data;
-
-        //   const movie = mdata.map(item => item); //주간 랭킹
-        //   const drama = ddata.map(item => item); // 장르별
-          
-          
-          
-
-      //     setMovie(movie);
-      //     setDrama(drama);
-      //     console.log("영화", movie, "드라마",drama);
-        
-      //     setLoading(false);
-      //   }
-
 
     } catch (error) {
       let loadingTimer = setTimeout(() => {
@@ -102,10 +73,9 @@ function FamilyHomeLightPage() {
 
         
         
-        const response = await axios.get('https://hello00back.net/vodrec', {
+        const response = await axios.get('https://hello00back.net/home/영화', {
           headers: {
             Authorization : access,
-            Data : genre,
           },
     
 
@@ -114,7 +84,7 @@ function FamilyHomeLightPage() {
 
       
         if (response.status === 200) {
-          console.log("여긴 문제가 아니야")
+          console.log("접속 성공")
         
         
           const data = response.data.data;
@@ -152,7 +122,7 @@ function FamilyHomeLightPage() {
           // 실패 로직 필요시 추가
           clearTimeout(loadingTimer); // 타이머 초기화
         }, 10000);
-        console.error('Error fetching:', error);
+        console.error('Error 실패:', error);
       }
       
       
@@ -161,14 +131,6 @@ function FamilyHomeLightPage() {
     fetchData();
   }, [navigate, startIndex]);
 
-  // useEffect(() => {
-  //   const unlisten = navigate.listen(() => {
-  //     const savedStartIndex = parseInt(localStorage.getItem('startIndex'), 10) || 0;
-  //     setStartIndex(savedStartIndex);
-  //     });
-  //   return () => {
-  //     unlisten();
-  //   };
   
   const handleClick = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -193,7 +155,7 @@ function FamilyHomeLightPage() {
    const Click = (dataItem) => {
      navigate(`/Light/${dataItem}`);
   }
-  // Component
+
   
   const buttonStyle = {
     border: 'none',
@@ -510,7 +472,8 @@ function FamilyHomeLightPage() {
   );
 };
 
-export default FamilyHomeLightPage;
+export default MoviePage ;
+
 
 
 

@@ -6,3 +6,4 @@ export { Text } from "./Text";
 export { Text2 } from "./Text2";
 export { TimeComponent } from "./TimeComponent";
 export { Weather } from "./Weather";
+export { Reclist } from "./Reclist";

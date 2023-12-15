@@ -23,7 +23,7 @@ const Header = (props) => {
         >
           SIMPLE MODE
         </Text>
-        <div className="absolute h-[70px] ml-[5%] mr-[-50%] w-[20%] md:w-full">
+        <div className="absolute h-[70px] ml-[6%] mr-[-54%] w-[15%]">
           <Weather />
         </div>
         <Text

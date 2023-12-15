@@ -1,15 +1,20 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
+import { CSSTransition } from 'react-transition-group';
 import { useNavigate } from "react-router-dom";
-
+import 'styles/animation.css'
 import { Img, Text } from "components";
 
 
 
 
 const FrontpageLightPage = () => {
-  
-  
+  const [showPage, setShowPage] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setShowPage(true);
+  }, []);
+
   const handleLogout = () => {
     if (localStorage.getItem('new') === null){
       const confirmLogout = window.confirm('로그아웃 하시겠습니까?');
@@ -33,14 +38,21 @@ const FrontpageLightPage = () => {
   }
 }
   
-  const navigate = useNavigate();
+  
   const access = localStorage.getItem('access_token');
   if (!access) {
     navigate('/');
     return; // 로그인 페이지로 이동 후 함수 종료
   }
+  
   return (
     <>
+      <CSSTransition
+        in={showPage}
+        timeout={300}
+        classNames="fade"
+       unmountOnExit
+      >
       <div className="bg-gray-100 border border-black-900 border-solid flex flex-col font-inter items-center justify-start mx-auto w-full">
         <div className="flex flex-col items-center justify-start mb-[77px] w-full">
           <div className="bg-red-A400 flex flex-col items-start justify-start p-[23px] sm:px-5 w-full">
@@ -130,6 +142,7 @@ const FrontpageLightPage = () => {
           </div>
         </div>
       </div>
+      </CSSTransition>
     </>
   );
 };

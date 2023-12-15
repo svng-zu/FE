@@ -3,15 +3,20 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { Button, Img } from "components"; //Input, Text
 import C1LoginPageLightIdinput from "components/C1LoginPageLightIdinput/login_input";
+import { CSSTransition } from "react-transition-group";
 // import { useCookies } from 'react-cookie';
-
+import 'styles/animation.css'
 
 const LoginPageLightPage = () => {
   const navigate = useNavigate();
   const [accessToken, setAccessToken] = useState('');
-
+  const [showPage, setShowPage] = useState(false);
   const [id, setId] = useState('');
-  
+
+  useEffect(( )=> {
+    setShowPage(true);
+  }, []);
+
   useEffect(() => {
     const storedToken = localStorage.getItem('access_token');
 
@@ -73,10 +78,11 @@ const handleLogin = async () => {
           // axios의 인스턴스에 헤더 추가
           axios.defaults.headers.common['Authorization'] = 'JWT ' + accessToken;
           console.log("로그인 성공적")
+ 
           // navigate(""); // 페이지 이동
           // location.reload(); // 페이지 새로고침
           navigate('FrontpageLight'); // 원하는 페이지로 이동
-
+          
         } else if (postresponse.status === 200 && postresponse.data.message === 1) {
           const accessToken1 = postresponse.data.token.access; // 예상되는 응답에서 access_token을 가져옴
           const refreshToken1 = postresponse.data.token.refresh;
@@ -94,7 +100,6 @@ const handleLogin = async () => {
 
           
           navigate('/signuppagelight');
-         
           
         };
       
@@ -123,6 +128,12 @@ const handleLogin = async () => {
 
   return (
     <>
+      <CSSTransition
+        in={showPage}
+        timeout={300}
+        classNames="fade"
+       unmountOnExit
+      >
       <div className="bg-gray-100 border border-black-800 border-solid flex flex-col sm:gap-10 md:gap-10 gap-[156px] items-center justify-start mx-auto pb-[205px] w-full">
         <div className="bg-red-A400 h-[90px] w-full"></div>
         <div className="md:h-[458px] h-[573px] md:px-5 relative w-[55%] md:w-full">
@@ -133,6 +144,7 @@ const handleLogin = async () => {
               alt="hello"
               style={{ objectFit: 'contain' }}
             />
+
             <C1LoginPageLightIdinput
               className="flex flex-col font-ibmplexsans h-[124px] md:h-auto items-start justify-start max-w-[700px] mt-[100px] w-full"
               value={id}
@@ -167,6 +179,7 @@ const handleLogin = async () => {
           </div>
         </div>
       </div>
+      </CSSTransition>
     </>
   );
 };
