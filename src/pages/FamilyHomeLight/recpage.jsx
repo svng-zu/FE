@@ -7,6 +7,7 @@ import axios from 'axios';
 import { Img, Text, TimeComponent, Weather, Ranklist } from "components";
 import 'styles/loading.css';
 import 'styles/font.css'
+import 'styles/img.css'
 const LoadingScreen = () => {
     return (
         <div className='lodaing-screen'>
@@ -250,7 +251,7 @@ function FamilyHomeLightPage() {
         <div className="flex flex-col items-center justify-start w-full">
           <div className="bg-red-A400 flex md:flex-col flex-row md:gap-5 items-start justify-end pb-1.5 px-1.5 w-full">
             <Img
-              className="common-pointer absolute h-[33px] left-10 md:mt-0 mt-[26px]"
+              className="button common-pointer absolute h-[33px] left-10 md:mt-0 mt-[26px]"
               src="images/img_arrowdown.svg"
               alt="arrowdown"
               onClick={() => navigate('/frontpagelight')}
@@ -270,7 +271,7 @@ function FamilyHomeLightPage() {
               <div className="flex flex-col items-center justify-start mt-[29px] mx-auto w-[48%]">
                 <div className="flex flex-col gap-[15px] items-start justify-start w-[74%] md:w-full">
                   <Img
-                    className="h-[45px]"
+                    className="button"
                     src="images/img_search.svg"
                     alt="rewind"
                   />
@@ -286,7 +287,7 @@ function FamilyHomeLightPage() {
                   onClick={handleClick}
                 >
                   <Img
-                    className="h-[45px]"
+                    className="h-[45px] button"
                     src="images/img_home.svg"
                     alt="home"
                   />
@@ -299,7 +300,7 @@ function FamilyHomeLightPage() {
                 </div>
                 <div className="flex flex-col gap-[11px] items-center justify-start mt-[55px] w-full">
                   <Img
-                    className="h-[45px]"
+                    className="h-[45px] button"
                     src="images/img_star.svg"
                     alt="star"
                     onClick={()=> navigate("/familyhomelight/drama")}
@@ -314,7 +315,7 @@ function FamilyHomeLightPage() {
                 </div>
                 <div className="flex flex-col gap-2.5 items-center justify-start mt-[55px] w-[92%] md:w-full">
                   <Img
-                    className="h-[45px]"
+                    className="h-[45px] button"
                     src="images/img_thumbsup.svg"
                     alt="lock"
                     onClick={()=> navigate("/familyhomelight/movie")}
@@ -331,7 +332,7 @@ function FamilyHomeLightPage() {
 
               <div className="flex flex-col gap-[17px] items-center justify-start mb-[38px] mt-[55px] mx-auto w-[48%]">
                 <Img
-                  className="h-[45px]"
+                  className="h-[45px] button"
                   src="images/img_qrcode.svg"
                   alt="contrast"
                   onClick={Rerec}

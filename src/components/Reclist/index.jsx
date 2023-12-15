@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import "styles/smooth.css"
 
 
 const Reclist = ({ rankposter }) => {
@@ -18,7 +18,7 @@ const Reclist = ({ rankposter }) => {
 
   return (
     <div style={{ position: 'relative', display: 'flex', alignItems: 'center', marginLeft: '15%', marginRight: '-500%' }}>
-      <button onClick={() => scrollTo(-600)} style={{ border: 'none', backgroundColor: 'transparent', cursor: 'pointer', fontSize: '24px', outline: 'none', padding: '10px', color: '#555', width: '50px', height: '50px', position: 'absolute', left: '-0%', zIndex: '1'  }}>
+      <button className="button" onClick={() => scrollTo(-600)} style={{ border: 'none', backgroundColor: 'transparent', cursor: 'pointer', fontSize: '24px', outline: 'none', padding: '10px', color: '#555', width: '50px', height: '50px', position: 'absolute', left: '-0%', zIndex: '1'  }}>
         <img src="https://seasonmarket.co.kr/img/slider_left.png" alt="Previous" /></button>
       <div style={{ position: 'relative', display: 'flex', overflowX: 'auto', marginLeft: '2%', marginRight: '0', minWidth: '96%', maxWidth: '96%' }} ref={containerRef}>
         {rankposter.map((item, index) => (
@@ -31,7 +31,7 @@ const Reclist = ({ rankposter }) => {
           />
         ))}
       </div>
-      <button onClick={() => scrollTo(600)} style={{ border: 'none', backgroundColor: 'transparent', cursor: 'pointer', fontSize: '24px', outline: 'none', padding: '10px', color: '#555', width: '50px', height: '50px', position: 'absolute', right: '-0%' }}>
+      <button className="button" onClick={() => scrollTo(600)} style={{ border: 'none', backgroundColor: 'transparent', cursor: 'pointer', fontSize: '24px', outline: 'none', padding: '10px', color: '#555', width: '50px', height: '50px', position: 'absolute', right: '-0%' }}>
         <img src="https://seasonmarket.co.kr/img/slider_right.png" alt="next" />
       </button>
     </div>
