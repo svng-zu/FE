@@ -188,7 +188,7 @@ function MoviePage() {
         <div className="flex flex-col items-center justify-start w-full">
           <div className="bg-red-A400 flex md:flex-col flex-row md:gap-5 items-start justify-end pb-1.5 px-1.5 w-full">
             <Img
-              className="button common-pointer absolute h-[33px] left-10 md:mt-0 mt-[26px]"
+              className="button common-pointer absolute h-[45px] w-[45px] left-10 md:mt-0 mt-[26px]"
               src="/images/img_arrowdown.svg"
               alt="arrowdown"
               onClick={() => navigate('/FamilyHomeLight')}

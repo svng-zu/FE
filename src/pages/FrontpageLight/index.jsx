@@ -3,7 +3,7 @@ import { CSSTransition } from 'react-transition-group';
 import { useNavigate } from "react-router-dom";
 import 'styles/animation.css'
 import { Img, Text } from "components";
-
+import 'styles/img.css'
 
 
 
@@ -57,7 +57,7 @@ const FrontpageLightPage = () => {
         <div className="flex flex-col items-center justify-start mb-[77px] w-full">
           <div className="bg-red-A400 flex flex-col items-start justify-start p-[23px] sm:px-5 w-full">
             <Img
-              className="common-pointer h-[37px] mb-[5px] md:ml-[0] ml-[18px]"
+              className="button common-pointer h-[45px] mb-[5px] md:ml-[0] ml-[18px]"
               src="images/img_arrowdown.svg"
               alt="arrowdown"
               onClick={() => handleLogout(true)}
