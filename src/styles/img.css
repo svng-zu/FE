@@ -6,8 +6,8 @@
     outline: none;
 
 
-    width: 60px; /* 원하는 너비 설정 */
-    height: 60px;
+    width: 65px; /* 원하는 너비 설정 */
+    height: 65px;
     transition: transform 0.3s ease; /* 변화가 발생할 때 애니메이션 속성 설정 */
   }
   

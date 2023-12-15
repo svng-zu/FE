@@ -271,7 +271,7 @@ function FamilyHomeLightPage() {
               <div className="flex flex-col items-center justify-start mt-[29px] mx-auto w-[48%]">
                 <div className="flex flex-col gap-[15px] items-start justify-start w-[74%] md:w-full">
                   <Img
-                    className="button"
+                    className="h-[45px] button"
                     src="images/img_search.svg"
                     alt="rewind"
                   />
