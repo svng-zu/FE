@@ -272,7 +272,7 @@ function MoviePage() {
                   className="button h-[45px]"
                   src="/images/img_qrcode.svg"
                   alt="contrast"
-                  
+                  onClick={Rerec}
                 />
                 <Text
                   className="text-[20px] text-center sm:text-lg text-red-A400 md:text-xl tracking-[-2px]"
