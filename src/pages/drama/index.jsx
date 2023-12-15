@@ -159,7 +159,7 @@ function MoviePage() {
  
   const Rerec = () => {
     const saveToLocalStorage = (startIndex1) => {
-      localStorage.setItem('startIndex', startIndex1);
+      localStorage.setItem('startIndex1', startIndex1);
     };
     
     const currentStartIndex = parseInt(localStorage.getItem('startIndex1'), 10) || 0;
