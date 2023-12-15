@@ -4,7 +4,7 @@ import { Sidebar } from "react-pro-sidebar";
 import { CSSTransition } from 'react-transition-group';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import { Img, Text, TimeComponent, Weather } from "components";
+import { Img, Text, TimeComponent, Weather, Ranklist } from "components";
 import 'styles/loading.css';
 import 'styles/font.css'
 const LoadingScreen = () => {
@@ -26,9 +26,12 @@ function FamilyHomeLightPage() {
   const [current, setCurrent] = useState('');
   // const [movie, setMovie] = useState([]);
   // const [drama, setDrama] = useState([]);
-  const [startIndex, setStartIndex] = useState(localStorage.getItem('startIndex'));
+  const initialStartIndex = localStorage.getItem('startIndex');
+  const initialIndex = initialStartIndex !== null ? parseInt(initialStartIndex) : 0;
+  const [startIndex, setStartIndex] = useState(initialIndex);
   const [userposter, setUserposter] = useState([]);
   const [showPage, setShowPage] = useState(false);
+  localStorage.setItem('page', 0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -216,8 +219,8 @@ function FamilyHomeLightPage() {
     };
 
     return (
-      <div style={{postion: 'relative', display:'flex', alignItems: 'center', marginLeft: '15%', marginRight: '-500%' }}>
-        <button onClick={() => scrollTo(-600)} style={{...buttonStyle, position: 'absolute', left: '5%'}}><img src="https://seasonmarket.co.kr/img/slider_left.png" alt="Previous"/></button>
+      <div style={{postion: 'relative', display:'flex', alignItems: 'center', marginLeft: '5%', marginRight: '-500%' }}>
+        <button className="button" onClick={() => scrollTo(-600)} style={{...buttonStyle, position: 'absolute', left: '1%'}}><img src="https://seasonmarket.co.kr/img/slider_left.png" alt="Previous"/></button>
         <div style={{postion: 'relative', display: 'flex', overflowX: 'auto', marginLeft: '2%', marginRight: '0', minWidth: '96%', maxWidth: '96%'}} ref={containerRef}>
           {rankposter.map((item, index) => (
             <img
@@ -229,7 +232,7 @@ function FamilyHomeLightPage() {
             />
           ))}
         </div>
-        <button onClick={() => scrollTo(600)} style={{...buttonStyle, position: 'absolute', right: '-520%'}}>
+        <button className="button" onClick={() => scrollTo(600)} style={{...buttonStyle, position: 'absolute', right: '-520%'}}>
           <img src="https://seasonmarket.co.kr/img/slider_right.png" alt="next"/></button>
       </div>
     );
@@ -239,7 +242,7 @@ function FamilyHomeLightPage() {
     <>
       <CSSTransition
         in={showPage}
-        timeout={500}
+        timeout={1500}
         classNames="fade"
        unmountOnExit
       >
@@ -351,7 +354,7 @@ function FamilyHomeLightPage() {
                   
               <div className="flex flex-1 flex-col items-start justify-start w-full">
                 <div className="flex flex-1 flex-col items-start justify-start w-full">
-                <div className="flex flex-col items-center justify-start" style={{ marginTop: '10px' }}>
+                <div className="flex flex-col items-center justify-start" style={{ marginTop: '3%' }}>
                   <Text
                     className="leading-[10.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[30px] text-black-900 tracking-[-0.13px] w-full font-yogi"
                     size="txtYogi"
@@ -365,10 +368,10 @@ function FamilyHomeLightPage() {
                   </Text>
                 </div>
                 <div className="flex md:flex-col flex-row font-paytoneone md:gap-5 items-start justify-between pr-[100px] w-full">                                  
-                  <div className="flex-shrink-0 h-[250px] relative w-1/6 mr-[10%] mb-[2%] md:w-full mt-[1.5%]">
+                  <div className="flex-shrink-0 h-[450px] relative w-1/6 mr-[10%] mb-[2%] md:w-full mt-[1%]">
                   
                       <div className="video-container">
-                        <HorizontalPosters rankposter={rankposter} />
+                        <Ranklist rankposter={rankposter} />
                       </div>
                   
                   </div>

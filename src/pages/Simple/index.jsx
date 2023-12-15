@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
-
+import { CSSTransition } from "react-transition-group";
 import { Button, Img, List, Text } from "components";
 import Header from "components/Header";
 import 'styles/banner.css'; 
 
 const SimplePage = () => {  
   const navigate = useNavigate();
-
+  const [showPage, setShowPage] = useState(false);
+  useEffect(() => {
+    setShowPage(true)
+  }, []);
   function handleNavigate4() {
     const win = window.open("https://seasonmarket.co.kr/", "_blank");
     win.focus();
@@ -26,6 +29,7 @@ const SimplePage = () => {
   ];
   // const images = imagenames.map(image => image);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -45,6 +49,12 @@ const SimplePage = () => {
   
   return (
     <>
+      <CSSTransition
+        in={showPage}
+        timeout={4000}
+        classNames="fade"
+       unmountOnExit
+      >
       <div className="bg-gray-100 border border-black-900 border-solid flex flex-col font-inter sm:gap-10 md:gap-10 gap-[63px] items-center justify-start mx-auto w-full">
         <Header className="bg-red-A400 flex md:flex-col flex-row md:gap-5 items-center justify-center md:px-5 w-full" />
         <div className="flex flex-col md:gap-10 gap-16 items-center justify-start max-w-[1341px] mx-auto md:px-5 w-full">
@@ -195,6 +205,7 @@ const SimplePage = () => {
           </div>
         </div>
       </div>
+      </CSSTransition>
     </>
   );
 };

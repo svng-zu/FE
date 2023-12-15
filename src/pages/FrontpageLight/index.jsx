@@ -49,7 +49,7 @@ const FrontpageLightPage = () => {
     <>
       <CSSTransition
         in={showPage}
-        timeout={300}
+        timeout={3000}
         classNames="fade"
        unmountOnExit
       >

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Img, List, Text } from "components";
 import '../../styles/button.css'
+import { CSSTransition } from "react-transition-group";
 
 const SignupPageLightPage = () => {
   const handleLogout = () => {
@@ -17,13 +18,17 @@ const SignupPageLightPage = () => {
 
     }
    };
-
+  const [showPage, setShowPage] = useState(false);
   const [id, setId] = useState('');
   const [selectedGenres, setSelectedGenres] = useState([]);
   const genres = ['드라마', '액션', '모험', '코미디', '로맨스', '애니메이션', '스릴러', '해외시리즈', '멜로', '판타지',
    '공포', '범죄', 'SF', '미스터리', '가족', '예능', '시대극', '다큐', '시사교양', '키즈']
   // const [genre, setGenre] = useState([]);
   // const [buttonClassName, setButton] = useState(); 
+  useEffect(() => {
+    setShowPage(true)
+  }, [])
+  
   useEffect(() => {
     const storedId = localStorage.getItem('subsr');
     if (storedId) {
@@ -59,6 +64,12 @@ const SignupPageLightPage = () => {
   
   return (
     <>
+      <CSSTransition
+        in={showPage}
+        timeout={4000}
+        classNames="fade"
+       unmountOnExit
+      >
       <div className="bg-gray-100 border border-black-900 border-solid flex flex-col font-inter sm:gap-10 md:gap-10 gap-[138px] justify-start mx-auto pb-[120px] w-full">
         <div className="flex flex-col items-center w-full">
           <div className="bg-red-A400 flex flex-col items-start justify-start p-6 sm:px-5 w-full">
@@ -141,6 +152,7 @@ const SignupPageLightPage = () => {
           </Button>
         </div>
       </div>
+      </CSSTransition>
     </>
   );
 };

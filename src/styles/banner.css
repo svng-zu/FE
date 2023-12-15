@@ -35,14 +35,24 @@
     width: 50px; /* 원하는 너비로 설정 */
     height: 50px;
     z-index: 3;
+    transition: transform 0.3s ease;
+  }
+  .left-button:hover,
+  .left-button:active {
+    transform: scale(1.2); /* 버튼의 크기를 약간 키워주는 변화 */
   }
   
   .right-button {
     width: 50px; /* 원하는 너비로 설정 */
     height: 50px;
     z-index: 2;
+    transition: transform 0.3s ease;
   }
-  
+  .right-button:hover,
+  .right-button:active {
+    transform: scale(1.2); /* 버튼의 크기를 약간 키워주는 변화 */
+  }
+
   .purchase-button {
     position: absolute;
     bottom: 60%; /* 원하는 위치 조정 */
