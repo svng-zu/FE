@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'styles/animation.css'
 import { Sidebar } from "react-pro-sidebar";
 import { CSSTransition } from 'react-transition-group';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import { Img, Text, TimeComponent, Weather, Ranklist } from "components";
+import { Img, Text, TimeComponent, Weather, Ranklist, Reclist } from "components";
 import 'styles/loading.css';
 import 'styles/font.css'
 import 'styles/img.css'
@@ -138,8 +138,7 @@ function FamilyHomeLightPage() {
           const userposter = userItems.map(item=> item); // 사용자 개인
           const recposter = recItems.map(item=> item); // 관련 추천
           const yetposter= yetItems.map(item=> item); //덜 본거
-          console.log("아직 시청중", yetposter);
-          console.log("")
+
           setGenposter(genposter);
           setUserposter(userposter);
           setRankposter(rankposter);
@@ -194,50 +193,9 @@ function FamilyHomeLightPage() {
       localStorage.setItem('startIndex', startIndex);
     }
   }
-   const Click = (dataItem) => {
-     navigate(`/Light/${dataItem}`);
-  }
+
   // Component
   
-  const buttonStyle = {
-    border: 'none',
-    backgroundColor: 'transparent',
-    cursor: 'pointer',
-    fontSize: '24px',
-    outline: 'none',
-    padding: '10px',
-    color: '#555',
-    width: '50px', // 원하는 너비 설정
-    height: '50px',
-  };
-  
-  const HorizontalPosters = ({ rankposter }) => {
-    const containerRef = useRef(null);
-  
-    const scrollTo = (scrollOffset) => {
-      const container = containerRef.current;
-      container.scrollLeft += scrollOffset;
-    };
-
-    return (
-      <div style={{postion: 'relative', display:'flex', alignItems: 'center', marginLeft: '5%', marginRight: '-500%' }}>
-        <button className="button" onClick={() => scrollTo(-600)} style={{...buttonStyle, position: 'absolute', left: '1%'}}><img src="https://seasonmarket.co.kr/img/slider_left.png" alt="Previous"/></button>
-        <div style={{postion: 'relative', display: 'flex', overflowX: 'auto', marginLeft: '2%', marginRight: '0', minWidth: '96%', maxWidth: '96%'}} ref={containerRef}>
-          {rankposter.map((item, index) => (
-            <img
-              key={index}
-              style={{ width: '220px', height: '270px', marginRight: '20px', border: '2px solid #ccc', borderRadius: '5px', cursor: 'pointer' }}
-              src={item[2]}
-              alt={`${index}`}
-              onClick={() => Click(item[0])}
-            />
-          ))}
-        </div>
-        <button className="button" onClick={() => scrollTo(600)} style={{...buttonStyle, position: 'absolute', right: '-520%'}}>
-          <img src="https://seasonmarket.co.kr/img/slider_right.png" alt="next"/></button>
-      </div>
-    );
-  };
 
   return (
     <>
@@ -353,11 +311,11 @@ function FamilyHomeLightPage() {
               </div>
             ) : ( 
                   
-              <div className="flex flex-1 flex-col items-start justify-start w-full">
+              <div className="flex flex-1 flex-col items-start justify-start w-full mb-[10%]">
                 <div className="flex flex-1 flex-col items-start justify-start w-full">
-                <div className="flex flex-col items-center justify-start" style={{ marginTop: '3%' }}>
+                <div className="flex flex-col items-center justify-start" style={{ marginTop: '5%' }}>
                   <Text
-                    className="leading-[10.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[30px] text-black-900 tracking-[-0.13px] w-full font-yogi"
+                    className="leading-[10.00px] ml-[5%] pl-[50px] sm:text-[21px] md:text-[23px] text-[30px] text-black-900 tracking-[-0.13px] w-full font-yogi"
                     size="txtYogi"
                   >
                     <span className="text-black-900 font-yogi text-left">
@@ -369,7 +327,7 @@ function FamilyHomeLightPage() {
                   </Text>
                 </div>
                 <div className="flex md:flex-col flex-row font-paytoneone md:gap-5 items-start justify-between pr-[100px] w-full">                                  
-                  <div className="flex-shrink-0 h-[450px] relative w-1/6 mr-[10%] mb-[2%] md:w-full mt-[1%]">
+                  <div className="flex-shrink-0 h-[350px] relative w-1/6 mr-[10%] mb-[2%] md:w-full mt-[0%]">
                   
                       <div className="video-container">
                         <Ranklist rankposter={rankposter} />
@@ -379,16 +337,13 @@ function FamilyHomeLightPage() {
                 </div>
             </div>
               <div className="flex flex-1 flex-col items-start justify-start w-full">
-                <div className="flex flex-col items-center justify-start" style={{ marginTop: '50px' }}>
+                <div className="flex flex-col items-center justify-start" style={{ marginTop: '-2%' }}>
                   <Text
-                    className="leading-[100.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
+                    className="leading-[100.00px] mb-[-4%] ml-[3%] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
                     size="txtYogi"
                   >
-                    <span className="text-red-A400 font-yogi text-left text-[30px]">
-                      {localStorage.getItem('new') ? `${localStorage.getItem('subsr')}` : `${localStorage.getItem('subsr')} `}
-                    </span>
                     <span className="text-black-900 font-yogi text-left">
-                      {localStorage.getItem('new') ? `님이 선택한 장르 기반 추천 ` : `님의 취향저격 장르 추천 `}
+                      {localStorage.getItem('new') ? `당신의 선택한 장르 기반 추천 ` : `당신의 취향저격 장르 추천 `}
                     </span>
                     <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
                       {localStorage.getItem('new') ? `Genre` : `Genre `}
@@ -400,23 +355,20 @@ function FamilyHomeLightPage() {
                   <div className="flex-shrink-0 h-[250px] relative w-1/6 mr-[10%] mb-[2%] md:w-full">
                   
                       <div className="video-container">
-                        <HorizontalPosters rankposter={genposter} />
+                        <Reclist rankposter={genposter} />
                       </div>
                   
                   </div>
                 </div>
             </div>
               <div className="flex flex-1 flex-col items-start justify-start w-full">
-                <div className="flex flex-col items-center justify-start " style={{ marginTop: '50px' }}>
+                <div className="flex flex-col items-center justify-start " style={{ marginTop: '-2%' }}>
                   <Text
-                    className="leading-[100.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[30px] text-black-900 tracking-[-0.13px] w-full font-lg1"
+                    className="leading-[100.00px] ml-[3%] pl-[50px] mb-[-4%] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
                     size="txtYogi"
                   >
-                    <span className="text-red-A400 text-left font-yogi">
-                      {localStorage.getItem('subsr')}
-                    </span>
                     <span className="text-black-900 text-left font-yogi">
-                      &nbsp;님을 위한 추천{" "}
+                      당신과 비슷한 유저들이 즐겨봐요{" "}
                     </span>
                     <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px]">
                       User{" "}
@@ -429,7 +381,7 @@ function FamilyHomeLightPage() {
                 <div className="flex-shrink-0 h-[250px] relative w-1/6 md:w-full mb-[2%]">
                   
                     <div className="video-container">
-                    <HorizontalPosters rankposter={userposter} />
+                    <Reclist rankposter={userposter} />
                     </div>
                     
                   </div>
@@ -437,9 +389,9 @@ function FamilyHomeLightPage() {
               </div>
               {recposter !== null && recposter.length > 0 && (
               <div className="flex flex-1 flex-col items-start justify-start w-full">
-                <div className="flex flex-col items-center justify-start" style={{ marginTop: '50px' }}>
+                <div className="flex flex-col items-center justify-start" style={{ marginTop: '-2%' }}>
                   <Text
-                    className="leading-[100.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
+                    className="leading-[100.00px] ml-[3%] pl-[50px] mb-[-4%] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
                     size="txtYogi"
                   >
                     <span className="text-black-900 font-yogi text-left font-normal">
@@ -465,7 +417,7 @@ function FamilyHomeLightPage() {
                 <div className="flex-shrink-0 h-[250px] relative w-1/6 md:w-full mb-[2%]">
                   
                     <div className="video-container">
-                    <HorizontalPosters rankposter={recposter} />
+                    <Reclist rankposter={recposter} />
                     </div>
                     
                   </div>
@@ -475,9 +427,9 @@ function FamilyHomeLightPage() {
               {/* 드라마 추천 장소 */}
               {yetposter !== null && yetposter.length > 0 && (
               <div className="flex flex-1 flex-col items-start justify-start w-full pb-[200px]">
-                <div className="flex flex-col items-center justify-start" style={{ marginTop: '50px' }}>
+                <div className="flex flex-col items-center justify-start" style={{ marginTop: '-2%' }}>
                   <Text
-                    className="leading-[100.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
+                    className="leading-[100.00px] pl-[50px] mb-[-4%] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
                     size="txtYogi"
                   >
                     <span className="md:text-[25px] sm:text-[25px] text-red-A400 font-yogi text-left text-[30px] font-normal">
@@ -497,7 +449,7 @@ function FamilyHomeLightPage() {
                 <div className="flex-shrink-0 h-[250px] relative w-1/6 md:w-full mb-[2%]">
                   
                     <div className="video-container">
-                    <HorizontalPosters rankposter={yetposter} />
+                    <Reclist rankposter={yetposter} />
                     </div>
                     
                   </div>

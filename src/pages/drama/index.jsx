@@ -184,7 +184,7 @@ function MoviePage() {
         classNames="fade"
        unmountOnExit
       >
-      <div className="bg-gray-100 border border-black-900 border-solid flex flex-col font-inter items-center justify-start mx-auto w-full">
+      <div className="bg-gray-100 border border-black-900 border-solid flex flex-col font-inter items-center justify-start mb-[10%] mx-auto w-full">
         <div className="flex flex-col items-center justify-start w-full">
           <div className="bg-red-A400 flex md:flex-col flex-row md:gap-5 items-start justify-end pb-1.5 px-1.5 w-full">
             <Img

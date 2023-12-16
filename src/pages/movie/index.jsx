@@ -187,10 +187,10 @@ function MoviePage() {
           </div>
           <div className="flex md:flex-col flex-row font-yogi md:gap-10 items-start justify-between mx-auto md:px-5 w-full">
             <Sidebar className="!sticky !w-[120px] bg-gray-50 flex h-screen justify-start overflow-auto top-[0]">
-              <div className="flex flex-col items-center justify-start mt-[29px] mx-auto w-[48%]">
+              <div className="flex flex-col items-center justify-start mt-[25px] mx-auto w-[50%]">
                 <div className="flex flex-col gap-[15px] items-start justify-start w-[74%] md:w-full">
                   <Img
-                    className="button h-[45px]"
+                    className="button w-[80px]"
                     src="/images/img_search.svg"
                     alt="rewind"
                   />
