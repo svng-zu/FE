@@ -691,7 +691,7 @@ function FamilyHomeLightPage() {
                       주간 영화 베스트{" "}
                     </span>
                     <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px]">
-                      For You{" "}
+                      Best{" "}
                     </span>
                   </Text>
                 </div>
