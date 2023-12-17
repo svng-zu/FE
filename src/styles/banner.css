@@ -60,7 +60,7 @@
 .image-slider {
   position: relative;
   /* margin: 0 auto; */
-  left: 15%;
+  margin-left: 15%;
   margin-top: -4%;
   width: 70%;
   height: 575px; /* 이미지 높이에 맞게 조절하세요 */
