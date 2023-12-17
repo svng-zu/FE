@@ -55,7 +55,7 @@ const Firstlist = () => {
 
                 }}></div>
 
-                <div className="relative button-wrapper left ml-[0%]">
+                <div className="relative button-wrapper left ml-[1%]">
                   <button className="left-button" onClick={handlePrevClick}>
                     <img src="https://seasonmarket.co.kr/img/slider_left.png" alt="Previous"/>
                   </button>
