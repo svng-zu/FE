@@ -55,7 +55,7 @@ const Firstlist = () => {
 
                 }}></div>
 
-                <div className="relative button-wrapper left ml-[1%]">
+                <div className="relative button-wrapper left ml-[0%]">
                   <button className="left-button" onClick={handlePrevClick}>
                     <img src="https://seasonmarket.co.kr/img/slider_left.png" alt="Previous"/>
                   </button>
@@ -65,9 +65,9 @@ const Firstlist = () => {
                 </div>
 
             {/* <div className="relative image-slider-wrapper"> */}
-            <div className="absolute image-slider ml-[45%]">
+            <div className="absolute image-slider ml-[25%]">
                 
-                <div className="image-with-text">
+                
 
                   {imagenames.map((image, index) => (
                     <img
@@ -79,7 +79,7 @@ const Firstlist = () => {
                     />
                     ))}
                     
-                  </div>
+                  
                 </div>
             {/* </div> */}
             <div className="absolute button-wrapper right" style={{ marginLeft: '-100%' }}>
