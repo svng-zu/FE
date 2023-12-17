@@ -1,0 +1,6 @@
+/* CSS 파일 */
+
+  .home-button.scroll-background {
+    /* 일정 스크롤 위치를 넘어섰을 때의 배경색 */
+    background-color: gray;
+  }
