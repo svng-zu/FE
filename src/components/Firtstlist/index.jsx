@@ -65,7 +65,7 @@ const Firstlist = () => {
                 </div>
 
             {/* <div className="relative image-slider-wrapper"> */}
-            <div className="absolute image-slider ml-[25%]">
+            <div className="absolute image-slider ml-[15%]">
                 
                 
 
