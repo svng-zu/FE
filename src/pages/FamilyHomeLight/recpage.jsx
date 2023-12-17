@@ -299,7 +299,7 @@ function FamilyHomeLightPage() {
         <div className="flex flex-col items-center justify-start w-full">
           <div className="z-10 !sticky top-[0] overflow-block relative flex bg-red-A400 flex md:flex-col flex-row md:gap-5 items-start justify-end pb-1.5 px-1.5 w-full">
             <Img
-              className="button common-pointer absolute h-[45px] w-[45px] left-0 md:mt-0 mt-[26px]"
+              className="button common-pointer absolute h-[45px] w-[45px] left-5 md:mt-0 mt-[26px]"
               src="images/img_arrowdown.svg"
               alt="arrowdown"
               onClick={() => navigate('/frontpagelight')}
@@ -322,7 +322,7 @@ function FamilyHomeLightPage() {
           </div>
           <div className="flex md:flex-col flex-row font-yogi md:gap-10 items-start justify-between mx-auto md:px-5 w-full">
             <Sidebar className="!sticky !w-[90px] bg-gray-50 flex !h-screen justify-start overflow-auto top-[0]">
-              <div className="flex flex-col items-center justify-start mt-[100%] mx-auto w-[48%]">
+              <div className="flex flex-col items-center justify-start mt-[105%] mx-auto w-[48%]">
                 <div className="flex flex-col items-start justify-start w-[80%] align-center" >
                   <Img
                     className="search"
