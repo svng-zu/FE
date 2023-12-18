@@ -11,6 +11,7 @@
   height: 50%; /* 화면 전체 높이에 맞게 설정 */
   overflow: visible;
   z-index: 2;
+  align-items: center;
   
 }
 .image-slider-container::before {
@@ -109,18 +110,20 @@
 }
 
 .button-wrapper {
-  position: relative;
+  position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  /* transform: translateY(-50%); */
   justify-content: space-between;
   z-index: 2;
+  margin: auto;
 }
 
 .left-button {
+  position: absolute;
   width: 50px; /* 원하는 너비로 설정 */
   height: 50px;
   z-index: 3;
-
+  left: 0;
   transition: transform 0.3s ease;
 }
 .left-button:hover,
@@ -129,10 +132,12 @@
 }
 
 .right-button {
+  position: absolute;
   width: 50px; /* 원하는 너비로 설정 */
   height: 50px;
+  right: 0;
   z-index: 1;
-  margin-left: 93%;
+
   transition: transform 0.3s ease;
 }
 .right-button:hover,

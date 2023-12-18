@@ -60,27 +60,32 @@ const Firstlist = () => {
                   <button className="left-button" onClick={handlePrevClick}>
                     <img src="https://seasonmarket.co.kr/img/slider_left.png" alt="Previous"/>
                   </button>
-                  <button className="absolute right-button ml-[96%]" onClick={handleNextClick}>
+                  </div>
+                <div className="image-slider">
+                
+                
+
+                {imagenames.map((image, index) => (
+                  <img
+                    key={index}
+                    src={image}
+                    alt={`Slide ${index + 1}`}
+                    className={`${index === currentindex ? 'active' : ''} rounded-border`}
+                    
+                  />
+                  ))}
+          </div>
+
+                <div className="absolute button-wrapper right-0"> 
+                  <button className="right-button" onClick={handleNextClick}>
                     <img src="https://seasonmarket.co.kr/img/slider_right.png" alt="Next"/>
                   </button>
+
                 </div>
 
             {/* <div className="relative image-slider-wrapper"> */}
 
-            <div className="image-slider">
-                
-                
 
-                  {imagenames.map((image, index) => (
-                    <img
-                      key={index}
-                      src={image}
-                      alt={`Slide ${index + 1}`}
-                      className={`${index === currentindex ? 'active' : ''} rounded-border`}
-                      
-                    />
-                    ))}
-            </div>
             </div>
 
         </>
