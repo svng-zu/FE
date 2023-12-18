@@ -355,7 +355,7 @@ function FamilyHomeLightPage() {
                     className="text-[15px] mt-[-1%] text-center font-yogi text-gray-800 sm:text-lg md:text-xl tracking-[-0.11px]"
                     size="txtYogi"
                   >
-                    홈
+                    TOP
                   </Text>
                 </div>
                 <div className="flex flex-col items-center justify-start mt-[12px] w-full" 
@@ -364,12 +364,12 @@ function FamilyHomeLightPage() {
                     className="h-[55px] button"
                     src="images/img_star.svg"
                     alt="star"
-                    onClick={() => window.scrollTo({ top: 2400, behavior: 'smooth' })}
+                    onClick={() => window.scrollTo({ top: 2600, behavior: 'smooth' })}
                   />
                   <Text
                     className="text-[15px] mt-[-1%] text-center font-yogi text-gray-800 md:text-xl tracking-[-1px]"
                     size="txtYogi"
-                    onClick={() => window.scrollTo({ top: 2400, behavior: 'smooth' })}
+                    onClick={() => window.scrollTo({ top: 2600, behavior: 'smooth' })}
                   >
                     드라마
                   </Text>
@@ -379,12 +379,12 @@ function FamilyHomeLightPage() {
                     className="h-[55px] button"
                     src="images/img_thumbsup.svg"
                     alt="lock"
-                    onClick={() => window.scrollTo({ top: 5750, behavior: 'smooth' })}
+                    onClick={() => window.scrollTo({ top: 6550, behavior: 'smooth' })}
                   />
                   <Text
                     className="text-[15px] mt-[-1%] text-center text-gray-800 sm:text-lg md:text-xl tracking-[-0.11px]"
                     size="txtYogi"
-                    onClick={() => window.scrollTo({ top: 5750, behavior: 'smooth' })}
+                    onClick={() => window.scrollTo({ top: 6550, behavior: 'smooth' })}
                   >
                     영화
                   </Text>
@@ -445,7 +445,7 @@ function FamilyHomeLightPage() {
             </div>
                 
               <div className="flex flex-1 flex-col items-start justify-start w-full">
-                <div className="flex flex-col items-center justify-start" style={{ marginTop: '4%' }}>
+                <div className="flex flex-col items-center justify-start" style={{ marginTop: '6%' }}>
                   <Text
                     className="leading-[10.00px] pl-[50px] ml-[5%] sm:text-[30px] md:text-[50px] text-[25px] text-black-900 tracking-[-0.13px] w-full font-yogi inline-block"
                     size="txtYogi"
@@ -469,7 +469,7 @@ function FamilyHomeLightPage() {
                 </div>
             
               <div className="flex flex-1 flex-col items-start justify-start w-full">
-                <div className="flex flex-col items-center justify-start" style={{ marginTop: '2%' }}>
+                <div className="flex flex-col items-center justify-start" style={{ marginTop: '6%' }}>
                   <Text
                     className="leading-[100.00px] mb-[-4%] ml-[3%] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
                     size="txtYogi"
@@ -494,7 +494,7 @@ function FamilyHomeLightPage() {
                 </div>
             </div>
               <div className="flex flex-1 flex-col items-start justify-start w-full">
-                <div className="flex flex-col items-center justify-start " style={{ marginTop: '2%' }}>
+                <div className="flex flex-col items-center justify-start " style={{ marginTop: '6%' }}>
                   <Text
                     className="leading-[100.00px] ml-[3%] pl-[50px] mb-[-4%] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
                     size="txtYogi"
@@ -521,7 +521,7 @@ function FamilyHomeLightPage() {
               </div>
               {recposter !== null && recposter.length > 0 && (
               <div className="flex flex-1 flex-col items-start justify-start w-full">
-                <div className="flex flex-col items-center justify-start" style={{ marginTop: '2%' }}>
+                <div className="flex flex-col items-center justify-start" style={{ marginTop: '6%' }}>
                   <Text
                     className="leading-[100.00px] ml-[3%] pl-[50px] mb-[-4%] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
                     size="txtYogi"
@@ -559,7 +559,7 @@ function FamilyHomeLightPage() {
               {/* 드라마 추천 장소 */}
               {yetposter !== null && yetposter.length > 0 && (
               <div className="flex flex-1 flex-col items-start justify-start w-full pb-[200px]">
-                <div className="flex flex-col items-center justify-start" style={{ marginTop: '2%' }}>
+                <div className="flex flex-col items-center justify-start" style={{ marginTop: '6%' }}>
                   <Text
                     className="leading-[100.00px] pl-[50px] mb-[-4%] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
                     size="txtYogi"
@@ -590,10 +590,11 @@ function FamilyHomeLightPage() {
               )}
 
               {/* 드라마 구간 */}
-              <div className="flex flex-col items-center justify-start " style={{ marginTop: '6%', marginLeft: "0.5%"}} >
+              <div className="flex flex-col items-center justify-start " style={{ marginTop: '15%', backgroundColor: '#FED7E2', width: '100%'}} >
                   <Text
-                    className="leading-[100.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[30px] text-black-900 tracking-[-0.13px] w-full"
+                    className="leading-[100.00px] pl-[50px] ml-[1%] sm:text-[21px] md:text-[23px] text-[30px] text-black-900 tracking-[-0.13px] w-full"
                     size="txtYogi"
+                    
                   >
                     <span className="text-black-900 text-left font-yogi">
                     드라마{" "}
@@ -603,7 +604,7 @@ function FamilyHomeLightPage() {
                 </div>
 
               <div className="flex flex-1 flex-col items-start justify-start w-full">
-                <div className="flex flex-col items-center justify-start " style={{ marginTop: '0%' }}>
+                <div className="flex flex-col items-center justify-start " style={{ marginTop: '1%' }}>
                   <Text
                     className="leading-[100.00px] ml-[3%] pl-[50px] mb-[-4%] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
                     size="txtYogi"
@@ -630,7 +631,7 @@ function FamilyHomeLightPage() {
               </div>
 
               <div className="flex flex-1 flex-col items-start justify-start w-full">
-                <div className="flex flex-col items-center justify-start " style={{ marginTop: '2%' }}>
+                <div className="flex flex-col items-center justify-start " style={{ marginTop: '6%' }}>
                   <Text
                     className="leading-[100.00px] ml-[3%] pl-[50px] mb-[-4%] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
                     size="txtYogi"
@@ -670,9 +671,9 @@ function FamilyHomeLightPage() {
 
                  {/*영화 */}
 
-                 <div className="flex flex-col items-center justify-start " style={{ marginTop: '6%', marginLeft: "0.5%"}}>
+                 <div className="flex flex-col items-center justify-start " style={{ marginTop: '13%', backgroundColor: '#FED7E2', width: '100%'}}>
                   <Text
-                    className="leading-[100.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[30px] text-black-900 tracking-[-0.13px] w-full"
+                    className="leading-[100.00px] pl-[50px] ml-[1%] sm:text-[21px] md:text-[23px] text-[30px] text-black-900 tracking-[-0.13px] w-full"
                     size="txtYogi"
                   >
                     <span className="text-black-900 text-left font-yogi">
@@ -682,7 +683,7 @@ function FamilyHomeLightPage() {
                   </Text>
                 </div>
                 <div className="flex flex-1 flex-col items-start justify-start w-full">
-                <div className="flex flex-col items-center justify-start " style={{ marginTop: '0%' }}>
+                <div className="flex flex-col items-center justify-start " style={{ marginTop: '1%' }}>
                   <Text
                     className="leading-[100.00px] ml-[3%] pl-[50px] mb-[-4%] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
                     size="txtYogi"

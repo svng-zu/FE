@@ -8,7 +8,7 @@ const Drama = ({ ctcl, ctclname, i }) => {
   
     return (
         <div className="flex flex-1 flex-col items-start justify-start w-full">
-        <div className="flex flex-col items-center justify-start" style={{ marginTop: '2%' }}>
+        <div className="flex flex-col items-center justify-start" style={{ marginTop: '6%' }}>
         <Text
             className="leading-[100.00px] ml-[3%] pl-[50px] mb-[-4%] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
             size="txtYogi"
