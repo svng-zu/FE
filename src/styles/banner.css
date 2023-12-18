@@ -132,7 +132,7 @@
   width: 50px; /* 원하는 너비로 설정 */
   height: 50px;
   z-index: 1;
-  right: 0;
+  
   transition: transform 0.3s ease;
 }
 .right-button:hover,
