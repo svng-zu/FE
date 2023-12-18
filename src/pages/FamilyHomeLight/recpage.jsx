@@ -4,7 +4,8 @@ import { Sidebar } from "react-pro-sidebar";
 import { CSSTransition } from 'react-transition-group';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import { Img, Text, TimeComponent, Weather, Reclist, Firstlist, Drama, Mov } from "components";
+import { Img, Text, TimeComponent, Weather, Reclist, Firstlist, Drama,
+   Mov } from "components";
 import 'styles/loading.css';
 import 'styles/font.css'
 import 'styles/img.css'
@@ -273,25 +274,42 @@ function FamilyHomeLightPage() {
   
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
-    const homeButton = document.querySelector('#home-button');
-    const dramaButton = document.querySelector('#drama-button');
-    const movieButton = document.querySelector('#movie-button');
-    if (scrollPosition >= 0 && scrollPosition < 2700) {
+    const homeButton = document.getElementById('home-button');
+    const dramaButton = document.getElementById('drama-button');
+    const movieButton = document.getElementById('movie-button');
+  
+    const dramaSection = document.getElementById('drama-page');
+    const movieSection = document.getElementById('movie-page');
+  
+    if (scrollPosition >= 0 && scrollPosition < dramaSection.offsetTop - 10) {
       homeButton.classList.add('scroll-background');
     } else {
       homeButton.classList.remove('scroll-background');
     }
-    if (scrollPosition >= 2690 && scrollPosition <= 6550) {
+    
+    if (scrollPosition >= dramaSection.offsetTop -10 && scrollPosition <= movieSection.offsetTop) {
       dramaButton.classList.add('scroll-background');
     } else {
       dramaButton.classList.remove('scroll-background');
     }
-    if (scrollPosition >= 6549 && scrollPosition <= 20000) {
+    
+    if (scrollPosition >= movieSection.offsetTop - 30 && scrollPosition <= 200000) {
       movieButton.classList.add('scroll-background');
     } else {
       movieButton.classList.remove('scroll-background');
     }
   };
+
+  const scrollToDrama = () => {
+    const dramaSection = document.getElementById('drama-page');
+    dramaSection.scrollIntoView({ behavior: 'smooth' });
+  };
+  const scrollToMovie = () => {
+    const dramaSection = document.getElementById('movie-page');
+    dramaSection.scrollIntoView({ behavior: 'smooth' });
+  };
+  
+
   
   // 스크롤 이벤트에 핸들러 추가
   window.addEventListener('scroll', handleScroll);
@@ -369,33 +387,37 @@ function FamilyHomeLightPage() {
                     TOP
                   </Text>
                 </div>
+
                 <div className="flex flex-col items-center justify-start mt-[12px] w-full" 
                   id="drama-button">
                   <Img
+                    
                     className="h-[55px] button"
                     src="images/img_star.svg"
                     alt="star"
-                    onClick={() => window.scrollTo({ top: 2700, behavior: 'smooth' })}
+                    onClick={scrollToDrama}
                   />
                   <Text
                     className="text-[15px] mt-[-1%] text-center font-yogi text-gray-800 md:text-xl tracking-[-1px]"
                     size="txtYogi"
-                    onClick={() => window.scrollTo({ top: 2700, behavior: 'smooth' })}
+                    onClick={scrollToDrama}
+                    
                   >
                     드라마
                   </Text>
                 </div>
-                <div className="flex flex-col gap-0 items-center justify-start mt-[12px] w-[100%] md:w-full" id="movie-button">
+                <div className="flex flex-col gap-0 items-center justify-start mt-[12px] w-[100%] md:w-full" 
+                id="movie-button">
                   <Img
                     className="h-[55px] button"
                     src="images/img_thumbsup.svg"
                     alt="lock"
-                    onClick={() => window.scrollTo({ top: 6550, behavior: 'smooth' })}
+                    onClick={scrollToMovie}
                   />
                   <Text
                     className="text-[15px] mt-[-1%] text-center text-gray-800 sm:text-lg md:text-xl tracking-[-0.11px]"
                     size="txtYogi"
-                    onClick={() => window.scrollTo({ top: 6550, behavior: 'smooth' })}
+                    onClick={scrollToMovie}
                   >
                     영화
                   </Text>
@@ -427,7 +449,7 @@ function FamilyHomeLightPage() {
                   
               <div className="flex flex-1 flex-col items-start justify-start w-full mb-[10%]">
                 <div className="flex flex-1 flex-col items-start justify-start w-full">
-                <div className="flex flex-col items-center justify-start" style={{ marginTop: '2%' }}>
+                <div className="flex flex-col items-center justify-start" style={{ marginTop: '1%' }}>
                   <Text
                     className="leading-[10.00px] ml-[5.5%] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full font-yogi"
                     size="txtYogi"
@@ -601,11 +623,14 @@ function FamilyHomeLightPage() {
               )}
 
               {/* 드라마 구간 */}
-              <div className="flex flex-col items-center justify-start " style={{ marginTop: '15%', backgroundColor: '#FED7E2', width: '100%'}} >
+              <div className="flex flex-col items-center justify-start " 
+              style={{ marginTop: '10%'}} id='drama-page'> 
+              </div>
+              <div className="flex flex-col items-center justify-start " style={{ marginTop: '5%', backgroundColor: '#FED7E2', width: '100%'}} >
                   <Text
                     className="leading-[100.00px] pl-[50px] ml-[1%] sm:text-[21px] md:text-[23px] text-[30px] text-black-900 tracking-[-0.13px] w-full"
                     size="txtYogi"
-                    
+                    // id="drama-page"
                   >
                     <span className="text-black-900 text-left font-yogi">
                     드라마{" "}
@@ -681,8 +706,10 @@ function FamilyHomeLightPage() {
 
 
                  {/*영화 */}
-
-                 <div className="flex flex-col items-center justify-start " style={{ marginTop: '13%', backgroundColor: '#FED7E2', width: '100%'}}>
+              <div className="flex flex-col items-center justify-start " 
+              style={{ marginTop: '10%'}} id='movie-page'> 
+              </div>
+              <div className="flex flex-col items-center justify-start " style={{ marginTop: '5%', backgroundColor: '#FED7E2', width: '100%'}} >
                   <Text
                     className="leading-[100.00px] pl-[50px] ml-[1%] sm:text-[21px] md:text-[23px] text-[30px] text-black-900 tracking-[-0.13px] w-full"
                     size="txtYogi"

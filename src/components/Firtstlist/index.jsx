@@ -67,7 +67,7 @@ const Firstlist = () => {
 
                 {imagenames.map((image, index) => (
                   <img
-                    style={{ border: '4px solid #e9e7e7', borderRadius: '12px' }}
+                    style={{ border: '7px solid #e9e7e7', borderRadius: '12px' }}
                     key={index}
                     src={image}
                     alt={`Slide ${index + 1}`}
