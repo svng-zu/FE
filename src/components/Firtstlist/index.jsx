@@ -82,7 +82,7 @@ const Firstlist = () => {
                   
                 </div>
             {/* </div> */}
-            <div className="absolute button-wrapper right" style={{ marginLeft: '-100%' }}>
+            <div className="absolute button-wrapper right" style={{ marginLeft: '-105%' }}>
 
             </div>
 

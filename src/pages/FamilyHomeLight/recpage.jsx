@@ -304,7 +304,7 @@ function FamilyHomeLightPage() {
               alt="arrowdown"
               onClick={() => navigate('/frontpagelight')}
             />
-            <Text className="absolute font-yogi font-lighter left-[10%] mt-[1.9%] md:text-2xl text-2xl text-white-A700 tracking-[-0.30px]">
+            <Text className="absolute font-yogi font-lighter left-[10%] mt-[2%] md:text-2xl text-2xl text-white-A700 tracking-[-0.30px]">
               HELLO 00
             </Text>
             <Text className="absolute font-yogi font-lighter left-[45%] mt-[1.7%] md:text-3xl text-4xl text-white-A700 tracking-[-0.30px]">
