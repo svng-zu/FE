@@ -97,20 +97,20 @@ const handleClick = () => {
   };
 
   return (
-    <div style={{postion: 'relative', display:'flex', alignItems: 'center', marginLeft: '20px', marginRight: '-500%' }}>
-      <button className="button" onClick={() => scrollTo(-600)} style={{...buttonStyle, position: 'absolute', left: '0'}}><img src="https://seasonmarket.co.kr/img/slider_left.png" alt="Previous"/></button>
-      <div style={{postion: 'relative', display: 'flex', overflowX: 'auto', marginLeft: '5%', marginRight: '-500%', minWidth: '80%', maxWidth: '80%'}} ref={containerRef}>
+    <div style={{postion: 'relative', display:'flex', alignItems: 'center', marginLeft: '4%', marginRight: '-562%' }}>
+      <button className="button" onClick={() => scrollTo(-600)} style={{...buttonStyle, position: 'absolute', left: '34%'}}><img src="https://seasonmarket.co.kr/img/slider_left.png" alt="Previous"/></button>
+      <div style={{postion: 'relative', display: 'flex', overflowX: 'auto', marginLeft: '5%', marginRight: '-400%', minWidth: '80%', maxWidth: '80%'}} ref={containerRef}>
         {simposter.map((item, index) => (
           <img
             key={index}
-            style={{ width: '220px', height: '270px', marginRight: '20px', border: '2px solid #ccc', borderRadius: '5px', cursor: 'pointer' }}
+            style={{ width: '220px', height: '270px', marginRight: '10px', border: '2px solid #ccc', borderRadius: '2px', cursor: 'pointer' }}
             src={item[2]}
             alt={`${index}`}
             onClick={() => Click(item[0])}
           />
         ))}
       </div>
-      <button className="button" onClick={() => scrollTo(600)} style={{...buttonStyle, position: 'absolute', right: '-450%'}}>
+      <button className="button" onClick={() => scrollTo(600)} style={{...buttonStyle, position: 'absolute', right: '-466%'}}>
         <img src="https://seasonmarket.co.kr/img/slider_right.png" alt="next"/></button>
     </div>
   );
@@ -125,13 +125,19 @@ const handleClick = () => {
       >
       <div className="bg-gray-100 border border-black-900 border-solid flex flex-col font-inter items-center justify-start mx-auto w-full">
         <div className="flex flex-col items-center justify-start w-full">
-          <div className="bg-red-A400 flex md:flex-col flex-row md:gap-5 items-start justify-end pb-1.5 px-1.5 w-full">
-            <Img
-              className="button1 absolute h-[37px] mr-[94%] mt-6"
-              src={process.env.PUBLIC_URL + '/images/img_arrowdown.svg'}
-              alt="arrowdown"
-              onClick={handleClick}
+          <div className="z-10 !sticky top-[0] overflow-block relative flex bg-red-A400 flex md:flex-col flex-row md:gap-5 items-start justify-end pb-1.5 px-1.5 w-full">
+            <Img 
+            className="button common-pointer absolute h-[45px] w-[45px] left-5 md:mt-0 mt-[26px]"
+            src="/images/img_arrowdown.svg"
+            alt="arrowdown"
+            onClick={handleClick}
             />
+            <Text className="absolute font-yogi font-lighter left-[10%] mt-[2%] md:text-2xl text-2xl text-white-A700 tracking-[-0.30px]">
+              HELLO 00
+            </Text>
+            <Text className="absolute font-yogi font-lighter left-[45%] mt-[1.7%] md:text-3xl text-4xl text-white-A700 tracking-[-0.30px]">
+              DETAIL
+            </Text>
           <div className="relative h-[80px] mt-[5px] mr-[1%] md:px-5 w-[20%] md:w-full">
             <Weather />
           </div>
@@ -152,34 +158,34 @@ const handleClick = () => {
           
           <div className="bg-gradient flex flex-col items-start justify-end p-[45px] w-full">
 
-            <div className="flex flex-col items-center justify-start md:ml-[0] ml-[43px] mt-[22px] w-[83%] md:w-full">
+            <div className="flex flex-col items-center justify-start md:ml-[0] w-[95%] md:w-full">
             
-              <div className="flex md:flex-col flex-row  mt-[-1%] md:gap-10 items-center justify-between w-full">
+              <div className="flex md:flex-col flex-row md:gap-10 items-center justify-between w-full">
             
 
                 <Img
-                  className="ml-[5%] object-cover rounded-[25px] mt-[-2%]"
+                  className="absolute ml-[5.5%] mt-[5%] object-cover rounded-[25px]"
                   // src={data[2]}
                   src={data ? data[2] : ""}
-                  style={{ width: '500px', height: '600px' , objectFit: 'cover' }}
+                  style={{ width: '450px', height: '650px' , objectFit: 'cover' }}
                   
                 />
-                <div className="flex flex-col items-start justify-start">
+                <div className="flex flex-col items-start justify-start mt-[4%] ml-[40%]">
                   <Text
-                    className="ml-[22%] sm:text-[40px] md:text-[46px] text-[50px] font-yogi text-white-A700 tracking-[-0.25px]"
+                    className="ml-[20%] sm:text-[40px] md:text-[46px] text-[40px] font-yogi text-white-A700 tracking-[-0.25px]"
                     size="txtYogi"
                   >
                     {data ? data[0] : ""}
                     <p><br /></p>
                   </Text>
                   <Text
-                    className="ml-[20%] mt-[0px] font-yogi text-white-A700 text-2xl tracking-[-0.10px]"
+                    className="ml-[20%] mt-[3%] font-yogi text-white-A700 text-2xl text-[20px] tracking-[-0.10px]"
                     size="txtYogi"
                   >
                     장르 : {data ? data[1] : ""}
                   </Text>
                   <Text
-                    className="ml-[23%] leading-[30.00px] mt-[10px] text-xl md:text-[20px] text-white-A700 sm:text-xl tracking-[-0.12px]"
+                    className="ml-[20%] leading-[30.00px] mt-[10px] text-xl md:text-[20px] text-white-A700 sm:text-xl text-[14.5px] tracking-[-0.12px]"
                     size="txtInterSemiBold10"
                   >
                     
@@ -187,7 +193,7 @@ const handleClick = () => {
                     
                   </Text>
                   <Text
-                    className="ml-[20%] leading-[40.00px] font-yogi mt-[30px] text-2xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]"
+                    className="ml-[20%] leading-[40.00px] font-yogi mt-[30px] text-2xl md:text-[22px] text-[20px] text-white-A700 sm:text-xl tracking-[-0.12px]"
                     size="txtYogi"
                   >
                     <>
@@ -195,7 +201,7 @@ const handleClick = () => {
                     </>
                   </Text>
                   <Text
-                    className="ml-[23%] leading-[40.00px] mt-[0px] text-xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]"
+                    className="ml-[20%] leading-[40.00px] mt-[0px] text-xl text-[14.5px] md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]"
                     size="txtYogi"
                   >
                     <>
@@ -203,18 +209,18 @@ const handleClick = () => {
                     </>
                   </Text>
                   <Text
-                    className="ml-[20%] leading-[40.00px] mt-[25px] font-yogi text-2xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]"
+                    className="ml-[20%] leading-[40.00px] mt-[25px] font-yogi text-2xl md:text-[22px] text-[20px] text-white-A700 sm:text-xl tracking-[-0.12px]"
                     size="txtYogi">
                       <p>줄거리 : </p>
                     
                   </Text>
                   <Text
-                    className="ml-[23%] leading-[40.00px] mt-[10px] text-xl md:text-[22px] text-white-A700 sm:text-xl tracking-[-0.12px]  mr-[2%]"
+                    className="ml-[20%] leading-[40.00px] mt-[10px] text-xl md:text-[22px] text-[14.5px] text-white-A700 sm:text-xl tracking-[-0.12px]  mr-[2%]"
                     size="txtYogi">
                   
                     {data ? data[7] : ""}
                   </Text>
-                  <div className="flex flex-col items-start justify-start md:ml-[0] ml-[25%] mt-[8%] w-[181px]">
+                  <div className="flex flex-col items-start justify-start md:ml-[0] ml-[20%] mt-[5%] w-[181px]">
                     <Button
                       className="common-pointer cursor-pointer font-yogi h-[50px] text-center text-lg tracking-[-0.09px] w-[175px]"
                       // onClick={handleNavigate}
@@ -235,10 +241,10 @@ const handleClick = () => {
               
             </div>
               <Text2
-                  className="sm:text-[21px] font-yogi md:text-[20px] mt-[2%] text-[40px] text-white tracking-[-0.13px] w-full"
+                  className="sm:text-[21px] font-yogi md:text-[20px] mt-[8%]  text-white tracking-[-0.13px] w-full ml-[6%]"
                   size="txtYogi"
                 >
-                    <span className="text-white text-left font-yogi">
+                    <span className="text-white text-left font-yogi text-[40px]">
                       유사한 콘텐츠{" "}
                     </span>
                     <span className="md:text-[45px] sm:text-[45px] text-red-A400 font-yogi text-left text-[45px] font-bold">
@@ -270,7 +276,7 @@ const handleClick = () => {
                   </div>
                  ))}
                 </div> */}
-                  <div className="flex-shrink-0 h-[250px] relative w-1/6 ml-[2%] ml-[5%] mt-[2%] mb-[5%] md:w-full">
+                  <div className="flex-shrink-0 h-[250px] relative w-1/6 ml-[-0.3%] mt-[2%] mb-[15%] md:w-full">
                   
                       <div className="video-container">
                         <HorizontalPosters simposter={data1} />
