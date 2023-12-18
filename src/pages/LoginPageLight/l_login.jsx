@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import { Button, Img } from "components"; //Input, Text
+import { Button, Img, Text, TimeComponent } from "components"; //Input, Text
 import C1LoginPageLightIdinput from "components/C1LoginPageLightIdinput/login_input";
 import { CSSTransition } from "react-transition-group";
 // import { useCookies } from 'react-cookie';
@@ -135,7 +135,22 @@ const handleLogin = async () => {
        unmountOnExit
       >
       <div className="bg-gray-100 border border-black-800 border-solid flex flex-col sm:gap-10 md:gap-10 gap-[156px] items-center justify-start mx-auto pb-[205px] w-full">
-        <div className="bg-red-A400 h-[90px] w-full"></div>
+        <div className="z-10 !sticky top-[0] overflow-block h-[90px] relative flex bg-red-A400 flex md:flex-col flex-row md:gap-5 items-start justify-end pb-1.5 px-1.5 w-full">
+
+            <Text className="absolute font-yogi font-lighter left-[2%] mt-[2%] md:text-2xl text-2xl text-white-A700 tracking-[-0.30px]">
+              HELLO 00
+            </Text>
+            <Text className="absolute font-yogi font-lighter left-[43%] mt-[1.7%] md:text-3xl text-4xl text-white-A700 tracking-[-0.30px]">
+              HELLO 00 TV
+            </Text>
+
+            <Text
+              className="ml-9 md:ml-[0] mr-[15px] md:mt-0 mt-[30px] md:text-3xl sm:text-[28px] text-[32px] text-center text-white-A700 tracking-[-0.16px]"
+              size="txtInterSemiBold32"
+            >
+              <TimeComponent/>
+            </Text>
+          </div>
         <div className="md:h-[458px] h-[573px] md:px-5 relative w-[55%] md:w-full">
           <div className="absolute bg-white-A700 bottom-[10] flex flex-col inset-x-[1] items-center justify-center mx-auto outline outline-[1px] outline-white-A700_4c p-[41px] md:px-10 sm:px-5 rounded-[40px] shadow-bs w-full">
             <Img

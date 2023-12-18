@@ -9,6 +9,7 @@ import 'styles/banner.css';
 const SimplePage = () => {  
   const navigate = useNavigate();
   const [showPage, setShowPage] = useState(false);
+  
   useEffect(() => {
     setShowPage(true)
   }, []);

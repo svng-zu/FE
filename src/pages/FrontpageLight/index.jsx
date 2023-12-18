@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { CSSTransition } from 'react-transition-group';
 import { useNavigate } from "react-router-dom";
 import 'styles/animation.css'
-import { Img, Text } from "components";
+import { Img, Text, TimeComponent } from "components";
 import 'styles/img.css'
 
 
@@ -55,21 +55,31 @@ const FrontpageLightPage = () => {
       >
       <div className="bg-gray-100 border border-black-900 border-solid flex flex-col font-inter items-center justify-start mx-auto w-full">
         <div className="flex flex-col items-center justify-start mb-[77px] w-full">
-          <div className="bg-red-A400 flex flex-col items-start justify-start p-[23px] sm:px-5 w-full">
+        <div className="z-10 !sticky top-[0] overflow-block relative flex bg-red-A400 flex md:flex-col h-[90px] flex-row md:gap-5 items-start justify-end pb-1.5 px-1.5 w-full">
             <Img
-              className="button common-pointer h-[45px] mb-[5px] md:ml-[0] ml-[18px]"
+              className="button common-pointer absolute h-[45px] w-[45px] left-5 md:mt-0 mt-[26px]"
               src="images/img_arrowdown.svg"
               alt="arrowdown"
               onClick={() => handleLogout(true)}
             />
-           
+
+            <Text className="absolute font-yogi font-lighter left-[43%] mt-[1.7%] md:text-3xl text-4xl text-white-A700 tracking-[-0.30px]">
+              HELLO 00 TV
+            </Text>
+
+            <Text
+              className="ml-9 md:ml-[0] mr-[15px] md:mt-0 mt-[30px] md:text-3xl sm:text-[28px] text-[32px] text-center text-white-A700 tracking-[-0.16px]"
+              size="txtInterSemiBold32"
+            >
+              <TimeComponent/>
+            </Text>
           </div>
             
           <Text
             className="font-yogi mt-[70px] text-3xl sm:text-[26px] md:text-[28px] text-black-900 text-center tracking-[-0.15px]"
             size="txtYogi0"
           >
-            Hello tv를 시청할 모드를 선택해주세요.
+            HELLO00 TV를 시청할 모드를 선택해주세요.
           </Text>
           <div className="flex md:flex-col flex-row md:gap-10 gap-[90px] items-center justify-start max-w-[1100px] mt-[30px] mx-auto md:px-5 w-full">
             <div className="md:h-[640px] h-[640px] relative w-[50%] md:w-full">
