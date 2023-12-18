@@ -352,13 +352,13 @@ function FamilyHomeLightPage() {
                     
                   />
                   <Text
-                    className="text-[15px] text-center font-yogi text-gray-800 sm:text-lg md:text-xl tracking-[-0.11px]"
+                    className="text-[15px] mt-[-1%] text-center font-yogi text-gray-800 sm:text-lg md:text-xl tracking-[-0.11px]"
                     size="txtYogi"
                   >
                     홈
                   </Text>
                 </div>
-                <div className="flex flex-col gap-[11px] items-center justify-start mt-[12px] w-full" 
+                <div className="flex flex-col items-center justify-start mt-[12px] w-full" 
                   id="drama-button">
                   <Img
                     className="h-[55px] button"
@@ -367,14 +367,14 @@ function FamilyHomeLightPage() {
                     onClick={() => window.scrollTo({ top: 2400, behavior: 'smooth' })}
                   />
                   <Text
-                    className="text-[15px] text-center font-yogi text-gray-800 md:text-xl tracking-[-2px]"
+                    className="text-[15px] mt-[-1%] text-center font-yogi text-gray-800 md:text-xl tracking-[-1px]"
                     size="txtYogi"
                     onClick={() => window.scrollTo({ top: 2400, behavior: 'smooth' })}
                   >
                     드라마
                   </Text>
                 </div>
-                <div className="flex flex-col gap-2.5 items-center justify-start mt-[12px] w-[100%] md:w-full" id="movie-button">
+                <div className="flex flex-col gap-0 items-center justify-start mt-[12px] w-[100%] md:w-full" id="movie-button">
                   <Img
                     className="h-[55px] button"
                     src="images/img_thumbsup.svg"
@@ -382,7 +382,7 @@ function FamilyHomeLightPage() {
                     onClick={() => window.scrollTo({ top: 5750, behavior: 'smooth' })}
                   />
                   <Text
-                    className="text-[15px] text-center text-gray-800 sm:text-lg md:text-xl tracking-[-0.11px]"
+                    className="text-[15px] mt-[-1%] text-center text-gray-800 sm:text-lg md:text-xl tracking-[-0.11px]"
                     size="txtYogi"
                     onClick={() => window.scrollTo({ top: 5750, behavior: 'smooth' })}
                   >
