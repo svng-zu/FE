@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Img, List, Text } from "components";
+import { Button, Img, List, Text, TimeComponent } from "components";
 import '../../styles/button.css'
 import { CSSTransition } from "react-transition-group";
 
@@ -72,13 +72,24 @@ const SignupPageLightPage = () => {
       >
       <div className="bg-gray-100 border border-black-900 border-solid flex flex-col font-inter sm:gap-10 md:gap-10 gap-[138px] justify-start mx-auto pb-[120px] w-full">
         <div className="flex flex-col items-center w-full">
-          <div className="bg-red-A400 flex flex-col items-start justify-start p-6 sm:px-5 w-full">
+        <div className="z-10 !sticky top-[0] overflow-block relative flex bg-red-A400 flex md:flex-col h-[90px] flex-row md:gap-5 items-start justify-end pb-1.5 px-1.5 w-full">
             <Img
-              className="common-pointer h-[37px] mb-[3px] md:ml-[0] ml-[17px]"
+              className="button common-pointer absolute h-[45px] w-[45px] left-5 md:mt-0 mt-[26px]"
               src="images/img_arrowdown.svg"
               alt="arrowdown"
               onClick={() => handleLogout(true)}
             />
+
+            <Text className="absolute font-yogi font-lighter left-[43%] mt-[1.7%] md:text-3xl text-4xl text-white-A700 tracking-[-0.30px]">
+              HELLO 00 TV
+            </Text>
+
+            <Text
+              className="ml-9 md:ml-[0] mr-[15px] md:mt-0 mt-[25px] md:text-3xl sm:text-[28px] text-[32px] text-center text-white-A700 tracking-[-0.16px]"
+              size="txtInterSemiBold32"
+            >
+              <TimeComponent/>
+            </Text>
           </div>
           <Text
             className="leading-[50.00px] mt-[50px] text-3xl sm:text-[32px] md:text-[34px] text-black-900 text-center tracking-[-0.18px]"

@@ -137,10 +137,10 @@ function FamilyHomeLightPage() {
           const data = response.data.data;
           const current = response.data.current;
           console.log(current);
-          const selectedItems = data[0].slice(startIndex, startIndex + 10);
+          const selectedItems = data[0].slice(startIndex, startIndex + 10); //재추천 리스트 1
           const rankItems = data[1];
-          const userItems = data[2].slice(startIndex, startIndex + 10);
-          const recItems = data[3].slice(startIndex, startIndex + 10);
+          const userItems = data[2].slice(startIndex, startIndex + 10); //재추천 리스트 2
+          const recItems = data[3].slice(startIndex, startIndex + 10); //재추천 리스트 3
           const yetItems = data[4]
         
 
@@ -164,7 +164,7 @@ function FamilyHomeLightPage() {
         //드라마 데이터 받아오기
         const data1 = response1.data.data; //포스터 데이터
         const rankItems1 = data1[0];
-        const recItems1 = data1[1].slice(startIndex, startIndex + 10);
+        const recItems1 = data1[1].slice(startIndex, startIndex + 10); // 재추천 리스트  4
         const ctcl1Items = data1[2][0];
         const ctcl2Items = data1[2][1];
         const ctcl3Items = data1[2][2];
@@ -343,7 +343,7 @@ function FamilyHomeLightPage() {
               <Weather />
             </div>
             <Text
-              className="ml-9 md:ml-[0] mr-[15px] md:mt-0 mt-[30px] md:text-3xl sm:text-[28px] text-[32px] text-center text-white-A700 tracking-[-0.16px]"
+              className="ml-9 md:ml-[0] mr-[15px] md:mt-0 mt-[25px] md:text-3xl sm:text-[28px] text-[32px] text-center text-white-A700 tracking-[-0.16px]"
               size="txtInterSemiBold32"
             >
               <TimeComponent/>
