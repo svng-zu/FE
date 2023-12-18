@@ -287,13 +287,13 @@ function FamilyHomeLightPage() {
       homeButton.classList.remove('scroll-background');
     }
     
-    if (scrollPosition >= dramaSection.offsetTop -10 && scrollPosition <= movieSection.offsetTop) {
+    if (scrollPosition >= dramaSection.offsetTop -10 && scrollPosition <= movieSection.offsetTop-10) {
       dramaButton.classList.add('scroll-background');
     } else {
       dramaButton.classList.remove('scroll-background');
     }
     
-    if (scrollPosition >= movieSection.offsetTop - 30 && scrollPosition <= 200000) {
+    if (scrollPosition >= movieSection.offsetTop - 10 && scrollPosition <= 200000) {
       movieButton.classList.add('scroll-background');
     } else {
       movieButton.classList.remove('scroll-background');
