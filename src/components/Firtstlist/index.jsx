@@ -60,7 +60,7 @@ const Firstlist = () => {
                   <button className="left-button" onClick={handlePrevClick}>
                     <img src="https://seasonmarket.co.kr/img/slider_left.png" alt="Previous"/>
                   </button>
-                  <button className="absolute right-button ml-[93.1%]" onClick={handleNextClick}>
+                  <button className="absolute right-button right ml-[93.1%]" onClick={handleNextClick}>
                     <img src="https://seasonmarket.co.kr/img/slider_right.png" alt="Next"/>
                   </button>
                 </div>
