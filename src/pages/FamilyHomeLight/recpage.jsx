@@ -270,20 +270,31 @@ function FamilyHomeLightPage() {
   }
   // const toggleOutline = (event) => {
   //   event.currentTarget.classList.toggle('clicked');
-  // };
-  // const handleScroll = () => {
-  //   const scrollPosition = window.scrollY;
-  //   const homeButton = document.querySelector('#home-button');
   
-  //   if (scrollPosition >= 0 && scrollPosition <= 1200) {
-  //     homeButton.classList.add('scroll-background');
-  //   } else {
-  //     homeButton.classList.remove('scroll-background');
-  //   }
-  // };
+  const handleScroll = () => {
+    const scrollPosition = window.scrollY;
+    const homeButton = document.querySelector('#home-button');
+    const dramaButton = document.querySelector('#drama-button');
+    const movieButton = document.querySelector('#movie-button');
+    if (scrollPosition >= 0 && scrollPosition < 2700) {
+      homeButton.classList.add('scroll-background');
+    } else {
+      homeButton.classList.remove('scroll-background');
+    }
+    if (scrollPosition >= 2690 && scrollPosition <= 6550) {
+      dramaButton.classList.add('scroll-background');
+    } else {
+      dramaButton.classList.remove('scroll-background');
+    }
+    if (scrollPosition >= 6549 && scrollPosition <= 20000) {
+      movieButton.classList.add('scroll-background');
+    } else {
+      movieButton.classList.remove('scroll-background');
+    }
+  };
   
   // 스크롤 이벤트에 핸들러 추가
-  // window.addEventListener('scroll', handleScroll);
+  window.addEventListener('scroll', handleScroll);
 
   
 
@@ -364,12 +375,12 @@ function FamilyHomeLightPage() {
                     className="h-[55px] button"
                     src="images/img_star.svg"
                     alt="star"
-                    onClick={() => window.scrollTo({ top: 2600, behavior: 'smooth' })}
+                    onClick={() => window.scrollTo({ top: 2700, behavior: 'smooth' })}
                   />
                   <Text
                     className="text-[15px] mt-[-1%] text-center font-yogi text-gray-800 md:text-xl tracking-[-1px]"
                     size="txtYogi"
-                    onClick={() => window.scrollTo({ top: 2600, behavior: 'smooth' })}
+                    onClick={() => window.scrollTo({ top: 2700, behavior: 'smooth' })}
                   >
                     드라마
                   </Text>

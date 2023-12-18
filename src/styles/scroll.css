@@ -1,6 +1,9 @@
 /* CSS 파일 */
 
-  .home-button.scroll-background {
+  .scroll-background {
     /* 일정 스크롤 위치를 넘어섰을 때의 배경색 */
-    background-color: gray;
+    background-color: rgb(196, 194, 194);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* 음영 효과 */
+    border-radius: 8px; /* 테두리를 둥글게 */
+    background-size: cover; /* 배경 사이즈 조정 */
   }
