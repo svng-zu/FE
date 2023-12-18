@@ -21,7 +21,8 @@ const Firstlist = () => {
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % imagenames.length);
       };
       const leftImageIndex = (currentImageIndex - 1 + imagenames.length) % imagenames.length;
-        const rightImageIndex = (currentImageIndex + 1) % imagenames.length;
+      const rightImageIndex = (currentImageIndex + 1) % imagenames.length;
+      const currentindex = currentImageIndex;
       return(
         <>
 
@@ -31,7 +32,7 @@ const Firstlist = () => {
                 width: '92%',
                 height: '570px',
                 position: 'relative',
-                overflow: 'hidden',
+                overflow: 'visible',
                 marginLeft: '3.5%'
                 }}>
 
@@ -41,17 +42,17 @@ const Firstlist = () => {
                 left: 0,
                 width: '50%',
                 height: '100%',
-                background: `linear-gradient(to bottom, rgb(248, 218, 218, 0.7) 0%, rgba(247, 245, 245, 0.1) 50%, rgba(247, 245, 245, 0.3) 100%), url(${imagenames[leftImageIndex]})`,
+                background: `linear-gradient(to bottom, rgb(0, 0,0, 0.8) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.8) 100%), url(${imagenames[leftImageIndex]})`,
 
                 }}></div>
-
+                
                 <div className="right-half" style={{
                 position: 'absolute',
                 top: 0,
                 right: 0,
                 width: '50%',
                 height: '100%',
-                background: `linear-gradient(to bottom, rgb(248, 218, 218, 0.7) 0%, rgba(247, 245, 245, 0.1) 50%, rgba(247, 245, 245, 0.3) 100%), url(${imagenames[rightImageIndex]})`,
+                background: `linear-gradient(to bottom, rgb(0, 0,0, 0.8) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.8) 100%), url(${imagenames[rightImageIndex]})`,
 
                 }}></div>
 
@@ -65,7 +66,8 @@ const Firstlist = () => {
                 </div>
 
             {/* <div className="relative image-slider-wrapper"> */}
-            <div className="absolute image-slider">
+
+            <div className="image-slider">
                 
                 
 
@@ -74,17 +76,12 @@ const Firstlist = () => {
                       key={index}
                       src={image}
                       alt={`Slide ${index + 1}`}
-                      className={index === currentImageIndex ? 'active' : ''}
-
+                      className={`${index === currentindex ? 'active' : ''} rounded-border`}
+                      
                     />
                     ))}
-                    
-                  
-                </div>
-            {/* </div> */}
-
-
-                </div>
+            </div>
+            </div>
 
         </>
       )
