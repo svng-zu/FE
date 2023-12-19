@@ -13,6 +13,7 @@ import 'styles/clicked.css'
 import 'styles/scroll.css'
 import 'styles/rerec.css'
 
+
 const LoadingScreen = () => {
     return (
         <div className='lodaing-screen'>
@@ -30,13 +31,6 @@ function FamilyHomeLightPage() {
   const [recposter, setRecposter] = useState([]);
   const [yetposter, setYetposter] = useState([]);
   const [current, setCurrent] = useState('');
-  // const [movie, setMovie] = useState([]);
-  // const [drama, setDrama] = useState([]);
-
-
-  // 드라마 데이터
-
-
 
   const initialStartIndex = localStorage.getItem('startIndex');
   const initialIndex = initialStartIndex !== null ? parseInt(initialStartIndex) : 0;
@@ -82,6 +76,7 @@ function FamilyHomeLightPage() {
   const [ctclname1, setCtclname1] = useState([]);
   localStorage.setItem('page', 0); // 기본
   const navigate = useNavigate();
+  const access = localStorage.getItem('access_token');
 
   useEffect(() => {
     setShowPage(true);
@@ -153,8 +148,9 @@ function FamilyHomeLightPage() {
       
         if (response.status === 200 && response1.status === 200 && response2.status === 200) {
           console.log("여긴 문제가 아니야")
-        
-        
+          setData(response.data.data);
+          setData1(response1.data.data);
+
           const data = response.data.data;
           const current = response.data.current;
           console.log(current);
@@ -167,19 +163,11 @@ function FamilyHomeLightPage() {
 
           // const rankposter = rankItems.map(item => item); //주간 랭킹
 
-          const selectedItems = data[0].slice(startIndex, startIndex + 10); //재추천 리스트 1          
-          const userItems = data[2].slice(startIndex1, startIndex1 + 10); //재추천 리스트 2          
-          const recItems = data[3].slice(startIndex2, startIndex2 + 10); //재추천 리스트 3
-          
-          const genposter = selectedItems.map(item => item); // 장르별
-          const userposter = userItems.map(item=> item); // 사용자 개인
-          const recposter = recItems.map(item=> item); // 관련 추천
-          const yetposter= yetItems.map(item=> item); //덜 본거
 
-          setGenposter(genposter);
-          setUserposter(userposter);
+
+          const yetposter= yetItems.map(item=> item); //덜 본거
           setRankposter(rankposter);
-          setRecposter(recposter);
+          
           setYetposter(yetposter);
           setCurrent(current);
           setLoading(false);
@@ -188,7 +176,7 @@ function FamilyHomeLightPage() {
         //드라마 데이터 받아오기
         const data1 = response1.data.data; //포스터 데이터
         const rankItems1 = data1[0];
-        const recItems1 = data1[1].slice(startIndex3, startIndex3 + 10); // 드라마 추천 리스트  4
+
         const ctcl1Items = data1[2][0];
         const ctcl2Items = data1[2][1];
         const ctcl3Items = data1[2][2];
@@ -198,7 +186,7 @@ function FamilyHomeLightPage() {
         const ctclnames = response1.data.genres; //장르 데이터
         
         const rankposter1 = rankItems1.map(item => item); 
-        const recposter1 = recItems1.map(item=> item); 
+
         const ctcl1 = ctcl1Items.map(item => item); 
         const ctcl2 = ctcl2Items.map(item=> item);
         const ctcl3 = ctcl3Items.map(item=> item); 
@@ -214,7 +202,7 @@ function FamilyHomeLightPage() {
         setCtcl4(ctcl4);
         setCtcl5(ctcl5);
         setCtcl6(ctcl6);
-        setRecposter1(recposter1);
+
         setCtclname(ctclname);
         
         //영화 데이터
@@ -252,8 +240,7 @@ function FamilyHomeLightPage() {
         setCtcl71(ctcl71);
         setCtclname1(ctclname1);
         
-        setData(data);
-        setData1(data1);
+
 
 
         }
@@ -272,7 +259,10 @@ function FamilyHomeLightPage() {
     };
     window.scrollTo({ top: 0, behavior: 'smooth' })
     fetchData();
-  }, [navigate, startIndex, startIndex1, startIndex2, startIndex3]);
+  }, [navigate]);
+
+
+  
 
 
   
@@ -281,73 +271,153 @@ function FamilyHomeLightPage() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   )};
 
-  const Rerec = (event) => {
-    event.preventDefault();
-    const startIndex = parseInt(localStorage.getItem('startIndex'));
+  //첫번째 startIndex 설정
+  useEffect(() => {
+    const gen = JSON.parse(localStorage.getItem('genre'));
+    const genre = gen ? gen.join(',') : null;
+    console.log(genre);
+
+    const getdata = async ()=>{
+      const result = await axios.get('https://hello00back.net/vodrec', {
+        headers: {
+          Authorization : access,
+          Data : genre,
+        },
+
+    });
+    if (result.status === 200){
+      const data11 = result.data.data;
+      const genposter = (data11[0].slice(startIndex, startIndex + 10)).map(item => item);
+      setGenposter(genposter);
+      
+    }
+  }
+  
+  getdata();
+  }, [access, startIndex]);
+  
+  
+  //두번째 데이터
+  useEffect(() => {
+    const gen = JSON.parse(localStorage.getItem('genre'));
+    const genre = gen ? gen.join(',') : null;
+    console.log(genre);
+
+    const getdata1 = async ()=>{
+      try{
+      const result = await axios.get('https://hello00back.net/vodrec', {
+        headers: {
+          Authorization : access,
+          Data : genre,
+        },
+
+    });
+    if (result.status === 200){
+      const data11 = result.data.data;
+      const userposter = (data11[2].slice(startIndex1, startIndex1 + 10)).map(item=> item)
+      setUserposter(userposter);
+    }
+  }catch(error) {
+    console.log(error);
+  }
+  }
+  getdata1();
+  }, [access, startIndex1]); //userposter 데이터 정의
+
+
+  useEffect(() => {
+    const gen = JSON.parse(localStorage.getItem('genre'));
+    const genre = gen ? gen.join(',') : null;
+    console.log(genre);
+
+    const getdata2 = async ()=>{
+      try{
+      const result = await axios.get('https://hello00back.net/vodrec', {
+        headers: {
+          Authorization : access,
+          Data : genre,
+        },
+
+    });
+    if (result.status === 200){
+      const data11 = result.data.data;
+      const recposter = (data11[3].slice(startIndex2, startIndex2 + 10)).map(item=> item)
+      setRecposter(recposter);
+
+    }
+  }catch(error) {
+    console.log(error);
+  }
+  }
+  getdata2();
+  }, [access, startIndex2]); //recposter 데이터 정의
+
+
+  useEffect(() => {
+    const getdata3 = async ()=>{
+      try{
+      const result = await axios.get('https://hello00back.net/home/drama', {
+        headers: {
+          Authorization : access,
+        },
+
+    });
+    if (result.status === 200){
+      const data1 = result.data.data;
+      const recposter1 = (data1[1].slice(startIndex3, startIndex3 + 10)).map(item=> item);
+      setRecposter1(recposter1);
+
+    }
+  }catch(error) {
+    console.log(error);
+  }
+  }
+  getdata3();
+  }, [access, startIndex3]);
+
+
+  const handleRerec = (dataArr, setStartIndex, setPoster, localStorageKey) => {
+
     if (startIndex < 90) {
       const currentIndex = startIndex + 10;
       setStartIndex(currentIndex);
-      const genposter = (data[0].slice(currentIndex, currentIndex + 10)).map(item => item);
-      setGenposter(genposter)
-      localStorage.setItem('startIndex', currentIndex);
-
+      const items = dataArr.slice(currentIndex, currentIndex + 10).map(item => item);
+      setPoster(items);
+      localStorage.setItem(localStorageKey, currentIndex);
     } else {
       setStartIndex(0);
-      const genposter = (data[0].slice(0, 10)).map(item => item);
-      setGenposter(genposter)
-      localStorage.setItem('startIndex', 0);
+      const items = dataArr.slice(0, 10).map(item => item);
+      setPoster(items);
+      localStorage.setItem(localStorageKey, 0);
     }
-  }
-  const Rerec1 = (event) => {
-    event.preventDefault();
-    const startIndex1 = localStorage.getItem('startIndex1')
-    if (startIndex1 < 90) {
-      const currentIndex = startIndex1 + 10;
-      setStartIndex1(currentIndex);
-      const userItems = (data[2].slice(startIndex1, startIndex1 + 10)).map(item => item);
-      setUserposter(userItems)
-      localStorage.setItem('startIndex1', startIndex1);
+  };
+  
+  const Rerec = () => {
+    handleRerec(data[0], setStartIndex, setGenposter, 'startIndex');
+  };
 
-    } else {
-      setStartIndex1(0);
-      const userItems = (data[2].slice(startIndex1, startIndex1 + 10)).map(item => item);
-      setUserposter(userItems)
-      localStorage.setItem('startIndex1', 0);
-    }
-  }
-  const Rerec2 = (event) => {
-    event.preventDefault();
-    const startIndex2 = localStorage.getItem('startIndex2')
-    if (startIndex2 < 90) {
-      const currentIndex = startIndex2 + 10;
-      setStartIndex2(currentIndex);
-      const recItems = (data[3].slice(currentIndex, currentIndex + 10)).map(item => item);
-      setRecposter(recItems)
-      localStorage.setItem('startIndex2', startIndex2);
+  // console.log(genposter);
+ // 장르별
+ // 관련 추천
+  // setGenposter(((data11[0].slice(startIndex, startIndex + 10)).map(item => item)));
+  // setRecposter1(((data1[1].slice(startIndex3, startIndex3 + 10)).map(item=> item))); 
+  // // 드라마 추천 리스트  4
+  // setUserposter(((data[2].slice(startIndex1, startIndex1 + 10)).map(item=> item))); // 사용자 개인
+  // setRecposter(((data[3].slice(startIndex2, startIndex2 + 10)).map(item=> item)));
 
-    } else {
-      setStartIndex2(0);
-      const recItems = (data[3].slice(0, 10)).map(item => item);
-      setRecposter(recItems)
-      localStorage.setItem('startIndex2', 0);
-    }
-  }
+
+  
+  const Rerec1 = () => {
+    handleRerec(data[2], setStartIndex1, setUserposter, 'startIndex1');
+  };
+  
+  const Rerec2 = () => {
+    handleRerec(data[3], setStartIndex2, setRecposter, 'startIndex2');
+  };
+  
   const Rerec3 = () => {
-    const startIndex3 = localStorage.getItem('startIndex3')
-    if (startIndex3 < 90) {
-      const currentIndex = startIndex3 + 10;
-      setStartIndex3(currentIndex);
-      const recItems1 = (data1[1].slice(startIndex3, startIndex3 + 10)).map(item => item);
-      setRecposter1(recItems1)
-      localStorage.setItem('startIndex3', currentIndex);
-
-    } else {
-      setStartIndex3(0);
-      const recItems1 = (data1[1].slice(0, 10)).map(item => item);
-      setRecposter1(recItems1)
-      localStorage.setItem('startIndex3', 0);
-    }
-  }
+    handleRerec(data1[1], setStartIndex3, setRecposter1, 'startIndex3');
+  };
 
   
   const handleScroll = () => {

@@ -13,6 +13,7 @@ const Firstlist = () => {
     
         return () => clearInterval(interval);
       }, [imagenames.length]);
+      
       const handlePrevClick = () => {
         setCurrentImageIndex((prevIndex) => (prevIndex - 1 + imagenames.length) % imagenames.length);
       };
