@@ -49,6 +49,7 @@ function FamilyHomeLightPage() {
 
   const initialStartIndex3 = localStorage.getItem('startIndex3');
   const initialIndex3 = initialStartIndex3 !== null ? parseInt(initialStartIndex3) : 0;
+
   const [startIndex, setStartIndex] = useState(initialIndex);
   const [startIndex1, setStartIndex1] = useState(initialIndex1);
   const [startIndex2, setStartIndex2] = useState(initialIndex2);
@@ -65,6 +66,9 @@ function FamilyHomeLightPage() {
   const [ctcl5, setCtcl5] = useState([]);
   const [ctcl6, setCtcl6] = useState([]);
   const [ctclname, setCtclname] = useState([]);
+
+  const [data, setData] = useState([]);
+  const [data1, setData1] = useState([]);
 
   //영화 데이터
   const [rankposter11, setRankposter11] = useState([]);
@@ -154,16 +158,19 @@ function FamilyHomeLightPage() {
           const data = response.data.data;
           const current = response.data.current;
           console.log(current);
-          const selectedItems = data[0].slice(startIndex, startIndex + 10); //재추천 리스트 1
-          const rankItems = data[1];
-          const userItems = data[2].slice(startIndex1, startIndex1 + 10); //재추천 리스트 2
-          const recItems = data[3].slice(startIndex2, startIndex2 + 10); //재추천 리스트 3
+
+          const rankposter = data[1].map(item=>item);
           const yetItems = data[4]
         
 
           console.log(data);
 
-          const rankposter = rankItems.map(item => item); //주간 랭킹
+          // const rankposter = rankItems.map(item => item); //주간 랭킹
+
+          const selectedItems = data[0].slice(startIndex, startIndex + 10); //재추천 리스트 1          
+          const userItems = data[2].slice(startIndex1, startIndex1 + 10); //재추천 리스트 2          
+          const recItems = data[3].slice(startIndex2, startIndex2 + 10); //재추천 리스트 3
+          
           const genposter = selectedItems.map(item => item); // 장르별
           const userposter = userItems.map(item=> item); // 사용자 개인
           const recposter = recItems.map(item=> item); // 관련 추천
@@ -245,6 +252,9 @@ function FamilyHomeLightPage() {
         setCtcl71(ctcl71);
         setCtclname1(ctclname1);
         
+        setData(data);
+        setData1(data1);
+
 
         }
 
@@ -272,68 +282,70 @@ function FamilyHomeLightPage() {
   )};
 
   const Rerec = (event) => {
-    const saveToLocalStorage = (startIndex) => {
-      localStorage.setItem('startIndex', startIndex);
-      event.preventDefault();
-    };
-    
-    const currentStartIndex = parseInt(localStorage.getItem('startIndex'), 10) || 0;
-  
-    if (currentStartIndex < 90) {
-      const updatedStartIndex = currentStartIndex + 10;
-      setStartIndex(updatedStartIndex);
-      saveToLocalStorage(updatedStartIndex);
+    event.preventDefault();
+    const startIndex = parseInt(localStorage.getItem('startIndex'));
+    if (startIndex < 90) {
+      const currentIndex = startIndex + 10;
+      setStartIndex(currentIndex);
+      const genposter = (data[0].slice(currentIndex, currentIndex + 10)).map(item => item);
+      setGenposter(genposter)
+      localStorage.setItem('startIndex', currentIndex);
+
     } else {
       setStartIndex(0);
-      localStorage.setItem('startIndex', startIndex);
+      const genposter = (data[0].slice(0, 10)).map(item => item);
+      setGenposter(genposter)
+      localStorage.setItem('startIndex', 0);
     }
   }
-  const Rerec1 = () => {
-    const saveToLocalStorage1 = (startIndex1) => {
+  const Rerec1 = (event) => {
+    event.preventDefault();
+    const startIndex1 = localStorage.getItem('startIndex1')
+    if (startIndex1 < 90) {
+      const currentIndex = startIndex1 + 10;
+      setStartIndex1(currentIndex);
+      const userItems = (data[2].slice(startIndex1, startIndex1 + 10)).map(item => item);
+      setUserposter(userItems)
       localStorage.setItem('startIndex1', startIndex1);
-    };
-    
-    const currentStartIndex1 = parseInt(localStorage.getItem('startIndex1'), 10) || 0;
-  
-    if (currentStartIndex1 < 90) {
-      const updatedStartIndex1 = currentStartIndex1 + 10;
-      setStartIndex1(updatedStartIndex1);
-      saveToLocalStorage1(updatedStartIndex1);
+
     } else {
       setStartIndex1(0);
-      localStorage.setItem('startIndex1', startIndex1);
+      const userItems = (data[2].slice(startIndex1, startIndex1 + 10)).map(item => item);
+      setUserposter(userItems)
+      localStorage.setItem('startIndex1', 0);
     }
   }
-  const Rerec2 = () => {
-    const saveToLocalStorage2 = (startIndex2) => {
+  const Rerec2 = (event) => {
+    event.preventDefault();
+    const startIndex2 = localStorage.getItem('startIndex2')
+    if (startIndex2 < 90) {
+      const currentIndex = startIndex2 + 10;
+      setStartIndex2(currentIndex);
+      const recItems = (data[3].slice(currentIndex, currentIndex + 10)).map(item => item);
+      setRecposter(recItems)
       localStorage.setItem('startIndex2', startIndex2);
-    };
-    
-    const currentStartIndex2 = parseInt(localStorage.getItem('startIndex2'), 10) || 0;
-  
-    if (currentStartIndex2 < 90) {
-      const updatedStartIndex2 = currentStartIndex2 + 10;
-      setStartIndex2(updatedStartIndex2);
-      saveToLocalStorage2(updatedStartIndex2);
+
     } else {
       setStartIndex2(0);
-      localStorage.setItem('startIndex2', startIndex2);
+      const recItems = (data[3].slice(0, 10)).map(item => item);
+      setRecposter(recItems)
+      localStorage.setItem('startIndex2', 0);
     }
   }
   const Rerec3 = () => {
-    const saveToLocalStorage3 = (startIndex3) => {
-      localStorage.setItem('startIndex3', startIndex3);
-    };
-    
-    const currentStartIndex3 = parseInt(localStorage.getItem('startIndex3'), 10) || 0;
-  
-    if (currentStartIndex3 < 90) {
-      const updatedStartIndex3 = currentStartIndex3 + 10;
-      setStartIndex3(updatedStartIndex3);
-      saveToLocalStorage3(updatedStartIndex3);
+    const startIndex3 = localStorage.getItem('startIndex3')
+    if (startIndex3 < 90) {
+      const currentIndex = startIndex3 + 10;
+      setStartIndex3(currentIndex);
+      const recItems1 = (data1[1].slice(startIndex3, startIndex3 + 10)).map(item => item);
+      setRecposter1(recItems1)
+      localStorage.setItem('startIndex3', currentIndex);
+
     } else {
       setStartIndex3(0);
-      localStorage.setItem('startIndex3', startIndex3);
+      const recItems1 = (data1[1].slice(0, 10)).map(item => item);
+      setRecposter1(recItems1)
+      localStorage.setItem('startIndex3', 0);
     }
   }
 
