@@ -12,7 +12,7 @@ import 'styles/img.css'
 import 'styles/clicked.css'
 import 'styles/scroll.css'
 import 'styles/rerec.css'
-
+import 'styles/bar.css'
 
 const LoadingScreen = () => {
     return (
@@ -63,7 +63,21 @@ function FamilyHomeLightPage() {
 
   const [data, setData] = useState([]);
   const [data1, setData1] = useState([]);
-
+  
+  
+  // 스크롤 위치
+  const homeButton = document.getElementById('home-button');
+  const dramaButton = document.getElementById('drama-button');
+  const movieButton = document.getElementById('movie-button');
+  const topButton = document.getElementById('top-button');
+  
+  
+  const recSection = document.getElementById('rec-page');
+  const dramaSection = document.getElementById('drama-page');
+  const movieSection = document.getElementById('movie-page');
+  const endSection = document.getElementById('end-page')
+  
+  
   //영화 데이터
   const [rankposter11, setRankposter11] = useState([]);
   const [ctcl11, setCtcl11] = useState([]);
@@ -275,7 +289,7 @@ function FamilyHomeLightPage() {
   useEffect(() => {
     const gen = JSON.parse(localStorage.getItem('genre'));
     const genre = gen ? gen.join(',') : null;
-    console.log(genre);
+
 
     const getdata = async ()=>{
       const result = await axios.get('https://hello00back.net/vodrec', {
@@ -422,16 +436,16 @@ function FamilyHomeLightPage() {
   
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
-    const homeButton = document.getElementById('home-button');
-    const dramaButton = document.getElementById('drama-button');
-    const movieButton = document.getElementById('movie-button');
-    const topButton = document.getElementById('top-button');
+    // const homeButton = document.getElementById('home-button');
+    // const dramaButton = document.getElementById('drama-button');
+    // const movieButton = document.getElementById('movie-button');
+    // const topButton = document.getElementById('top-button');
     
     
-    const recSection = document.getElementById('rec-page');
-    const dramaSection = document.getElementById('drama-page');
-    const movieSection = document.getElementById('movie-page');
-    const endSection = document.getElementById('end-page')
+    // const recSection = document.getElementById('rec-page');
+    // const dramaSection = document.getElementById('drama-page');
+    // const movieSection = document.getElementById('movie-page');
+    // const endSection = document.getElementById('end-page');
     
 
     if (scrollPosition >= 0 && scrollPosition < recSection.offsetTop - 100) {
@@ -461,7 +475,7 @@ function FamilyHomeLightPage() {
 
   
   const scrollToRec = () => {
-    const dramaSection = document.getElementById('rec-page');
+
     dramaSection.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -703,7 +717,7 @@ function FamilyHomeLightPage() {
               <div className="flex flex-col items-center justify-start " 
               style={{ marginTop: '10%'}} id='rec-page'> 
               </div>
-              <div className="flex flex-col items-center justify-start " style={{ marginTop: '5%', backgroundColor: '#FED7E2', width: '100%'}} >
+              <div className="bar flex flex-col items-center justify-start "  >
                   <Text
                     className="leading-[100.00px] pl-[50px] ml-[1%] sm:text-[21px] md:text-[23px] text-[30px] text-black-900 tracking-[-0.13px] w-full"
                     size="txtYogi"
@@ -877,7 +891,7 @@ function FamilyHomeLightPage() {
               <div className="flex flex-col items-center justify-start " 
               style={{ marginTop: '10%'}} id='drama-page'> 
               </div>
-              <div className="flex flex-col items-center justify-start " style={{ marginTop: '5%', backgroundColor: '#FED7E2', width: '100%'}} >
+              <div className="bar flex flex-col items-center justify-start " >
                   <Text
                     className="leading-[100.00px] pl-[50px] ml-[1%] sm:text-[21px] md:text-[23px] text-[30px] text-black-900 tracking-[-0.13px] w-full"
                     size="txtYogi"
@@ -935,7 +949,7 @@ function FamilyHomeLightPage() {
               <div className="flex flex-col items-center justify-start " 
               style={{ marginTop: '10%'}} id='movie-page'> 
               </div>
-              <div className="flex flex-col items-center justify-start " style={{ marginTop: '5%', backgroundColor: '#FED7E2', width: '100%'}} >
+              <div className="bar flex flex-col items-center justify-start">
                   <Text
                     className="leading-[100.00px] pl-[50px] ml-[1%] sm:text-[21px] md:text-[23px] text-[30px] text-black-900 tracking-[-0.13px] w-full"
                     size="txtYogi"
