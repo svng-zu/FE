@@ -11,6 +11,7 @@ import 'styles/font.css'
 import 'styles/img.css'
 import 'styles/clicked.css'
 import 'styles/scroll.css'
+import 'styles/rerec.css'
 
 const LoadingScreen = () => {
     return (
@@ -34,9 +35,25 @@ function FamilyHomeLightPage() {
 
 
   // 드라마 데이터
+
+
+
   const initialStartIndex = localStorage.getItem('startIndex');
   const initialIndex = initialStartIndex !== null ? parseInt(initialStartIndex) : 0;
+
+  const initialStartIndex1 = localStorage.getItem('startIndex1');
+  const initialIndex1 = initialStartIndex1 !== null ? parseInt(initialStartIndex1) : 0;
+
+  const initialStartIndex2 = localStorage.getItem('startIndex2');
+  const initialIndex2 = initialStartIndex2 !== null ? parseInt(initialStartIndex2) : 0;
+
+  const initialStartIndex3 = localStorage.getItem('startIndex3');
+  const initialIndex3 = initialStartIndex3 !== null ? parseInt(initialStartIndex3) : 0;
   const [startIndex, setStartIndex] = useState(initialIndex);
+  const [startIndex1, setStartIndex1] = useState(initialIndex1);
+  const [startIndex2, setStartIndex2] = useState(initialIndex2);
+  const [startIndex3, setStartIndex3] = useState(initialIndex3);
+
   const [userposter, setUserposter] = useState([]);
   const [showPage, setShowPage] = useState(false);
   const [recposter1, setRecposter1] = useState([]);
@@ -139,8 +156,8 @@ function FamilyHomeLightPage() {
           console.log(current);
           const selectedItems = data[0].slice(startIndex, startIndex + 10); //재추천 리스트 1
           const rankItems = data[1];
-          const userItems = data[2].slice(startIndex, startIndex + 10); //재추천 리스트 2
-          const recItems = data[3].slice(startIndex, startIndex + 10); //재추천 리스트 3
+          const userItems = data[2].slice(startIndex1, startIndex1 + 10); //재추천 리스트 2
+          const recItems = data[3].slice(startIndex2, startIndex2 + 10); //재추천 리스트 3
           const yetItems = data[4]
         
 
@@ -164,7 +181,7 @@ function FamilyHomeLightPage() {
         //드라마 데이터 받아오기
         const data1 = response1.data.data; //포스터 데이터
         const rankItems1 = data1[0];
-        const recItems1 = data1[1].slice(startIndex, startIndex + 10); // 재추천 리스트  4
+        const recItems1 = data1[1].slice(startIndex3, startIndex3 + 10); // 드라마 추천 리스트  4
         const ctcl1Items = data1[2][0];
         const ctcl2Items = data1[2][1];
         const ctcl3Items = data1[2][2];
@@ -245,7 +262,7 @@ function FamilyHomeLightPage() {
     };
     window.scrollTo({ top: 0, behavior: 'smooth' })
     fetchData();
-  }, [navigate, startIndex]);
+  }, [navigate, startIndex, startIndex1, startIndex2, startIndex3]);
 
 
   
@@ -253,9 +270,11 @@ function FamilyHomeLightPage() {
     return(
     window.scrollTo({ top: 0, behavior: 'smooth' })
   )};
-  const Rerec = () => {
+
+  const Rerec = (event) => {
     const saveToLocalStorage = (startIndex) => {
       localStorage.setItem('startIndex', startIndex);
+      event.preventDefault();
     };
     
     const currentStartIndex = parseInt(localStorage.getItem('startIndex'), 10) || 0;
@@ -269,35 +288,99 @@ function FamilyHomeLightPage() {
       localStorage.setItem('startIndex', startIndex);
     }
   }
-  // const toggleOutline = (event) => {
-  //   event.currentTarget.classList.toggle('clicked');
+  const Rerec1 = () => {
+    const saveToLocalStorage1 = (startIndex1) => {
+      localStorage.setItem('startIndex1', startIndex1);
+    };
+    
+    const currentStartIndex1 = parseInt(localStorage.getItem('startIndex1'), 10) || 0;
+  
+    if (currentStartIndex1 < 90) {
+      const updatedStartIndex1 = currentStartIndex1 + 10;
+      setStartIndex1(updatedStartIndex1);
+      saveToLocalStorage1(updatedStartIndex1);
+    } else {
+      setStartIndex1(0);
+      localStorage.setItem('startIndex1', startIndex1);
+    }
+  }
+  const Rerec2 = () => {
+    const saveToLocalStorage2 = (startIndex2) => {
+      localStorage.setItem('startIndex2', startIndex2);
+    };
+    
+    const currentStartIndex2 = parseInt(localStorage.getItem('startIndex2'), 10) || 0;
+  
+    if (currentStartIndex2 < 90) {
+      const updatedStartIndex2 = currentStartIndex2 + 10;
+      setStartIndex2(updatedStartIndex2);
+      saveToLocalStorage2(updatedStartIndex2);
+    } else {
+      setStartIndex2(0);
+      localStorage.setItem('startIndex2', startIndex2);
+    }
+  }
+  const Rerec3 = () => {
+    const saveToLocalStorage3 = (startIndex3) => {
+      localStorage.setItem('startIndex3', startIndex3);
+    };
+    
+    const currentStartIndex3 = parseInt(localStorage.getItem('startIndex3'), 10) || 0;
+  
+    if (currentStartIndex3 < 90) {
+      const updatedStartIndex3 = currentStartIndex3 + 10;
+      setStartIndex3(updatedStartIndex3);
+      saveToLocalStorage3(updatedStartIndex3);
+    } else {
+      setStartIndex3(0);
+      localStorage.setItem('startIndex3', startIndex3);
+    }
+  }
+
   
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
     const homeButton = document.getElementById('home-button');
     const dramaButton = document.getElementById('drama-button');
     const movieButton = document.getElementById('movie-button');
-  
+    const topButton = document.getElementById('top-button');
+    
+    
+    const recSection = document.getElementById('rec-page');
     const dramaSection = document.getElementById('drama-page');
     const movieSection = document.getElementById('movie-page');
-  
-    if (scrollPosition >= 0 && scrollPosition < dramaSection.offsetTop - 10) {
+    const endSection = document.getElementById('end-page')
+    
+
+    if (scrollPosition >= 0 && scrollPosition < recSection.offsetTop - 100) {
+      topButton.classList.add('scroll-background');
+    } else {
+      topButton.classList.remove('scroll-background');
+    }
+
+    if (scrollPosition >= recSection.offsetTop -10 && scrollPosition < dramaSection.offsetTop - 100) {
       homeButton.classList.add('scroll-background');
     } else {
       homeButton.classList.remove('scroll-background');
     }
     
-    if (scrollPosition >= dramaSection.offsetTop -10 && scrollPosition <= movieSection.offsetTop-10) {
+    if (scrollPosition >= dramaSection.offsetTop -100 && scrollPosition < movieSection.offsetTop -100) {
       dramaButton.classList.add('scroll-background');
     } else {
       dramaButton.classList.remove('scroll-background');
     }
     
-    if (scrollPosition >= movieSection.offsetTop - 10 && scrollPosition <= 200000) {
+    if (scrollPosition >= movieSection.offsetTop - 100 && scrollPosition <= endSection.offsetTop) {
       movieButton.classList.add('scroll-background');
     } else {
       movieButton.classList.remove('scroll-background');
     }
+  };
+
+  
+  const scrollToRec = () => {
+    const dramaSection = document.getElementById('rec-page');
+    dramaSection.scrollIntoView({ behavior: 'smooth' });
   };
 
   const scrollToDrama = () => {
@@ -324,7 +407,7 @@ function FamilyHomeLightPage() {
         classNames="fade"
        unmountOnExit
       >
-      <div className="bg-gray-100 border border-black-900 border-solid flex flex-col font-inter items-center justify-start mx-auto w-full">
+      <div className="bg-gray-100 border border-black-900 border-solid flex flex-col font-inter items-center justify-start mx-auto w-full pb-[10%]">
         <div className="flex flex-col items-center justify-start w-full">
           <div className="z-10 !sticky top-[0] overflow-block relative flex bg-red-A400 flex md:flex-col flex-row md:gap-5 items-start justify-end pb-1.5 px-1.5 w-full">
             <Img
@@ -366,6 +449,22 @@ function FamilyHomeLightPage() {
                     검색
                   </Text>
                 </div>
+                <div className="common-pointer flex flex-col items-center justify-start mt-[12px] w-full" 
+                id ='top-button'>
+                  <Img
+                    className="top"
+                    src="images/top.png"
+                    alt="rewind"
+                    onClick={handleClick}
+                  />
+                  <Text
+                    className="text-[15px] mt-[-1%] text-center font-yogi text-gray-800 sm:text-lg md:text-xl tracking-[-0.5px]"
+                    size="txtYogi"
+                    onClick={handleClick}
+                  >
+                   TOP
+                  </Text>
+                </div>
                 <div
                   className="common-pointer flex flex-col items-center justify-start mt-[12px] w-full" 
                   id="home-button"
@@ -375,16 +474,17 @@ function FamilyHomeLightPage() {
                     className="h-[55px] button"
                     src="images/img_home.svg"
                     alt="home"
-                    onClick={handleClick}
+                    onClick={scrollToRec}
                       //handleClick()};
                     
                     
                   />
                   <Text
-                    className="text-[15px] mt-[-1%] text-center font-yogi text-gray-800 sm:text-lg md:text-xl tracking-[-0.11px]"
+                    className="text-[15px] mt-[-1%] text-center font-yogi text-gray-800 sm:text-lg md:text-xl tracking-[-2px]"
                     size="txtYogi"
+                    onClick={scrollToRec}
                   >
-                    TOP
+                    추천 홈
                   </Text>
                 </div>
 
@@ -422,22 +522,6 @@ function FamilyHomeLightPage() {
                     영화
                   </Text>
                 </div>
-              </div>
-
-              <div className="flex flex-col gap-[17px] items-center justify-start mb-[38px] mt-[12px] mx-auto w-[48%]">
-                <Img
-                  className="h-[55px] button"
-                  src="images/img_qrcode.svg"
-                  alt="contrast"
-                  onClick={Rerec}
-                />
-                <Text
-                  className="text-[15px] text-center sm:text-lg text-red-A400 md:text-xl tracking-[-2px]"
-                  size="txtYogi"
-                  onClick={Rerec}
-                >
-                  재추천
-                </Text>
               </div>
             </Sidebar>
          
@@ -500,96 +584,7 @@ function FamilyHomeLightPage() {
                   </div>
                   </div>
                 </div>
-            
-              <div className="flex flex-1 flex-col items-start justify-start w-full">
-                <div className="flex flex-col items-center justify-start" style={{ marginTop: '6%' }}>
-                  <Text
-                    className="leading-[100.00px] mb-[-4%] ml-[3%] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
-                    size="txtYogi"
-                  >
-                    <span className="text-black-900 font-yogi text-left">
-                      {localStorage.getItem('new') ? `당신의 선택한 장르 기반 추천 ` : `당신의 취향저격 장르 추천 `}
-                    </span>
-                    <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
-                      {localStorage.getItem('new') ? `Genre` : `Genre `}
-                    </span>
-                  </Text>
 
-                </div>
-                <div className="flex md:flex-col flex-row font-paytoneone md:gap-5 items-start justify-between pr-[100px] w-full">                                  
-                  <div className="flex-shrink-0 h-[250px] relative w-1/6 mr-[10%] mb-[2%] md:w-full">
-                  
-                      <div className="video-container">
-                        <Reclist rankposter={genposter} />
-                      </div>
-                  
-                  </div>
-                </div>
-            </div>
-              <div className="flex flex-1 flex-col items-start justify-start w-full">
-                <div className="flex flex-col items-center justify-start " style={{ marginTop: '6%' }}>
-                  <Text
-                    className="leading-[100.00px] ml-[3%] pl-[50px] mb-[-4%] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
-                    size="txtYogi"
-                  >
-                    <span className="text-black-900 text-left font-yogi">
-                      당신과 비슷한 유저들이 즐겨봐요{" "}
-                    </span>
-                    <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px]">
-                      User{" "}
-                    </span>
-                  </Text>
-                </div>
-                <div className="flex md:flex-col flex-row md:gap-5 items-start justify-between pr-[100px] w-full">
-                  
-                 
-                <div className="flex-shrink-0 h-[250px] relative w-1/6 md:w-full mb-[2%]">
-                  
-                    <div className="video-container">
-                    <Reclist rankposter={userposter} />
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-              {recposter !== null && recposter.length > 0 && (
-              <div className="flex flex-1 flex-col items-start justify-start w-full">
-                <div className="flex flex-col items-center justify-start" style={{ marginTop: '6%' }}>
-                  <Text
-                    className="leading-[100.00px] ml-[3%] pl-[50px] mb-[-4%] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
-                    size="txtYogi"
-                  >
-                    <span className="text-black-900 font-yogi text-left font-normal">
-                    
-                    최근 시청한&nbsp;
-                    </span>
-                    <span className="text-red-A400 font-yogi text-left font-normal text-[30px]">
-                  
-                    '{current}'&nbsp;
-                    </span>
-                    <span className="text-black-900 font-yogi text-left font-normal">
-                    
-                    VOD와 유사한&nbsp;
-                    </span>
-                    <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
-                      VOD{" "}
-                    </span>
-                  </Text>
-                </div>
-                <div className="flex md:flex-col flex-row md:gap-5 items-start justify-between pr-[100px] w-full">
-                  
-                 
-                <div className="flex-shrink-0 h-[250px] relative w-1/6 md:w-full mb-[2%]">
-                  
-                    <div className="video-container">
-                    <Reclist rankposter={recposter} />
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-              )}
-              {/* 드라마 추천 장소 */}
               {yetposter !== null && yetposter.length > 0 && (
               <div className="flex flex-1 flex-col items-start justify-start w-full pb-[200px]">
                 <div className="flex flex-col items-center justify-start" style={{ marginTop: '6%' }}>
@@ -621,6 +616,180 @@ function FamilyHomeLightPage() {
                 </div>
               </div>
               )}
+
+              {/* 메인추천 */}
+              <div className="flex flex-col items-center justify-start " 
+              style={{ marginTop: '10%'}} id='rec-page'> 
+              </div>
+              <div className="flex flex-col items-center justify-start " style={{ marginTop: '5%', backgroundColor: '#FED7E2', width: '100%'}} >
+                  <Text
+                    className="leading-[100.00px] pl-[50px] ml-[1%] sm:text-[21px] md:text-[23px] text-[30px] text-black-900 tracking-[-0.13px] w-full"
+                    size="txtYogi"
+                  >
+                    <span className="text-black-900 text-left font-yogi">
+                    추천 홈
+                    </span>
+                    <span className="text-black-900 text-[20px] font-yogi ml-[5%]">
+                    재추천 버튼으로 무한 추천!
+                    </span>
+                  </Text>
+                </div>
+            <div className="flex flex-1 flex-col items-start justify-start w-full">
+            <div className="flex flex-col items-center justify-start w-[100%]" style={{ marginTop: '1%', marginBottom:'-1.5%'}}>
+              <Text
+                    className="leading-[100.00px] ml-[1.4%] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
+                    size="txtYogi"
+                  >
+            <span className="text-black-900 font-yogi text-left">
+              {localStorage.getItem('new') ? `당신의 선택한 장르 기반 추천 ` : `당신의 취향저격 장르 추천 `}
+            </span>
+            <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
+              {localStorage.getItem('new') ? `Genre` : `Genre `}
+            </span>
+
+            </Text>
+                <div className='absolute rerec ml-[84%] mt-[1.5%]'>
+
+                    <Img 
+                    className="h-[30px] but" 
+                    src="images/img_qrcode.svg" 
+                    alt="contrast" 
+                    onClick={Rerec} 
+                    />
+                    </div>
+
+                </div>
+                <div className="flex md:flex-col flex-row font-paytoneone md:gap-5 items-start justify-between pr-[100px] w-full">                                  
+                  <div className="flex-shrink-0 h-[250px] relative w-1/6 mr-[10%] mb-[2%] md:w-full">
+                  
+                      <div className="video-container">
+                        <Reclist rankposter={genposter} />
+                      </div>
+                  
+                  </div>
+                </div>
+            </div>
+              <div className="flex flex-1 flex-col items-start justify-start w-full">
+              <div className="flex flex-col items-center justify-start w-[100%]" style={{ marginTop: '6%', marginBottom:'-1.5%'}}>
+              <Text
+                    className="leading-[100.00px] ml-[1.4%] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
+                    size="txtYogi"
+                  >
+                    <span className="text-black-900 text-left font-yogi">
+                      당신과 비슷한 유저들이 즐겨봐요{" "}
+                    </span>
+                    <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px]">
+                      User{" "}
+                    </span>
+
+                    
+                  </Text>
+                  <div className='absolute rerec ml-[84%] mt-[1.5%]'>
+                    <Img 
+                    className="h-[30px] but" 
+                    src="images/img_qrcode.svg" 
+                    alt="contrast" 
+                    onClick={Rerec1} 
+                    />
+                    </div>
+                </div>
+
+                <div className="flex md:flex-col flex-row md:gap-5 items-start justify-between pr-[100px] w-full">
+                  
+                 
+                <div className="flex-shrink-0 h-[250px] relative w-1/6 md:w-full mb-[2%]">
+                  
+                    <div className="video-container">
+                    <Reclist rankposter={userposter} />
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-1 flex-col items-start justify-start w-full">
+                <div className="flex flex-col items-center justify-start w-[100%]" style={{ marginTop: '6%' }}>
+                <Text
+                    className="leading-[100.00px] ml-[1.4%] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
+                    size="txtYogi"
+                  >
+                    <span className="text-black-900 text-left font-yogi">
+                      당신을 위한 드라마 추천{" "}
+                    </span>
+                    <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px]">
+                      For You{" "}
+                    </span>
+                  </Text>
+
+                  <div className='absolute rerec ml-[84%] mt-[1.5%]'>
+                    <Img 
+                    className="h-[30px] but" 
+                    src="images/img_qrcode.svg"
+                    alt="contrast" 
+                    onClick={Rerec3} 
+                    />
+                    </div>
+                </div>
+                <div className="flex md:flex-col flex-row md:gap-5 items-start justify-between pr-[100px] w-full">
+                  
+                 
+                <div className="flex-shrink-0 h-[250px] relative w-1/6 md:w-full mb-[2%]">
+                  
+                    <div className="video-container">
+                    <Reclist rankposter={recposter1} />
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+
+              {recposter !== null && recposter.length > 0 && (
+              <div className="flex flex-1 flex-col items-start justify-start w-full">
+                <div className="flex flex-col items-center justify-start w-[100%]" style={{ marginTop: '6%', marginBottom:'-1.5%'}}>
+                  <Text
+                    className="leading-[100.00px] ml-[1.4%] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
+                    size="txtYogi"
+                  >
+                    <span className="text-black-900 font-yogi text-left font-normal">
+                    
+                    최근 시청한&nbsp;
+                    </span>
+                    <span className="text-red-A400 font-yogi text-left font-normal text-[30px]">
+                  
+                    '{current}'&nbsp;
+                    </span>
+                    <span className="text-black-900 font-yogi text-left font-normal">
+                    
+                    연관 추천! &nbsp;
+                    </span>
+                    <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
+                      VOD{" "}
+                    </span>
+                  </Text>
+                  <div className='absolute rerec ml-[84%] mt-[1.5%]'>
+                    <Img 
+                    className="h-[30px] w-[30px] but" 
+                    src="images/img_qrcode.svg" 
+                    alt="contrast" 
+                    onClick={Rerec2} 
+                    />
+                    </div>
+                </div>
+                <div className="flex md:flex-col flex-row items-start justify-between pr-[100px] w-full">
+                  
+                 
+                <div className="flex-shrink-0 h-[250px] relative w-1/6 md:w-full mb-[2%]">
+                  
+                    <div className="video-container">
+                    <Reclist rankposter={recposter} />
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+              )}
+   
+
 
               {/* 드라마 구간 */}
               <div className="flex flex-col items-center justify-start " 
@@ -666,32 +835,7 @@ function FamilyHomeLightPage() {
                 </div>
               </div>
 
-              <div className="flex flex-1 flex-col items-start justify-start w-full">
-                <div className="flex flex-col items-center justify-start " style={{ marginTop: '6%' }}>
-                  <Text
-                    className="leading-[100.00px] ml-[3%] pl-[50px] mb-[-4%] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
-                    size="txtYogi"
-                  >
-                    <span className="text-black-900 text-left font-yogi">
-                      당신을 위한 드라마 추천{" "}
-                    </span>
-                    <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px]">
-                      For You{" "}
-                    </span>
-                  </Text>
-                </div>
-                <div className="flex md:flex-col flex-row md:gap-5 items-start justify-between pr-[100px] w-full">
-                  
-                 
-                <div className="flex-shrink-0 h-[250px] relative w-1/6 md:w-full mb-[2%]">
-                  
-                    <div className="video-container">
-                    <Reclist rankposter={recposter1} />
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
+
 
               
 
@@ -761,10 +905,14 @@ function FamilyHomeLightPage() {
 
 
 
-           
+              <div className="flex flex-col items-center justify-start " 
+              style={{ marginTop: '10%'}} id='end-page'> 
+              </div>
+                
 
               
             </div>
+            
             )}
           </div>
         </div>

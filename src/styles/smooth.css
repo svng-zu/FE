@@ -30,3 +30,20 @@
   .search:active {
     transform: scale(1.5); /* 버튼의 크기를 약간 키워주는 변화 */
   }
+
+  .top {
+    border: none;
+    background-color: none;
+    cursor: pointer;
+    font-size: 24px;
+    outline: none;
+    padding: 10px;
+    color: #605f5f;
+    min-width: 55px;
+    max-height: 45px;
+    transition: transform 0.3s ease;
+  }
+  .top:hover,
+  .top:active {
+    transform: scale(1.5); /* 버튼의 크기를 약간 키워주는 변화 */
+  }
