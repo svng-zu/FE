@@ -10,7 +10,7 @@ const FrontpageLight = React.lazy(() => import("pages/FrontpageLight"));
 const Light = React.lazy(() => import("pages/Light"));
 const FamilyHomeLight = React.lazy(() => import("pages/FamilyHomeLight/recpage"));
 const LoginPageLight = React.lazy(() => import("pages/LoginPageLight/l_login"));
-
+const Search = React.lazy(() => import("pages/Search"));
 
 const ProjectRoutes = () => {
 
@@ -26,6 +26,7 @@ const ProjectRoutes = () => {
           <Route path="/simple" element={<Simple />} />
           <Route path="/dhiwise-dashboard" element={<Home />} />
           <Route path="/Light/:programId" element={<Light />} />
+          <Route path="/search" element={<Search />} />
 
         </Routes>
       </Router>

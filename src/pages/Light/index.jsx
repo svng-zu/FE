@@ -138,7 +138,7 @@ const handleClick = () => {
             <Text className="absolute font-yogi font-lighter left-[45%] mt-[1.7%] md:text-3xl text-4xl text-white-A700 tracking-[-0.30px]">
               DETAIL
             </Text>
-          <div className="relative h-[80px] mt-[5px] mr-[1%] md:px-5 w-[20%] md:w-full">
+          <div className="relative h-[80px] mt-[4px] mr-[1%] md:px-5 w-[20%] md:w-full">
             <Weather />
           </div>
 
