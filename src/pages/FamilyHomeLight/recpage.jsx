@@ -717,7 +717,7 @@ function FamilyHomeLightPage() {
                   </Text>
                 </div>
             <div className="flex flex-1 flex-col items-start justify-start w-full">
-            <div className="flex flex-col items-center justify-start w-[100%]" style={{ marginTop: '1%', marginBottom:'-1.5%'}}>
+            <div className="flex flex-col items-center justify-start w-[100%]" style={{ marginTop: '2%', marginBottom:'-1.5%'}}>
               <Text
                     className="leading-[100.00px] ml-[1.4%] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
                     size="txtYogi"
@@ -790,13 +790,13 @@ function FamilyHomeLightPage() {
               </div>
 
               <div className="flex flex-1 flex-col items-start justify-start w-full">
-                <div className="flex flex-col items-center justify-start w-[100%]" style={{ marginTop: '6%' }}>
-                <Text
+              <div className="flex flex-col items-center justify-start w-[100%]" style={{ marginTop: '6%', marginBottom:'-1.5%'}}>
+              <Text
                     className="leading-[100.00px] ml-[1.4%] pl-[50px] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
                     size="txtYogi"
                   >
                     <span className="text-black-900 text-left font-yogi">
-                      당신을 위한 드라마 추천{" "}
+                      드라마 몰아보기 추천{" "}
                     </span>
                     <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px]">
                       For You{" "}
@@ -891,7 +891,7 @@ function FamilyHomeLightPage() {
                 </div>
 
               <div className="flex flex-1 flex-col items-start justify-start w-full">
-                <div className="flex flex-col items-center justify-start " style={{ marginTop: '1%' }}>
+                <div className="flex flex-col items-center justify-start " style={{ marginTop: '2%' }}>
                   <Text
                     className="leading-[100.00px] ml-[3%] pl-[50px] mb-[-4%] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
                     size="txtYogi"
@@ -947,7 +947,7 @@ function FamilyHomeLightPage() {
                   </Text>
                 </div>
                 <div className="flex flex-1 flex-col items-start justify-start w-full">
-                <div className="flex flex-col items-center justify-start " style={{ marginTop: '1%' }}>
+                <div className="flex flex-col items-center justify-start " style={{ marginTop: '2%' }}>
                   <Text
                     className="leading-[100.00px] ml-[3%] pl-[50px] mb-[-4%] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
                     size="txtYogi"
