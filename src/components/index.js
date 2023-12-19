@@ -13,3 +13,4 @@ export { Firstlist } from "./Firtstlist";
 // export DramaPage from "./DramaPage";
 export { Drama } from "./drama";
 export { Mov } from "./mov";
+export { Member } from "./Member";

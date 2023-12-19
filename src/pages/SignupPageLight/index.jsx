@@ -70,8 +70,8 @@ const SignupPageLightPage = () => {
         classNames="fade"
        unmountOnExit
       >
-      <div className="bg-gray-100 border border-black-900 border-solid flex flex-col font-inter sm:gap-10 md:gap-10 gap-[138px] justify-start mx-auto pb-[120px] w-full">
-        <div className="flex flex-col items-center w-full">
+      <div className="bg-gray-100 border border-black-900 border-solid flex flex-col font-inter sm:gap-10 md:gap-10 gap-[138px] justify-start mx-auto w-full">
+        <div className="flex flex-col items-center w-full ">
         <div className="z-10 !sticky top-[0] overflow-block relative flex bg-red-A400 flex md:flex-col h-[90px] flex-row md:gap-5 items-start justify-end pb-1.5 px-1.5 w-full">
             <Img
               className="button common-pointer absolute h-[45px] w-[45px] left-5 md:mt-0 mt-[26px]"
@@ -109,10 +109,10 @@ const SignupPageLightPage = () => {
               </>
             </span>
           </Text>
-          <div className="flex flex-col items-center justify-start max-w-[921px] mt-28 mx-auto md:px-5 w-full">
+          <div className="flex flex-col items-center justify-start max-w-[921px] mt-[3%] mx-auto md:px-5 w-full">
             <div className="flex flex-col md:gap-10 gap-16 items-start justify-start w-full">
               <List
-                className="flex flex-col gap-16 items-center w-full"
+                className="flex flex-col gap-13 items-center w-full"
                 orientation="horizontal"
               >
                 {/* <div className="flex flex-1 md:flex-col flex-row md:gap-10 items-center justify-between my-0 w-full"> */}
@@ -144,7 +144,7 @@ const SignupPageLightPage = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col items-center mt-[-10px]  px-[160px] w-full">
+        <div className="flex flex-col items-center mt-[-5%] w-full">
         <Button
           className="common-pointer cursor-pointer font-yogi h-[50px] sm:text-2xl md:text-[26px] text-[28px] text-center tracking-[-0.14px] w-[158px]"
           onClick={() => {
@@ -162,6 +162,20 @@ const SignupPageLightPage = () => {
             완료
           </Button>
         </div>
+        <Text
+            className="leading-[100.00px] pl-[50px]  sm:text-[21px] md:text-[23px] text-[10px] text-black-900 tracking-[-0.13px] mt-[3%] w-full"
+            style={{ backgroundColor: 'gray', width: '100%' }}
+          >
+            <span className="text-black-900 font-yogi mt-[5%]" style={{ display: 'block', marginBottom: '8px' }}>
+              Made by HELLO00 Front 황성주
+            </span>
+            <span className="text-black-900 font-yogi mt-[1%]" style={{ display: 'block', marginBottom: '8px' }}>
+              Member: 공유경, 김명현, 김은혜, 박채나, 황성주
+            </span>
+            <span className="text-black-900 font-yogi mt-[2%] mb-[5%]" style={{ display: 'block' }}>
+              Studied at LG Hello Vision DX DATA SCHOOL 
+            </span>
+          </Text>
       </div>
       </CSSTransition>
     </>

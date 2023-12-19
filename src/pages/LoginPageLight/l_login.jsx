@@ -134,7 +134,7 @@ const handleLogin = async () => {
         classNames="fade"
        unmountOnExit
       >
-      <div className="bg-gray-100 border border-black-800 border-solid flex flex-col sm:gap-10 md:gap-10 gap-[156px] items-center justify-start mx-auto pb-[205px] w-full">
+      <div className="bg-gray-100 border border-black-800 border-solid flex flex-col sm:gap-10 md:gap-10 gap-[156px] items-center justify-start mx-auto w-full">
         <div className="z-10 !sticky top-[0] overflow-block h-[90px] relative flex bg-red-A400 flex md:flex-col flex-row md:gap-5 items-start justify-end pb-1.5 px-1.5 w-full">
 
             <Text className="absolute font-yogi font-lighter left-[2%] mt-[2%] md:text-2xl text-2xl text-white-A700 tracking-[-0.30px]">
@@ -193,6 +193,20 @@ const handleLogin = async () => {
             </Button>
           </div>
         </div>
+        <Text
+            className="leading-[100.00px] pl-[50px]  sm:text-[21px] md:text-[23px] text-[10px] text-black-900 tracking-[-0.13px] w-full"
+            style={{ backgroundColor: 'gray', width: '100%' }}
+          >
+            <span className="text-black-900 font-yogi mt-[5%]" style={{ display: 'block', marginBottom: '8px' }}>
+              Made by HELLO00 Front 황성주
+            </span>
+            <span className="text-black-900 font-yogi mt-[1%]" style={{ display: 'block', marginBottom: '8px' }}>
+              Member: 공유경, 김명현, 김은혜, 박채나, 황성주
+            </span>
+            <span className="text-black-900 font-yogi mt-[2%] mb-[5%]" style={{ display: 'block' }}>
+              Studied at LG Hello Vision DX DATA SCHOOL 
+            </span>
+          </Text>
       </div>
       </CSSTransition>
     </>

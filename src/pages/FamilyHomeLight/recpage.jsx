@@ -66,16 +66,16 @@ function FamilyHomeLightPage() {
   
   
   // 스크롤 위치
-  const homeButton = document.getElementById('home-button');
-  const dramaButton = document.getElementById('drama-button');
-  const movieButton = document.getElementById('movie-button');
-  const topButton = document.getElementById('top-button');
+  // const [homeButton, setHome] = useState('');
+  // const [dramaButton, setDrama] = useState('');
+  // const [movieButton, setMovie] = useState('');
+  // const [topButton, setTop] = useState('');
   
   
-  const recSection = document.getElementById('rec-page');
-  const dramaSection = document.getElementById('drama-page');
-  const movieSection = document.getElementById('movie-page');
-  const endSection = document.getElementById('end-page')
+  // const [recSection, setRecsection] = useState('');
+  // const [dramaSection, setDramasection] = useState('');
+  // const [movieSection, setMoviesection] = useState('');
+  // const [endSection, setEndsection] = useState('');
   
   
   //영화 데이터
@@ -432,66 +432,120 @@ function FamilyHomeLightPage() {
   const Rerec3 = () => {
     handleRerec(data1[1], setStartIndex3, setRecposter1, 'startIndex3');
   };
-
+  // const [recSection, setRecSection] = useState(null);
+  // const [dramaSection, setDramaSection] = useState(null);
+  // const [movieSection, setMovieSection] = useState(null);
+  // const [endSection, setEndSection] = useState(null);
   
-  const handleScroll = () => {
-    const scrollPosition = window.scrollY;
-    // const homeButton = document.getElementById('home-button');
-    // const dramaButton = document.getElementById('drama-button');
-    // const movieButton = document.getElementById('movie-button');
-    // const topButton = document.getElementById('top-button');
+  const homeButton = document.getElementById('home-button');
+  const dramaButton = document.getElementById('drama-button');
+  const movieButton = document.getElementById('movie-button');
+  const topButton = document.getElementById('top-button');
+  
+  // useEffect(() => {
+  //   setRecSection(document.getElementById('rec-page'));
+  //   setDramaSection(document.getElementById('drama-page'));
+  //   setMovieSection(document.getElementById('movie-page'));
+  //   setEndSection(document.getElementById('end-page'));
+  // }, []);
+
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const scrollPosition = window.scrollY;
+  //   const homeButton = document.getElementById('home-button');
+  //   const dramaButton = document.getElementById('drama-button');
+  //   const movieButton = document.getElementById('movie-button');
+  //   const topButton = document.getElementById('top-button');
     
     
-    // const recSection = document.getElementById('rec-page');
-    // const dramaSection = document.getElementById('drama-page');
-    // const movieSection = document.getElementById('movie-page');
-    // const endSection = document.getElementById('end-page');
+    const recSection = document.getElementById('rec-page');
+    const dramaSection = document.getElementById('drama-page');
+    const movieSection = document.getElementById('movie-page');
+    const endSection = document.getElementById('end-page');
+  //   // setHome(document.getElementById('home-button'));
+  //   // setDrama(document.getElementById('drama-button'));
+  //   // setMovie(document.getElementById('movie-button'));
+  //   // setTop(document.getElementById('top-button'));
+    
+    
+  //   setRecsection(document.getElementById('rec-page'));
+  //   setDramasection(document.getElementById('drama-page'));
+  //   setMoviesection(document.getElementById('movie-page'));
+  //   // setEndsection(document.getElementById('end-page'));
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      if (recSection && dramaSection && movieSection && endSection) {
+      if (scrollPosition >= 0 && scrollPosition < recSection.offsetTop - 100) {
+        topButton.classList.add('scroll-background');
+      } else {
+        topButton.classList.remove('scroll-background');
+      }
+
+      if (scrollPosition >= recSection.offsetTop -10 && scrollPosition < dramaSection.offsetTop - 100) {
+        homeButton.classList.add('scroll-background');
+      } else {
+        homeButton.classList.remove('scroll-background');
+      }
+      
+      if (scrollPosition >= dramaSection.offsetTop -100 && scrollPosition < movieSection.offsetTop -100) {
+        dramaButton.classList.add('scroll-background');
+      } else {
+        dramaButton.classList.remove('scroll-background');
+      }
+      
+      if (scrollPosition >= movieSection.offsetTop - 100 && scrollPosition <= endSection.offsetTop) {
+        movieButton.classList.add('scroll-background');
+      } else {
+        movieButton.classList.remove('scroll-background');
+      }
+
     
 
-    if (scrollPosition >= 0 && scrollPosition < recSection.offsetTop - 100) {
-      topButton.classList.add('scroll-background');
-    } else {
-      topButton.classList.remove('scroll-background');
-    }
-
-    if (scrollPosition >= recSection.offsetTop -10 && scrollPosition < dramaSection.offsetTop - 100) {
-      homeButton.classList.add('scroll-background');
-    } else {
-      homeButton.classList.remove('scroll-background');
-    }
-    
-    if (scrollPosition >= dramaSection.offsetTop -100 && scrollPosition < movieSection.offsetTop -100) {
-      dramaButton.classList.add('scroll-background');
-    } else {
-      dramaButton.classList.remove('scroll-background');
-    }
-    
-    if (scrollPosition >= movieSection.offsetTop - 100 && scrollPosition <= endSection.offsetTop) {
-      movieButton.classList.add('scroll-background');
-    } else {
-      movieButton.classList.remove('scroll-background');
-    }
-  };
-
+// }, []);
+    }};
   
   const scrollToRec = () => {
-
-    dramaSection.scrollIntoView({ behavior: 'smooth' });
+    
+    recSection.scrollIntoView({ behavior: 'smooth' });
+    console.log('recSection:', recSection);
   };
 
   const scrollToDrama = () => {
-    const dramaSection = document.getElementById('drama-page');
+    // const dramaSection = document.getElementById('drama-page');
     dramaSection.scrollIntoView({ behavior: 'smooth' });
   };
   const scrollToMovie = () => {
-    const dramaSection = document.getElementById('movie-page');
-    dramaSection.scrollIntoView({ behavior: 'smooth' });
+    // const movieSection = document.getElementById('movie-page');
+    movieSection.scrollIntoView({ behavior: 'smooth' });
   };
-  
 
+  // const scrollToRec = () => {
+  //   setTimeout(() => {
+
+  //       recSection.scrollIntoView({ behavior: 'smooth' });
+      
+  //   }, 100); // 100ms 지연 시간 예시
+  // };
   
+  // const scrollToDrama = () => {
+  //   setTimeout(() => {
+     
+  //       dramaSection.scrollIntoView({ behavior: 'smooth' });
+      
+  //   }, 100); // 100ms 지연 시간 예시
+  // };
+  
+  // const scrollToMovie = () => {
+  //   setTimeout(() => {
+      
+  //       movieSection.scrollIntoView({ behavior: 'smooth' });
+      
+  //   }, 100); // 100ms 지연 시간 예시
+  // };
   // 스크롤 이벤트에 핸들러 추가
   window.addEventListener('scroll', handleScroll);
+
+
 
   
 
@@ -499,11 +553,11 @@ function FamilyHomeLightPage() {
     <>
       <CSSTransition
         in={showPage}
-        timeout={1500}
+        timeout={1000}
         classNames="fade"
        unmountOnExit
       >
-      <div className="bg-gray-100 border border-black-900 border-solid flex flex-col font-inter items-center justify-start mx-auto w-full pb-[10%]">
+      <div className="bg-gray-100 border border-black-900 border-solid flex flex-col font-inter items-center justify-start mx-auto w-full">
         <div className="flex flex-col items-center justify-start w-full">
           <div className="z-10 !sticky top-[0] overflow-block relative flex bg-red-A400 flex md:flex-col flex-row md:gap-5 items-start justify-end pb-1.5 px-1.5 w-full">
             <Img
@@ -1010,8 +1064,25 @@ function FamilyHomeLightPage() {
             </div>
             
             )}
+            
           </div>
         </div>
+          
+            <Text
+            className="leading-[100.00px] pl-[50px]  sm:text-[21px] md:text-[23px] text-[10px] text-black-900 tracking-[-0.13px] w-full"
+            style={{ backgroundColor: 'gray', width: '100%' }}
+          >
+            <span className="text-black-900 font-yogi mt-[3%]" style={{ display: 'block', marginBottom: '8px' }}>
+              Made by HELLO00 Front 황성주
+            </span>
+            <span className="text-black-900 font-yogi mt-[1%]" style={{ display: 'block', marginBottom: '8px' }}>
+              Member: 공유경, 김명현, 김은혜, 박채나, 황성주
+            </span>
+            <span className="text-black-900 font-yogi mt-[2%] mb-[3%]" style={{ display: 'block' }}>
+              Studied at LG Hello Vision DX DATA SCHOOL 
+            </span>
+          </Text>
+
       </div>
       </CSSTransition>
     </>
