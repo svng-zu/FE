@@ -1,13 +1,45 @@
 import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import useDebounce from './useDebounce';
+
+function Search(props) {
+  const [search, setSearch] = useState('');
+  const [vods, setVods] = useState([]);
+
+  const debounceValue = useDebounce(search, 300);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`https://hello00back.net/search/${debounceValue}`);
+        if (response.status === 200) {
+          setVods(response);
+          console.log(response);
+          console.log(debounceValue);
+        }
+      } catch (error) {
+        // Handle errors here
+        console.error('There has been a problem with your axios operation:', error);
+      }
+    };
+
+    if (debounceValue) {
+      fetchData();
+    }
+  }, [debounceValue]);
+
+  const handleInputChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  return (
+    <div>
+      <input type="text" value={search} onChange={handleInputChange} />
+      {/* Render your vods here */}
+    </div>
+  );
+}
+
+export default Search;
 
 
-// axios를 사용한 예시
-axios.get('https://hello00back.net/search/?Searchword=안녕')
-  .then((response) => {
-    // 데이터 처리
-    console.log(response);
-  })
-  .catch((error) => {
-    // 에러 처리
-    console.error('There has been a problem with your axios operation:', error);
-  });

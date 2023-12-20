@@ -129,7 +129,7 @@ const FrontpageLightPage = () => {
             </div>
             <div
               className="common-pointer bg-white-A700 flex md:flex-1 flex-col items-center justify-end outline outline-[1px] outline-white-A700_4c pt-3 md:px-5 px-12 sm:px-5 rounded-[40px] shadow-bs w-[50%] h-[50%] md:w-full"
-              onClick={() => navigate("/Simple")}
+              onClick={() => navigate("/simple")}
             >
               <Text
                 className="mt-[70px] md:text-5xl text-[100px] text-red-A400 tracking-[0.16px]"

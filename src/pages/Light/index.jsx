@@ -70,6 +70,8 @@ function LightPage() {
     route = '/familyhomelight/movie';
   } else if (page === '2') {
     route = '/familyhomelight/drama';
+  } else if (page === '4') {
+    route = '/simple';
   }
 
 // 클릭 이벤트 핸들러

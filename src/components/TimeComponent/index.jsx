@@ -15,7 +15,7 @@ const TimeComponent = () => {
 
   return (
     <div>
-      <p>{formattedTime}</p>
+      {formattedTime}
     </div>
   );
 };

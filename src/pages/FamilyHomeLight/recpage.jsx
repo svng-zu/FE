@@ -377,6 +377,7 @@ function FamilyHomeLightPage() {
 
     });
     if (result.status === 200){
+      const startIndex3 = localStorage.getItem('startIndex3');
       const data1 = result.data.data;
       const recposter1 = (data1[1].slice(startIndex3, startIndex3 + 10)).map(item=> item);
       setRecposter1(recposter1);
@@ -390,16 +391,16 @@ function FamilyHomeLightPage() {
   }, [access, startIndex3]);
 
 
-  const handleRerec = (dataArr, setStartIndex, setPoster, localStorageKey) => {
+  const handleRerec = (dataArr, setStarrtIndex, setPoster, localStorageKey) => {
 
     if (startIndex < 90) {
       const currentIndex = startIndex + 10;
-      setStartIndex(currentIndex);
+      setStarrtIndex(currentIndex);
       const items = dataArr.slice(currentIndex, currentIndex + 10).map(item => item);
       setPoster(items);
       localStorage.setItem(localStorageKey, currentIndex);
     } else {
-      setStartIndex(0);
+      setStarrtIndex(0);
       const items = dataArr.slice(0, 10).map(item => item);
       setPoster(items);
       localStorage.setItem(localStorageKey, 0);
@@ -409,15 +410,6 @@ function FamilyHomeLightPage() {
   const Rerec = () => {
     handleRerec(data[0], setStartIndex, setGenposter, 'startIndex');
   };
-
-  // console.log(genposter);
- // 장르별
- // 관련 추천
-  // setGenposter(((data11[0].slice(startIndex, startIndex + 10)).map(item => item)));
-  // setRecposter1(((data1[1].slice(startIndex3, startIndex3 + 10)).map(item=> item))); 
-  // // 드라마 추천 리스트  4
-  // setUserposter(((data[2].slice(startIndex1, startIndex1 + 10)).map(item=> item))); // 사용자 개인
-  // setRecposter(((data[3].slice(startIndex2, startIndex2 + 10)).map(item=> item)));
 
 
   
