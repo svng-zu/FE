@@ -128,12 +128,13 @@ const Simplemode = () => {
                       />
                       <div className="absolute bottom-[5%] flex flex-col md:gap-10 gap-[170px] inset-x-[0] justify-center mx-auto w-[90%]">
                       <div className="bg-opacity-30">
-                        <Text
+                        <div
                           className="absolute bg-gray-500  left-[5%] mt-[-17%] bg-opacity-50 md:ml-[0] sm:text-[17px] p-[5px] md:text-[19px] text-[21px] font-yogi text-white-A700 tracking-[-0.10px]"
                           size="yogi"
                         >
-                          오늘처럼 추운날.. <br/> 간식으로 군구마는 어때요?
-                        </Text>
+                          오늘처럼 추운날..<br />
+                          간식으로 군구마는 어때요?
+                        </div>
 
                       </div>
                         <div className="flex flex-row items-start justify-between w-full">

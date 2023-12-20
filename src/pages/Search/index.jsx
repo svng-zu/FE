@@ -11,7 +11,7 @@ function Search(props) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://hello00back.net/search/${debounceValue}`);
+        const response = await axios.get(`https://hello00back.net/search/?Searchword=${debounceValue}`);
         if (response.status === 200) {
           setVods(response);
           console.log(response);
@@ -22,12 +22,12 @@ function Search(props) {
         console.error('There has been a problem with your axios operation:', error);
       }
     };
-
+    
     if (debounceValue) {
       fetchData();
     }
   }, [debounceValue]);
-
+  console.log(debounceValue);
   const handleInputChange = (e) => {
     setSearch(e.target.value);
   };

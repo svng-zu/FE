@@ -582,11 +582,12 @@ function FamilyHomeLightPage() {
                     className="search"
                     src="images/img_search.svg"
                     alt="rewind"
-                    onClick={ () => alert("현재 검색 기능은 준비 중입니다.")}
+                    onClick={() => navigate('/search')}
                   />
                   <Text
                     className="ml-1 md:ml-[0] text-[15px] text-center text-gray-800 sm:text-lg md:text-xl tracking-[-2px]"
                     size="txtYogi"
+                    onClick={() => navigate('/search')}
                   >
                     검색
                   </Text>
