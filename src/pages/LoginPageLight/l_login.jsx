@@ -6,7 +6,7 @@ import C1LoginPageLightIdinput from "components/C1LoginPageLightIdinput/login_in
 import { CSSTransition } from "react-transition-group";
 // import { useCookies } from 'react-cookie';
 import 'styles/animation.css'
-
+import 'styles/img.css'
 const LoginPageLightPage = () => {
   const navigate = useNavigate();
   const [accessToken, setAccessToken] = useState('');
@@ -172,7 +172,7 @@ const handleLogin = async () => {
               tabIndex={0}
             >
               <Button
-                className="common-pointer cursor-pointer font-yogi h-[50px] text-center text-lg tracking-[-0.09px] w-[175px]"
+                className="button2 common-pointer cursor-pointer font-yogi h-[50px] text-center text-lg tracking-[-0.09px] w-[175px]"
                 shape="round"
                 color="blue_gray_100"
                 size="lg"

@@ -82,7 +82,7 @@ const FrontpageLightPage = () => {
             HELLO00 TV를 시청할 모드를 선택해주세요.
           </Text>
           <div className="flex md:flex-col flex-row md:gap-10 gap-[90px] items-center justify-start max-w-[1100px] mt-[30px] mx-auto md:px-5 w-full">
-            <div className="md:h-[640px] h-[640px] relative w-[50%] md:w-full">
+            <div className="button2 md:h-[640px] h-[640px] relative w-[50%] md:w-full">
               <div
                 className="common-pointer absolute bg-white-A700 flex flex-col h-full inset-y-[0] items-center justify-center left-[0] my-auto outline outline-[1px] outline-white-A700_4c p-[27px] sm:px-5 rounded-[40px] shadow-bs h-[95%]"
                 onClick={() => navigate("/familyhomelight")}
@@ -128,7 +128,7 @@ const FrontpageLightPage = () => {
               </div>
             </div>
             <div
-              className="common-pointer bg-white-A700 flex md:flex-1 flex-col items-center justify-end outline outline-[1px] outline-white-A700_4c pt-3 md:px-5 px-12 sm:px-5 rounded-[40px] shadow-bs w-[50%] h-[50%] md:w-full"
+              className="button2 common-pointer bg-white-A700 flex md:flex-1 flex-col items-center justify-end outline outline-[1px] outline-white-A700_4c pt-3 md:px-5 px-12 sm:px-5 rounded-[40px] shadow-bs w-[50%] h-[50%] md:w-full"
               onClick={() => navigate("/simple")}
             >
               <Text

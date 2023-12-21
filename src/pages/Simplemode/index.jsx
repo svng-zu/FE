@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Text, Img, Weather, Button, TimeComponent, VideoList } from "components";
 import axios from 'axios';
-
+import 'styles/img.css'
 const Simplemode = () => {
   const [selectedButton, setSelectedButton] = useState(1);
   const [data, setData] = useState(null);
@@ -44,6 +44,20 @@ const Simplemode = () => {
   } else if (selectedButton === 3) {
     buttonContent = '일일 드라마 추천';
   }
+
+  const handleScroll = (buttonId) => {
+    window.scrollTo({
+      top: 550,
+      behavior: 'smooth' // 부드럽게 스크롤되도록 함
+    });
+    handleButtonClick(buttonId);
+  };
+  const toTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
   return (
     <>
       <div className="flex flex-col font-inter items-center justify-end mx-auto w-full">
@@ -74,10 +88,14 @@ const Simplemode = () => {
             </div>
           </div>
               <div className="flex flex-col items-start justify-start w-[85%] md:w-full">
-                <div className="flex md:flex-col flex-row md:gap-10 items-center justify-between w-full">
+
+                <div className="flex md:flex-col mt-[4%] md:gap-10 items-center justify-between w-full">
                   
-                  <button className="bg-blue-100 flex md:flex-1 flex-col md:gap-10 gap-[142px] items-center justify-start mr-[2%] p-[18px] rounded-[47px] w-1/4 md:w-full"
-                  onClick={() => handleButtonClick(1)}>
+                  <button className="button2 bg-blue-100 flex md:flex-1 flex-col md:gap-10 gap-[142px] items-center justify-start mr-[2%] p-[18px] rounded-[47px] w-1/4 md:w-full"
+                  style={{
+                    boxShadow: '0 0 5px 3px rgba(5, 5, 5, 0.5)',
+                    }}                  
+                  onClick={() => handleScroll(1)}>
                     <Text
                       className="mt-[11px] sm:text-[31px] md:text-[33px] text-[35px] text-black-900 tracking-[-0.18px] font-yogi"
                       
@@ -85,13 +103,16 @@ const Simplemode = () => {
                       트로트
                     </Text>
                     <Img
-                      className="h-[91px] w-[100%] sm:h-auto mb-[29px] object-cover w-full"
+                      className="h-[100%] w-[100%] sm:h-auto mb-[29px] object-cover w-full"
                       src="images/img_image41.png"
                       alt="imageFortyOne"
                     />
                   </button>
-                  <button className="bg-amber-200 flex md:flex-1 flex-col md:gap-10 gap-[76px] items-center justify-start mr-[2%]  p-[18px] rounded-[47px] w-1/4 md:w-full"
-                  onClick={() => handleButtonClick(2)}>
+                  <button className="button2 bg-amber-200 flex  h-[150%] md:flex-1 flex-col md:gap-10 gap-[76px] items-center justify-start mr-[2%]  p-[18px] rounded-[47px] w-1/4 md:w-full"
+                  style={{
+                    boxShadow: '0 0 5px 3px rgba(0, 0, 0, 0.5)',
+                    }}                  
+                  onClick={() => handleScroll(2)}>
                     
                     <Text
                       className="mt-3 sm:text-[31px] font-yogi md:text-[33px] text-[35px] text-black-900 tracking-[-0.18px]"
@@ -100,13 +121,16 @@ const Simplemode = () => {
                       건강/요리
                     </Text>
                     <Img
-                      className="h-[189px] md:h-auto object-cover w-[65%] sm:w-full"
+                      className="h-[100%] md:h-auto object-cover w-[65%] sm:w-full"
                       src="images/img_20231218.png"
                       alt="20231218"
                     />
                   </button>
-                  <div className="bg-orange-100 flex md:flex-1 flex-col gap-[39px] items-center justify-end p-[18px] mr-[2%]  rounded-[47px] w-1/4 md:w-full"
-                  onClick={() => handleButtonClick(3)}>
+                  <div className="button2 bg-orange-100 flex  h-[150%] md:flex-1 flex-col gap-[39px] items-center justify-end p-[18px] mr-[2%]  rounded-[47px] w-1/4 md:w-full"
+                    style={{
+                    boxShadow: '0 0 5px 3px rgba(0, 0, 0, 0.5)',
+                    }}
+                    onClick={() => handleScroll(3)}>
                     <Text
                       className="mt-3 sm:text-[31px] font-yogi md:text-[33px] text-[35px] text-black-900 tracking-[-0.18px]"
                       
@@ -117,12 +141,17 @@ const Simplemode = () => {
                       className="h-[226px] md:h-auto object-cover w-[78%] sm:w-full"
                       src="images/img_m021t0206dtv.png"
                       alt="m021t0206dtv"
+                      
                     />
                   </div>
-                  <div className="h-[340px] relative w-1/4 md:w-full">
-                    <div className="h-[340px] m-auto w-full">
+                  <div className="h-[150%] relative w-1/4 md:w-full">
+                    <div className="button2 h-[150%] m-auto w-full">
                       <Img
-                        className="h-[340px] m-auto object-cover rounded-[47px] w-full"
+                        className="h-[100%] object-cover rounded-[47px] w-full"         
+                          style={{
+
+                          boxShadow: '0 0 5px 3px rgba(0, 0, 0, 0.5)',
+                        }}
                         src="images/img_rectangle198.png"
                         alt="rectangle198"
                       />
@@ -152,9 +181,12 @@ const Simplemode = () => {
 
                   </div>
                 </div>
-                <div>
+                <div className='mt-[7%] mb-[1%] bg-lightgray-300 w-full pt-[2%] pb-[2%]'
+                          style={{
+                          boxShadow: '0 0 5px 3px rgba(5, 5, 5, 0.2)',
+                          }}  >
                 <Text
-                  className="mt-[20%] mb-[10%] sm:text-[33px] md:text-[39px] font-yogi text-[43px] text-black-900 tracking-[-0.21px]"
+                  className="sm:text-[33px] ml-[1%] md:text-[39px] font-yogi text-[40px] text-black-900 tracking-[-0.21px]"
 
                 >
                   {buttonContent}
@@ -163,6 +195,20 @@ const Simplemode = () => {
                 <div className='w-full'>
                  <VideoList data={data}></VideoList>
                  </div>
+                 <button className='button1' style ={{    position: 'fixed',
+                  bottom: '60px',
+                  right: '40px',
+                  backgroundColor: 'red',
+                  borderRadius: '50%',
+                  border: '2px solid rgba(255, 255, 255, 0.3)',
+                  width: '70px',
+                  height: '70px',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  color: 'white',
+                  fontFamily: 'yogi, sans-serif',
+                  cursor: 'pointer' }} onClick={toTop}>TOP</button>
               </div>
             </div>
           </div>

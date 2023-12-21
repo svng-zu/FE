@@ -1060,7 +1060,21 @@ function FamilyHomeLightPage() {
             
           </div>
         </div>
-          
+        <button className='button1' style ={{    position: 'fixed',
+                  bottom: '60px',
+                  right: '40px',
+                  backgroundColor: 'red',
+                  borderRadius: '50%',
+                  border: '2px solid rgba(255, 255, 255, 0.3)',
+                  width: '70px',
+                  height: '70px',
+                  display: 'flex',
+                  zIndex:999,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  color: 'white',
+                  fontFamily: 'yogi, sans-serif',
+                  cursor: 'pointer' }} onClick={handleClick}>TOP</button>
             <Text
             className="leading-[100.00px] pl-[50px]  sm:text-[21px] md:text-[23px] text-[10px] text-black-900 tracking-[-0.13px] w-full"
             style={{ backgroundColor: 'gray', width: '100%' }}

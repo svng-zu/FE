@@ -33,3 +33,11 @@
   .button1:active {
     transform: scale(1.5); /* 버튼의 크기를 약간 키워주는 변화 */
   }
+
+  .button2 {
+    transition: transform 0.3s ease;
+  }
+  .button2:hover,
+  .button2:active {
+    transform: scale(1.05); /* 버튼의 크기를 약간 키워주는 변화 */
+  }
