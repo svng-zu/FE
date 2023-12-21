@@ -47,3 +47,12 @@
   .top:active {
     transform: scale(1.5); /* 버튼의 크기를 약간 키워주는 변화 */
   }
+
+  .detail1 {
+    transition: transform 0.3s ease; /* 변화가 발생할 때 애니메이션 속성 설정 */
+  }
+  
+  .detail1:hover,
+  .detail1:active {
+    transform: scale(1.1); /* 버튼의 크기를 약간 키워주는 변화 */
+  }

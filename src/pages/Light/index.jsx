@@ -104,8 +104,9 @@ const handleClick = () => {
       <div style={{postion: 'relative', display: 'flex', overflowX: 'auto', marginLeft: '5%', marginRight: '-400%', minWidth: '80%', maxWidth: '80%'}} ref={containerRef}>
         {simposter.map((item, index) => (
           <img
+            className="detail1"
             key={index}
-            style={{ width: '220px', height: '270px', marginRight: '10px', border: '2px solid #ccc', borderRadius: '2px', cursor: 'pointer' }}
+            style={{ width: '270px', height: '330px', marginRight: '10px', border: '2px solid #ccc', borderRadius: '2px', cursor: 'pointer' }}
             src={item[2]}
             alt={`${index}`}
             onClick={() => Click(item[0])}
@@ -125,7 +126,8 @@ const handleClick = () => {
         classNames="fade"
        unmountOnExit
       >
-      <div className="bg-gray-100 border border-black-900 border-solid flex flex-col font-inter items-center justify-start mx-auto w-full">
+      <div>
+      <div className="bg-gray-100 border border-black-900 border-solid flex flex-col font-inter items-center justify-start mx-auto h-full w-full">
         <div className="flex flex-col items-center justify-start w-full">
           <div className="z-10 !sticky top-[0] overflow-block relative flex bg-red-A400 flex md:flex-col flex-row md:gap-5 items-start justify-end pb-1.5 px-1.5 w-full">
             <Img 
@@ -158,7 +160,7 @@ const handleClick = () => {
               ) : ( 
 
           
-          <div className="bg-gradient flex flex-col items-start justify-end p-[45px] w-full">
+          <div className="bg-gradient flex flex-col items-start justify-end pt-[3%] w-full">
 
             <div className="flex flex-col items-center justify-start md:ml-[0] w-[95%] md:w-full">
             
@@ -285,30 +287,32 @@ const handleClick = () => {
                       </div>
                   
                   </div>
+                  <Text
+                    className="leading-[100.00px] pl-[50px] sm:text-[21px] md:text-[23px] text-[10px] text-black-900 tracking-[-0.13px] w-full"
+                    style={{ backgroundColor: 'gray', width: '150%' }}
+                  >
+                    <span className="text-black-900 font-yogi mt-[3%]" style={{ display: 'block', marginBottom: '8px' }}>
+                      Made by HELLO00 Front 황성주
+                    </span>
+                    <span className="text-black-900 font-yogi mt-[1%]" style={{ display: 'block', marginBottom: '8px' }}>
+                      Member: 공유경, 김명현, 김은혜, 박채나, 황성주
+                    </span>
+                    <span className="text-black-900 font-yogi mt-[2%] mb-[3%]" style={{ display: 'block' }}>
+                      Studied at LG Hello Vision DX DATA SCHOOL 
+                    </span>
+                  </Text>
+              </div>
+                )} 
+              </div>
 
-            
-            </div>
-            
-            )}
-          
-        </div>
-        <Text
-            className="leading-[100.00px] pl-[50px]  sm:text-[21px] md:text-[23px] text-[10px] text-black-900 tracking-[-0.13px] w-full"
-            style={{ backgroundColor: 'gray', width: '100%' }}
-          >
-            <span className="text-black-900 font-yogi mt-[3%]" style={{ display: 'block', marginBottom: '8px' }}>
-              Made by HELLO00 Front 황성주
-            </span>
-            <span className="text-black-900 font-yogi mt-[1%]" style={{ display: 'block', marginBottom: '8px' }}>
-              Member: 공유경, 김명현, 김은혜, 박채나, 황성주
-            </span>
-            <span className="text-black-900 font-yogi mt-[2%] mb-[3%]" style={{ display: 'block' }}>
-              Studied at LG Hello Vision DX DATA SCHOOL 
-            </span>
-          </Text>
-      </div>
+               
+              </div>
       
-      </CSSTransition>
+
+
+              </div>
+                
+          </CSSTransition>
     </>
   )
 }

@@ -15,3 +15,4 @@ export { Drama } from "./drama";
 export { Mov } from "./mov";
 export { Member } from "./Member";
 export { VideoList } from "./VideoList";
+export { Searchlist } from "./Searchlist";
