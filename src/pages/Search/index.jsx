@@ -31,7 +31,7 @@ function Search(props) {
   const handleInputChange = (e) => {
     setSearch(e.target.value);
   };
-
+  console.log(vods);
   return (
     <div>
       <input type="text" value={search} onChange={handleInputChange} />
