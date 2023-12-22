@@ -138,12 +138,12 @@ function FamilyHomeLightPage() {
           return; // 로그인 페이지로 이동 후 함수 종료
         }
 
-        console.log('access token 은', access);
+        // console.log('access token 은', access);
         setLoading(true);
 
         const gen = JSON.parse(localStorage.getItem('genre'));
         const genre = gen ? gen.join(',') : null;
-        console.log(genre);
+        // console.log(genre);
 
 
 
@@ -171,19 +171,20 @@ function FamilyHomeLightPage() {
         });
 
         if (response.status === 200 && response1.status === 200 && response2.status === 200) {
-          console.log("여긴 문제가 아니야")
+          // console.log("여긴 문제가 아니야")
           setData(response.data.data);
           setData1(response1.data.data);
 
           const data = response.data.data;
           const current = response.data.current;
-          console.log(current);
+          // console.log(current);
 
           const rankposter = data[1].map(item => item);
+
           const yetItems = data[4]
 
 
-          console.log(data);
+          // console.log(data);
 
           // const rankposter = rankItems.map(item => item); //주간 랭킹
 
@@ -239,12 +240,16 @@ function FamilyHomeLightPage() {
           const ctcl5Items1 = data2[1][4];
           const ctcl6Items1 = data2[1][5];
           const ctcl7Items1 = data2[1][6];
-          console.log(response2.data);
+          // console.log(response2.data);
           const ctclnames1 = response2.data.genres; //장르 데이터
 
 
 
           const rankposter11 = rankItems2.map(item => item);
+          localStorage.setItem('rank1', JSON.stringify(rankposter));
+          localStorage.setItem('rank2', JSON.stringify(rankposter1));
+          localStorage.setItem('rank3', JSON.stringify(rankposter11));
+
           const ctcl11 = ctcl1Items1.map(item => item);
           const ctcl21 = ctcl2Items1.map(item => item);
           const ctcl31 = ctcl3Items1.map(item => item);
@@ -263,6 +268,8 @@ function FamilyHomeLightPage() {
           setCtcl61(ctcl61);
           setCtcl71(ctcl71);
           setCtclname1(ctclname1);
+
+        
 
 
 

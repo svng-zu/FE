@@ -5,10 +5,10 @@
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
     outline: none;
     border: none;
-    background: rgb(75, 78, 90);
+    background: rgb(75, 78, 90, 0.6);
     color: rgb(61, 62, 64);
-    height: 30%;
-    padding-left: calc(2.5vw + 24px);
+    height: 40%;
+    padding-left: calc(2.5vw + 50px);
     width: 100vw;
   }
   

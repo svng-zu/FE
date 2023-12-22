@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import useDebounce from './useDebounce';
 import { useNavigate } from 'react-router-dom';
-import { Img, Text, Weather, TimeComponent, Searchlist } from "components";
+import { Img, Text, Weather, TimeComponent, Searchlist, Default } from "components";
 // import ReactModal from 'react-modal';
 import axios from 'axios';
 import 'styles/input.css';
@@ -13,11 +13,13 @@ function Search() {
   const [vods, setVods] = useState([]);
   const debounceValue = useDebounce(search, 300);
   const navigate = useNavigate();
-
-
+  localStorage.setItem('page', 5);
+  const rank1 = ((JSON.parse(localStorage.getItem('rank1'))).slice(7)).map(item => item);
+  const rank2 = ((JSON.parse(localStorage.getItem('rank2'))).slice(7)).map(item => item);
+  const rank3 = ((JSON.parse(localStorage.getItem('rank3'))).slice(7)).map(item => item);
   const handleInputChange = (e) => {
     setSearch(e.target.value);
-    console.log(e.target.value)
+    // console.log(e.target.value)
   };
 
 
@@ -26,21 +28,15 @@ function Search() {
       console.log(debounceValue);
       try {
         const response = await axios.get(`https://hello00back.net/search/?Searchword=${debounceValue}`);
-     
+
         if (response.status === 200) {
           const videos = response.data.data;
-          console.log(videos);
+          // console.log(videos);
           console.log(debounceValue);
 
-          if (videos.length >= 20) {
-
-            setVods((videos.slice(20)).map(item => item));
-          }
-          if (videos.length === 0) {
-            setVods([]);
-          } else {
-            setVods(videos.map(item => item));
-          }
+          let limitedVods = (videos.slice(0, 21)).map(item => item); // Limit the videos to 20 elements
+          console.log(limitedVods);
+          setVods(limitedVods); // Set the state with the limited videos array
 
         } else {
           console.log("response 오류")
@@ -55,7 +51,11 @@ function Search() {
 
   return (
     <>
-      <div className="bg-gray-100 border border-black-900 border-solid flex flex-col font-yogi justify-start mx-auto h-[100vh] w-full">
+      <div className="bg-gray-100 border border-black-900 border-solid flex flex-col font-yogi justify-start mx-auto w-full h-100vh" style={{
+        backgroundSize: 'cover', // 배경을 요소에 맞게 확장
+        backgroundRepeat: 'no-repeat', // 배경 반복 없음
+        backgroundAttachment: 'fixed', // 배경 고정
+      }}>
         <div className="flex flex-col justify-start w-full">
           <div className="z-10 !sticky top-[0] overflow-block relative flex bg-red-A400 flex md:flex-col flex-row md:gap-5 items-start justify-end pb-1.5 px-1.5 w-full">
             <Img
@@ -86,18 +86,35 @@ function Search() {
               type="text"
               value={search}
               onChange={handleInputChange}
-              style={{ width: '100%', height: '16%', display: 'flex', backgroundColor: 'rgb(175, 178, 190, 0.8)' }}
-              className='relative !sticky !h-[140%] input-search text-[45px] pl-10'
+              style={{ width: '100%', minHeight: '120px', display: 'flex', backgroundColor: 'rgb(175, 178, 190, 0.5)' }}
+              className='relative !sticky input-search text-[45px] pl-10'
               placeholder="제목, 캐릭터 또는 장르로 검색하세요"
             />
           </div>
 
-          <div className='ml-[5%] mt-[5%] relative left-0 flex flex-col'>
-            {vods.length > 0 ? (
+          <div className='ml-[5.5%] mt-[2%] relative left-0 flex flex-col'>
+            {search === '' ? (
+              <div className='pb-[50%]'>
+                <div className='font-yogi text-[23px]'>
+                  주간 베스트
+                  <Default poster={rank1} ></Default>
+                </div>
+                <div className='font-yogi text-[23px]'>
+                  드라마 베스트
+                  <Default poster={rank2} ></Default>
+                </div>
+                <div className='font-yogi text-[23px]'>
+                  영화 베스트
+                  <Default poster={rank3} ></Default>
+                </div>
+              </div>
+            ) : vods.length > 0 ? (
+              <div className='pb-[50%]'>
+                <Searchlist rankposter={vods} />
+              </div>
+            ) : (
+              <div className='pb-[50%]'>입력한 "{search}"에 대한 결과가 없습니다.</div>
 
-              <Searchlist rankposter={vods} />
-            ) : vods.length === 0 && (
-              <div>입력한 검색에 대한 결과가 없습니다.</div>
             )}
           </div>
         </div>

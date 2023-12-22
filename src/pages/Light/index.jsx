@@ -72,6 +72,8 @@ function LightPage() {
     route = '/familyhomelight/drama';
   } else if (page === '4') {
     route = '/simple';
+  } else if (page === '5') {
+    route = '/familyhomelight/search';
   }
 
 // 클릭 이벤트 핸들러
