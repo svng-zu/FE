@@ -2,23 +2,33 @@ import React, { useState, useEffect } from 'react';
 import useDebounce from './useDebounce';
 import { useNavigate } from 'react-router-dom';
 import { Img, Text, Weather, TimeComponent, Searchlist, Default } from "components";
+import { CSSTransition } from "react-transition-group";
 // import ReactModal from 'react-modal';
 import axios from 'axios';
 import 'styles/input.css';
+import 'styles/animation.css';
 
 
 
 function Search() {
   const [search, setSearch] = useState('');
   const [vods, setVods] = useState([]);
+  const [showPage, setShowPage] = useState(false);
   const debounceValue = useDebounce(search, 300);
   const navigate = useNavigate();
   localStorage.setItem('page', 5);
 
+
+  useEffect(( )=> {
+    setShowPage(true);
+  }, [search]);
   const name = localStorage.getItem('name');
   const rank1 = ((JSON.parse(localStorage.getItem('rank1'))).slice(7)).map(item => item);
   const rank2 = ((JSON.parse(localStorage.getItem('rank2'))).slice(7)).map(item => item);
   const rank3 = ((JSON.parse(localStorage.getItem('rank3'))).slice(7)).map(item => item);
+  
+
+
   const handleInputChange = (e) => {
     setSearch(e.target.value);
     // console.log(e.target.value)
@@ -30,11 +40,11 @@ function Search() {
   } else {
     route = '/familyhomelight';
   }
-  
-// 클릭 이벤트 핸들러
-const handleClick = () => {
-  navigate(route); // 설정된 경로로 이동
-};
+
+  // 클릭 이벤트 핸들러
+  const handleClick = () => {
+    navigate(route); // 설정된 경로로 이동
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -64,6 +74,7 @@ const handleClick = () => {
 
   return (
     <>
+
       <div className="bg-gray-100 border border-black-900 border-solid flex flex-col font-yogi justify-start mx-auto w-full h-100vh" style={{
         backgroundSize: 'cover', // 배경을 요소에 맞게 확장
         backgroundRepeat: 'no-repeat', // 배경 반복 없음
@@ -93,54 +104,64 @@ const handleClick = () => {
               <TimeComponent />
             </Text>
           </div>
+          <CSSTransition
+            in={showPage}
+            timeout={5000}
+            classNames="fade"
+            unmountOnExit
+          >
+            
+            <div>
+              <input
+                type="text"
+                value={search}
+                onChange={handleInputChange}
+                style={{ width: '100%', minHeight: '120px', display: 'flex', backgroundColor: 'rgb(175, 178, 190, 0.5)' }}
+                className='relative !sticky input-search text-[45px] pl-10'
+                placeholder="제목, 캐릭터 또는 장르로 검색하세요"
+              />
+            
 
-          <div>
-            <input
-              type="text"
-              value={search}
-              onChange={handleInputChange}
-              style={{ width: '100%', minHeight: '120px', display: 'flex', backgroundColor: 'rgb(175, 178, 190, 0.5)' }}
-              className='relative !sticky input-search text-[45px] pl-10'
-              placeholder="제목, 캐릭터 또는 장르로 검색하세요"
-            />
-          </div>
+            <div className='ml-[5.5%] mt-[2%] mb-[10%] relative left-0 flex flex-col'>
+              {search === '' ? (
+                <div>
+                  <div className='font-yogi text-[23px]'>
+                    주간 베스트
+                    <Default poster={rank1} ></Default>
+                  </div>
+                  <div className='font-yogi text-[23px]'>
+                    드라마 베스트
+                    <Default poster={rank2} ></Default>
+                  </div>
+                  <div className='font-yogi text-[23px]'>
+                    영화 베스트
+                    <Default poster={rank3} ></Default>
+                  </div>
+                </div>
+              ) : vods.length > 0 ? (
+                <div className='pb-[50%] '>
+                  <text className='font-yogi text-[25px]'>
+                    "<span style={{ color: 'red' }}>{search}</span>" 에 대한 검색 결과
+                  </text>
+                  <Searchlist rankposter={vods} />
+                </div>
+              ) : (
+                <div className="flex justify-center items-start h-screen">
+                  <div className='font-yogi mt-[10%] text-[50px]'>
+                    입력한 "<span style={{ color: 'red-A400' }}>{search}</span>"에 대한 결과가 없습니다.
+                  </div>
+                </div>
 
-          <div className='ml-[5.5%] mt-[2%] mb-[10%] relative left-0 flex flex-col'>
-            {search === '' ? (
-              <div>
-                <div className='font-yogi text-[23px]'>
-                  주간 베스트
-                  <Default poster={rank1} ></Default>
-                </div>
-                <div className='font-yogi text-[23px]'>
-                  드라마 베스트
-                  <Default poster={rank2} ></Default>
-                </div>
-                <div className='font-yogi text-[23px]'>
-                  영화 베스트
-                  <Default poster={rank3} ></Default>
-                </div>
-              </div>
-            ) : vods.length > 0 ? (
-              <div className='pb-[50%] '>
-                <text className='font-yogi text-[25px]'>
-                  "<span style={{ color: 'red' }}>{search}</span>" 에 대한 검색 결과
-                </text>
-                <Searchlist rankposter={vods} />
-              </div>
-            ) : (
-              <div className="flex justify-center items-start h-screen">
-              <div className='font-yogi mt-[10%] text-[50px]'>
-                입력한 "<span style={{ color: 'red-A400' }}>{search}</span>"에 대한 결과가 없습니다.
-              </div>
+              )}
+
             </div>
-
-            )}
-          </div>
+            </div>
+          </CSSTransition>
         </div>
 
 
       </div>
+
     </>
   );
 
