@@ -17,3 +17,4 @@ export { Member } from "./Member";
 export { VideoList } from "./VideoList";
 export { Searchlist } from "./Searchlist";
 export { Default } from "./Default";
+export { Theme } from "./Theme";

@@ -15,7 +15,7 @@ const Simplemode = () => {
 
   useEffect(() => {
     setShowPage(true);
-  })
+  }, [])
   const fetchData = async (buttonId) => {
     try {
       if (buttonId !== null) {
@@ -184,7 +184,7 @@ const Simplemode = () => {
                               size="yogi"
                             >
                               오늘처럼 추운날..<br />
-                              간식으로 군구마는 어때요?
+                              간식으로 군고구마는 어때요?
                             </div>
 
                           </div>

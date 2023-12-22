@@ -5,8 +5,8 @@ import { CSSTransition } from 'react-transition-group';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import {
-  Img, Text, TimeComponent, Weather, Reclist, Firstlist, Drama,
-  Mov
+  Img, Text, TimeComponent, Reclist, Firstlist, Drama,
+  Mov, Theme
 } from "components";
 import 'styles/loading.css';
 import 'styles/font.css';
@@ -269,7 +269,7 @@ function FamilyHomeLightPage() {
           setCtcl71(ctcl71);
           setCtclname1(ctclname1);
 
-        
+
 
 
 
@@ -539,7 +539,7 @@ function FamilyHomeLightPage() {
 
             <div className="flex flex-col items-center justify-start w-full">
 
-              <div className="z-10 !sticky top-[0] overflow-block relative flex bg-red-A400 flex md:flex-col flex-row md:gap-5 items-start justify-end pb-1.5 px-1.5 w-full">
+              <div className="z-10 !sticky top-[0] !h-[90px]  overflow-block relative flex bg-red-A400 flex md:flex-col flex-row md:gap-5 items-start justify-end pb-1.5 px-1.5 w-full">
                 <Img
                   className="button common-pointer absolute h-[45px] w-[45px] left-4 md:mt-0 mt-[26px]"
                   src="images/img_arrowdown.svg"
@@ -552,8 +552,8 @@ function FamilyHomeLightPage() {
                 <Text className="absolute font-yogi font-lighter left-[43%] mt-[1.7%] md:text-3xl text-4xl text-white-A700 tracking-[-0.30px]">
                   BASIC MODE
                 </Text>
-                <div className="relative h-[80px] w-[13%] mr-[1%] mt-[4px] w-[15%] md:w-full">
-                  <Weather />
+                <div className='absolute left-[80%] mt-[1.5%]'>
+                  <Theme></Theme>
                 </div>
                 <Text
                   className="ml-9 md:ml-[0] mr-[2%] md:mt-0 mt-[25px] md:text-3xl sm:text-[28px] text-[32px] text-center text-white-A700 tracking-[-0.16px]"
@@ -1044,7 +1044,8 @@ function FamilyHomeLightPage() {
                     </div>
                     <button className='top1' style={{ width: '70px', height: '70px' }}
                       onClick={handleClick1} id='totop'>TOP</button>
-
+                    <button className='top1' style={{ width: '70px', height: '70px', bottom: '10%' }}
+                      onClick={handleClick1} id='theme'>테마</button>
 
                   </div>
 

@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, } from "react-router-dom";
 import Home from "pages/Home";
 import NotFound from "pages/NotFound";
-import Search from "pages/Search/search";
+import Searchpage from "pages/Search/search";
 
 
 const Simplemode = React.lazy(() => import("pages/Simplemode"));
@@ -28,7 +28,7 @@ const ProjectRoutes = () => {
           <Route path="/simple" element={<Simplemode />} />
           <Route path="/dhiwise-dashboard" element={<Home />} />
           <Route path="/Light/:programId" element={<Light />} />
-          <Route path="/familyhomelight/search" element={<Search />} />
+          <Route path="/familyhomelight/search" element={<Searchpage />} />
 
         </Routes>
       </Router>
