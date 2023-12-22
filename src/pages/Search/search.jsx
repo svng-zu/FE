@@ -14,6 +14,8 @@ function Search() {
   const debounceValue = useDebounce(search, 300);
   const navigate = useNavigate();
   localStorage.setItem('page', 5);
+
+  const name = localStorage.getItem('name');
   const rank1 = ((JSON.parse(localStorage.getItem('rank1'))).slice(7)).map(item => item);
   const rank2 = ((JSON.parse(localStorage.getItem('rank2'))).slice(7)).map(item => item);
   const rank3 = ((JSON.parse(localStorage.getItem('rank3'))).slice(7)).map(item => item);
@@ -21,7 +23,18 @@ function Search() {
     setSearch(e.target.value);
     // console.log(e.target.value)
   };
+  let route = '/FamilyHomeLight'; // 기본 경로 설정
 
+  if (name === '1') {
+    route = '/simple';
+  } else {
+    route = '/familyhomelight';
+  }
+  
+// 클릭 이벤트 핸들러
+const handleClick = () => {
+  navigate(route); // 설정된 경로로 이동
+};
 
   useEffect(() => {
     const fetchData = async () => {
@@ -62,7 +75,7 @@ function Search() {
               className="button common-pointer absolute h-[45px] w-[45px] left-5 md:mt-0 mt-[26px]"
               src="/images/img_arrowdown.svg"
               alt="arrowdown"
-              onClick={() => navigate('/familyhomelight')}
+              onClick={handleClick}
             />
             <Text className="absolute font-yogi font-lighter left-[10%] mt-[2%] md:text-2xl text-2xl text-white-A700 tracking-[-0.30px]">
               HELLO 00
@@ -92,9 +105,9 @@ function Search() {
             />
           </div>
 
-          <div className='ml-[5.5%] mt-[2%] relative left-0 flex flex-col'>
+          <div className='ml-[5.5%] mt-[2%] mb-[10%] relative left-0 flex flex-col'>
             {search === '' ? (
-              <div className='pb-[50%]'>
+              <div>
                 <div className='font-yogi text-[23px]'>
                   주간 베스트
                   <Default poster={rank1} ></Default>
@@ -109,11 +122,18 @@ function Search() {
                 </div>
               </div>
             ) : vods.length > 0 ? (
-              <div className='pb-[50%]'>
+              <div className='pb-[50%] '>
+                <text className='font-yogi text-[25px]'>
+                  "<span style={{ color: 'red' }}>{search}</span>" 에 대한 검색 결과
+                </text>
                 <Searchlist rankposter={vods} />
               </div>
             ) : (
-              <div className='pb-[50%]'>입력한 "{search}"에 대한 결과가 없습니다.</div>
+              <div className="flex justify-center items-start h-screen">
+              <div className='font-yogi mt-[10%] text-[50px]'>
+                입력한 "<span style={{ color: 'red-A400' }}>{search}</span>"에 대한 결과가 없습니다.
+              </div>
+            </div>
 
             )}
           </div>

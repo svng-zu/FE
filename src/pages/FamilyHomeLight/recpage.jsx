@@ -41,7 +41,7 @@ function FamilyHomeLightPage() {
 
 
 
-
+  localStorage.setItem('name', 0)
   const initialStartIndex = localStorage.getItem('startIndex');
   const initialIndex = initialStartIndex !== null ? parseInt(initialStartIndex) : 0;
 
@@ -541,12 +541,12 @@ function FamilyHomeLightPage() {
 
               <div className="z-10 !sticky top-[0] overflow-block relative flex bg-red-A400 flex md:flex-col flex-row md:gap-5 items-start justify-end pb-1.5 px-1.5 w-full">
                 <Img
-                  className="button common-pointer absolute h-[45px] w-[45px] left-5 md:mt-0 mt-[26px]"
+                  className="button common-pointer absolute h-[45px] w-[45px] left-4 md:mt-0 mt-[26px]"
                   src="images/img_arrowdown.svg"
                   alt="arrowdown"
                   onClick={() => navigate('/frontpagelight')}
                 />
-                <Text className="absolute font-yogi font-lighter left-[10%] mt-[2%] md:text-2xl text-2xl text-white-A700 tracking-[-0.30px]">
+                <Text className="absolute font-yogi font-lighter left-[8%] mt-[2%] md:text-2xl text-2xl text-white-A700 tracking-[-0.30px]">
                   HELLO 00
                 </Text>
                 <Text className="absolute font-yogi font-lighter left-[43%] mt-[1.7%] md:text-3xl text-4xl text-white-A700 tracking-[-0.30px]">

@@ -103,7 +103,7 @@ const handleClick = () => {
   return (
     <div style={{postion: 'relative', display:'flex', alignItems: 'center', marginLeft: '4%', marginRight: '-562%' }}>
       <button className="button" onClick={() => scrollTo(-600)} style={{...buttonStyle, position: 'absolute', left: '34%'}}><img src="https://seasonmarket.co.kr/img/slider_left.png" alt="Previous"/></button>
-      <div style={{postion: 'relative', display: 'flex', overflowX: 'auto', marginLeft: '5%', marginRight: '-400%', minWidth: '80%', maxWidth: '80%'}} ref={containerRef}>
+      <div style={{postion: 'relative', display: 'flex', overflowX: 'auto', marginLeft: '5%', marginRight: '-400%', minWidth: '78%', maxWidth: '78%'}} ref={containerRef}>
         {simposter.map((item, index) => (
           <img
             className="detail1"
@@ -115,7 +115,7 @@ const handleClick = () => {
           />
         ))}
       </div>
-      <button className="button" onClick={() => scrollTo(600)} style={{...buttonStyle, position: 'absolute', right: '-466%'}}>
+      <button className="button" onClick={() => scrollTo(600)} style={{...buttonStyle, position: 'absolute', right: '-453%'}}>
         <img src="https://seasonmarket.co.kr/img/slider_right.png" alt="next"/></button>
     </div>
   );
@@ -133,12 +133,12 @@ const handleClick = () => {
         <div className="flex flex-col items-center justify-start w-full">
           <div className="z-10 !sticky top-[0] overflow-block relative flex bg-red-A400 flex md:flex-col flex-row md:gap-5 items-start justify-end pb-1.5 px-1.5 w-full">
             <Img 
-            className="button common-pointer absolute h-[45px] w-[45px] left-5 md:mt-0 mt-[26px]"
+            className="button common-pointer absolute h-[45px] w-[45px] left-4 md:mt-0 mt-[26px]"
             src="/images/img_arrowdown.svg"
             alt="arrowdown"
             onClick={handleClick}
             />
-            <Text className="absolute font-yogi font-lighter left-[10%] mt-[2%] md:text-2xl text-2xl text-white-A700 tracking-[-0.30px]">
+            <Text className="absolute font-yogi font-lighter left-[8%] mt-[2%] md:text-2xl text-2xl text-white-A700 tracking-[-0.30px]">
               HELLO 00
             </Text>
             <Text className="absolute font-yogi font-lighter left-[45%] mt-[1.7%] md:text-3xl text-4xl text-white-A700 tracking-[-0.30px]">
@@ -170,7 +170,7 @@ const handleClick = () => {
             
 
                 <Img
-                  className="absolute ml-[5.5%] mt-[5%] object-cover rounded-[25px]"
+                  className="absolute ml-[8%] mt-[5%] object-cover rounded-[25px]"
                   // src={data[2]}
                   src={data ? data[2] : ""}
                   style={{ width: '450px', height: '650px' , objectFit: 'cover' }}
@@ -247,7 +247,7 @@ const handleClick = () => {
               
             </div>
               <Text2
-                  className="sm:text-[21px] font-yogi md:text-[20px] mt-[8%]  text-white tracking-[-0.13px] w-full ml-[6%]"
+                  className="sm:text-[21px] font-yogi md:text-[20px] mt-[8%]  text-white tracking-[-0.13px] w-full ml-[8%]"
                   size="txtYogi"
                 >
                     <span className="text-white text-left font-yogi text-[40px]">
@@ -282,7 +282,7 @@ const handleClick = () => {
                   </div>
                  ))}
                 </div> */}
-                  <div className="flex-shrink-0 h-[250px] relative w-1/6 ml-[-0.3%] mt-[2%] mb-[15%] md:w-full">
+                  <div className="flex-shrink-0 h-[250px] relative w-1/6 ml-[2%] mr-[5%] mt-[2%] mb-[15%] w-full">
                   
                       <div className="video-container">
                         <HorizontalPosters simposter={data1} />
