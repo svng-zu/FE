@@ -147,19 +147,19 @@ function Searchpage() {
               </div>
 
               <div className='ml-[5.5%] mt-[2%] mb-[10%] relative left-0 flex flex-col'>
-                {search === '' && rank1 != null && rank2 != null && rank3 != null && (
+                {search === '' (
                   <div>
                     <div className='font-yogi text-[23px]'>
                       주간 베스트
-                      <Default poster={rank1.slice(7)} />
+                      <Default poster={rank1} />
                     </div>
                     <div className='font-yogi text-[23px]'>
                       드라마 베스트
-                      <Default poster={rank2.slice(7)} />
+                      <Default poster={rank2} />
                     </div>
                     <div className='font-yogi text-[23px]'>
                       영화 베스트
-                      <Default poster={rank3.slice(7)} />
+                      <Default poster={rank3} />
                     </div>
                   </div>
                 )}
