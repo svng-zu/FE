@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Text, Img, Weather, Button, TimeComponent, VideoList } from "components";
 import axios from 'axios';
+
 import 'styles/img.css'
 import 'styles/search.css'
 import { CSSTransition } from 'react-transition-group';
@@ -66,6 +67,9 @@ const Simplemode = () => {
       behavior: 'smooth'
     })
   }
+  const redirectToSeasonMarket = () => {
+    window.location.href = 'https://seasonmarket.co.kr/';
+  };
   return (
     <>
       <CSSTransition
@@ -177,7 +181,8 @@ const Simplemode = () => {
                           src="images/img_rectangle198.png"
                           alt="rectangle198"
                         />
-                        <div className="absolute bottom-[5%] flex flex-col md:gap-10 gap-[170px] inset-x-[0] justify-center mx-auto w-[90%]">
+                        <div className="absolute bottom-[5%] flex flex-col md:gap-10 gap-[170px] inset-x-[0] justify-center mx-auto w-[90%]"
+                        onClick={redirectToSeasonMarket}>
                           <div className="bg-opacity-30">
                             <div
                               className="absolute bg-gray-500  left-[5%] mt-[-17%] bg-opacity-50 md:ml-[0] sm:text-[17px] p-[5px] md:text-[19px] text-[21px] font-yogi text-white-A700 tracking-[-0.10px]"

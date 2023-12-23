@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import {
   Img, Text, TimeComponent, Reclist, Firstlist, Drama,
-  Mov, Theme
+  Mov
 } from "components";
 import 'styles/loading.css';
 import 'styles/font.css';
@@ -395,6 +395,7 @@ function FamilyHomeLightPage() {
       try {
         const result = await axios.get('https://hello00back.net/home/drama', {
           headers: {
+
             Authorization: access,
           },
 
@@ -552,9 +553,6 @@ function FamilyHomeLightPage() {
                 <Text className="absolute font-yogi font-lighter left-[43%] mt-[1.7%] md:text-3xl text-4xl text-white-A700 tracking-[-0.30px]">
                   BASIC MODE
                 </Text>
-                <div className='absolute left-[80%] mt-[1.5%]'>
-                  <Theme></Theme>
-                </div>
                 <Text
                   className="ml-9 md:ml-[0] mr-[2%] md:mt-0 mt-[25px] md:text-3xl sm:text-[28px] text-[32px] text-center text-white-A700 tracking-[-0.16px]"
                   size="txtInterSemiBold32"
@@ -760,9 +758,6 @@ function FamilyHomeLightPage() {
                       >
                         <span className="text-black-900 text-left font-yogi">
                           추천 홈
-                        </span>
-                        <span className="text-black-900 text-[20px] font-yogi ml-[5%]">
-                          재추천 버튼으로 무한 추천!
                         </span>
                       </Text>
                     </div>
@@ -1042,8 +1037,7 @@ function FamilyHomeLightPage() {
                     </div>
                     <button className='top1' style={{ width: '70px', height: '70px' }}
                       onClick={handleClick1} id='totop'>TOP</button>
-                    <button className='top1' style={{ width: '70px', height: '70px', bottom: '10%' }}
-                      onClick={handleClick1} id='theme'>테마</button>
+
 
                   </div>
 
