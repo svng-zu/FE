@@ -199,7 +199,8 @@ const Simplemode = () => {
                               src="images/wpcjf.png"
                               alt="Five"
                             />
-                            <Button className="bg-gray-500 bg-opacity-50 cursor-pointer font-yogi h-[40px] mb-[10px] mt-[41px] text-[22px] text-white-A700 text-center sm:text-lg md:text-xl tracking-[-0.11px] w-[174px]">
+                            <Button className="bg-gray-500 bg-opacity-50 cursor-pointer font-yogi h-[40px] mb-[10px] mt-[41px] text-[22px] text-white-A700 text-center sm:text-lg md:text-xl tracking-[-0.11px] w-[174px]"
+                            onClick={redirectToSeasonMarket}>
                               바로 구매하기
                             </Button>
                           </div>
