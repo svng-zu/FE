@@ -56,6 +56,7 @@ const Voice = ({ onTranscript }) => {
         setIsListening(true);
         microphoneRef.current.classList.add('listening');
         SpeechRecognition.startListening({
+            continuous: true,
             language: 'ko'
         });
     };
@@ -80,6 +81,9 @@ const Voice = ({ onTranscript }) => {
                     className='microphone-icon-container'
                     ref={microphoneRef}
                     onClick={handleListening}
+                    style={{
+                        animation: isListening ? 'pulse 0.5s infinite' : 'none'
+                      }}
                 >
                     <img src={microphoneIcon} className='microphone-icon' alt='icon' />
                 </div>
