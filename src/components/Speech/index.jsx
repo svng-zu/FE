@@ -1,8 +1,9 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import microphoneIcon from '../../assets/images/mic.svg';
 
-const Voice = () => {
+const Voice = ({ onTranscript }) => {
+
     const commands = [
         {
             command: "open *",
@@ -31,8 +32,8 @@ const Voice = () => {
     ];
     // 수정 후 빈 객체가 삭제되었습니다.
 
-
-
+    useEffect (() => {
+}, [onTranscript]);
     const { transcript, resetTranscript } = useSpeechRecognition({ commands });
     const [isListening, setIsListening] = useState(false);
     const microphoneRef = useRef(null);
@@ -66,6 +67,7 @@ const Voice = () => {
 
     console.log(transcript)
 
+
     return (
         <div className='microphone-wrapper'>
             <div className='microphone-container'>
@@ -77,11 +79,11 @@ const Voice = () => {
                     <img src={microphoneIcon} className='microphone-icon' alt='icon' />
                 </div>
                 <div className='microphone-status'>
-                    {isListening ? "Listening......." : "Click to start Listening"}
+                    {isListening ? "음성 입력 중입니다" : ""}
                 </div>
                 {isListening && (
                     <button className='microphone-stop btn' onClick={stopHandle}>
-                        Stop
+                        완료
                     </button>
                 )}
             </div>
@@ -89,7 +91,7 @@ const Voice = () => {
                 <div className='microphone-result-container' >
                     <div className='microphone-result-text'>{transcript}</div>
                     <button className='microphone-reset btn' onClick={handleReset}>
-                        Reset
+                        다시하기
                     </button>
                 </div>
             )}
