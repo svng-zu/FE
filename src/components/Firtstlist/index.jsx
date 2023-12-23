@@ -4,12 +4,12 @@ import React, { useState, useEffect } from "react";
 import 'styles/banner.css'; 
 
 const Firstlist = () => { 
-    const imagenames = ['images/seoul1.jpg', '/images/sweet2.jpg', '/images/boygen.jpg', '/images/lucky.jpg', '/images/nowdie.png'] 
+    const imagenames = ['images/shfid.png', 'images/spider.jpg','images/seoul1.jpg', '/images/sweet2.jpg', '/images/boygen.jpg', '/images/lucky.jpg', '/images/nowdie.png'] 
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     useEffect(() => {
         const interval = setInterval(() => {
           setCurrentImageIndex((prevIndex) => (prevIndex + 1) % imagenames.length);
-        }, 10000);
+        }, 7000);
     
         return () => clearInterval(interval);
       }, [imagenames.length]);

@@ -516,7 +516,9 @@ function FamilyHomeLightPage() {
     // const movieSection = document.getElementById('movie-page');
     movieSection.scrollIntoView({ behavior: 'smooth' });
   };
-
+  const redirectToSeasonMarket = () => {
+    window.location.href = 'https://seasonmarket.co.kr/';
+  };
 
 
 
@@ -553,6 +555,10 @@ function FamilyHomeLightPage() {
                 <Text className="absolute font-yogi font-lighter left-[43%] mt-[1.7%] md:text-3xl text-4xl text-white-A700 tracking-[-0.30px]">
                   BASIC MODE
                 </Text>
+                <Img
+                src='/images/wpcjf.png'
+                className='button absolute w-[80px] mr-[10%] mt-[0.2%]'
+                onClick={redirectToSeasonMarket}></Img>
                 <Text
                   className="ml-9 md:ml-[0] mr-[2%] md:mt-0 mt-[25px] md:text-3xl sm:text-[28px] text-[32px] text-center text-white-A700 tracking-[-0.16px]"
                   size="txtInterSemiBold32"
@@ -768,7 +774,7 @@ function FamilyHomeLightPage() {
                           size="txtYogi"
                         >
                           <span className="text-black-900 font-yogi text-left">
-                            {localStorage.getItem('new') ? `당신의 선택한 장르 기반 추천 ` : `당신의 취향저격 장르 추천 `}
+                            {localStorage.getItem('new') ? `당신이 선택한 장르 기반 추천 ` : `당신의 취향저격 장르 추천 `}
                           </span>
                           <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
                             {localStorage.getItem('new') ? `Genre` : `Genre `}
@@ -841,10 +847,10 @@ function FamilyHomeLightPage() {
                           size="txtYogi"
                         >
                           <span className="text-black-900 text-left font-yogi">
-                            드라마 몰아보기 추천{" "}
+                            이불속 드라마 정주행 추천!{" "}
                           </span>
                           <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px]">
-                            For You{" "}
+                            Drama{" "}
                           </span>
                         </Text>
 
@@ -887,7 +893,7 @@ function FamilyHomeLightPage() {
                             </span>
                             <span className="text-black-900 font-yogi text-left font-normal">
 
-                              연관 추천! &nbsp;
+                              연관 콘텐츠 추천! &nbsp;
                             </span>
                             <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
                               VOD{" "}
