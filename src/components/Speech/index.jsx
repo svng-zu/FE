@@ -12,21 +12,9 @@ const Voice = ({ onTranscript }) => {
             },
         },
         {
-            command: "change background colour to *",
-            callback: (color) => {
-                document.body.style.background = color;
-            },
-        },
-        {
             command: "reset",
             callback: () => {
                 handleReset();
-            },
-        },
-        {
-            command: "reset background colour",
-            callback: () => {
-                document.body.style.background = `rgba(0, 0, 0, 0.8)`;
             },
         },
     ];
@@ -36,13 +24,12 @@ const Voice = ({ onTranscript }) => {
     const { transcript, resetTranscript } = useSpeechRecognition({ commands });
     const [isListening, setIsListening] = useState(false);
     const microphoneRef = useRef(null);
-    
     useEffect(() => {
-        if (transcript !== '') {
+        if (transcript) {
             onTranscript(transcript); // onTranscript 함수에 최종 transcript를 전달
-            resetTranscript(); // 최종 transcript를 처리한 후 reset
+
         }
-    }, [onTranscript, transcript, resetTranscript]);
+    }, [onTranscript, transcript]);
 
     if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
         return (
@@ -53,26 +40,35 @@ const Voice = ({ onTranscript }) => {
     }
 
     const handleListening = () => {
+        if (isListening === false) {
+        resetTranscript();
+        
         setIsListening(true);
         microphoneRef.current.classList.add('listening');
         SpeechRecognition.startListening({
             continuous: true,
             language: 'ko'
         });
-    };
-
-    const stopHandle = () => {
-        setIsListening(false);
-        microphoneRef.current.classList.remove('listening');
-        SpeechRecognition.stopListening();
+        }else {
+            setIsListening(false);
+            microphoneRef.current.classList.remove('listening');
+            SpeechRecognition.stopListening({
+                continuous: false,
+            });
+        }
     };
 
     const handleReset = () => {
-        stopHandle();
+        setIsListening(false);
+        microphoneRef.current.classList.remove('listening');
+        SpeechRecognition.stopListening();
         resetTranscript();
     };
 
     console.log(transcript)
+
+
+
 
     return (
         <div className='microphone-wrapper'>
@@ -90,20 +86,9 @@ const Voice = ({ onTranscript }) => {
                 <div className='microphone-status'>
                     {isListening ? "음성 입력 중입니다" : ""}
                 </div>
-                {isListening && (
-                    <button className='microphone-stop btn' onClick={stopHandle}>
-                        완료
-                    </button>
-                )}
+               
+                
             </div>
-            {transcript && (
-                <div className='microphone-result-container' >
-                    <div className='microphone-result-text'>{transcript}</div>
-                    <button className='microphone-reset btn' onClick={handleReset}>
-                        다시하기
-                    </button>
-                </div>
-            )}
         </div>
     );
 };

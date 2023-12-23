@@ -15,7 +15,7 @@ function Searchpage() {
   const [search, setSearch] = useState('');
   const [vods, setVods] = useState([]);
   const [showPage, setShowPage] = useState(false);
-  const debounceValue = useDebounce(search, 300);
+  const debounceValue = useDebounce(search, 500);
   const navigate = useNavigate();
 
   localStorage.setItem('page', 5);
@@ -23,7 +23,7 @@ function Searchpage() {
 
   useEffect(() => {
     setShowPage(true);
-  }, [search]);
+  }, []);
 
 
   const name = localStorage.getItem('name');
@@ -37,7 +37,6 @@ function Searchpage() {
     const inputValue = e.target.value;
     setSearch(inputValue);
     console.log(e.target.value);
-
     if (search === '' && debounceValue === '') {
       // 빈 값인데도 debounceValue가 빈 값이면 debounceValue에 빈 값이 아닌 이전 값으로 설정
       setSearch(previousSearch => previousSearch);
@@ -45,8 +44,9 @@ function Searchpage() {
   };
 
   const handleTranscript = (transcript) => {
-    setSearch(transcript); // transcript 값을 search에 할당
-  };
+      setSearch(transcript); // transcript 값을 search에 할당
+    };
+
 
 
   let route = '/FamilyHomeLight'; // 기본 경로 설정
@@ -66,6 +66,7 @@ function Searchpage() {
     const fetchData = async () => {
 
       try {
+        console.log(debounceValue);
         const response = await axios.get(`https://hello00back.net/search/?Searchword=${debounceValue}`);
 
         if (response.status === 200) {
