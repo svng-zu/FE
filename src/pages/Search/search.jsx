@@ -15,7 +15,7 @@ function Searchpage() {
   const [search, setSearch] = useState('');
   const [vods, setVods] = useState([]);
   const [showPage, setShowPage] = useState(false);
-  const debounceValue = useDebounce(search, 500);
+  const debounceValue = useDebounce(search, 300);
   const navigate = useNavigate();
 
   localStorage.setItem('page', 5);

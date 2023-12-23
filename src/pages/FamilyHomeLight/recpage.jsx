@@ -721,16 +721,14 @@ function FamilyHomeLightPage() {
 
                     {yetposter !== null && yetposter.length > 0 && (
                       <div className="flex flex-1 flex-col items-start justify-start w-full pb-[200px]">
-                        <div className="flex flex-col items-center justify-start" style={{ marginTop: '6%' }}>
-                          <Text
-                            className="leading-[100.00px] pl-[50px] mb-[-4%] sm:text-[21px] md:text-[23px] text-[25px] text-black-900 tracking-[-0.13px] w-full"
-                            size="txtYogi"
-                          >
-                            <span className="md:text-[25px] sm:text-[25px] text-red-A400 font-yogi text-left text-[30px] font-normal">
-                              {localStorage.getItem('subsr')}&nbsp;
-                            </span>
+                      <div className="flex flex-col items-center justify-start" style={{ marginTop: '6%' }}>
+                        <Text
+                          className="leading-[10.00px] pl-[50px] ml-[5%] sm:text-[30px] md:text-[50px] text-[25px] text-black-900 tracking-[-0.13px] w-full font-yogi inline-block"
+                          size="txtYogi"
+                        >
+
                             <span className="text-black-900 text-left font-yogi">
-                              님이 시청중인{" "}
+                              당신이 시청중인{" "}
                             </span>
                             <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px] font-normal">
                               VOD{" "}
