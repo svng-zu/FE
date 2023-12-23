@@ -8,8 +8,6 @@ import axios from 'axios';
 import 'styles/input.css';
 import 'styles/animation.css';
 import 'styles/voice.css';
-import NotFound from 'pages/NotFound';
-
 
 
 
@@ -17,7 +15,7 @@ function Searchpage() {
   const [search, setSearch] = useState('');
   const [vods, setVods] = useState([]);
   const [showPage, setShowPage] = useState(false);
-  const debounceValue = useDebounce(search, 1000);
+  const debounceValue = useDebounce(search, 500);
   const navigate = useNavigate();
 
   localStorage.setItem('page', 5);
@@ -29,27 +27,25 @@ function Searchpage() {
 
 
   const name = localStorage.getItem('name');
-  const rank1 = ((JSON.parse(localStorage.getItem('rank1'))).slice(0, 7)).map(item => item);
-  const rank2 = ((JSON.parse(localStorage.getItem('rank2'))).slice(0, 7)).map(item => item);
-  const rank3 = ((JSON.parse(localStorage.getItem('rank3'))).slice(0, 7)).map(item => item);
+  const rank1 = ((JSON.parse(localStorage.getItem('rank1'))).slice(7)).map(item => item);
+  const rank2 = ((JSON.parse(localStorage.getItem('rank2'))).slice(7)).map(item => item);
+  const rank3 = ((JSON.parse(localStorage.getItem('rank3'))).slice(7)).map(item => item);
 
 
 
   const handleInputChange = (e) => {
     const inputValue = e.target.value;
     setSearch(inputValue);
-    console.log(search);
+    console.log(e.target.value);
 
     if (search === '' && debounceValue === '') {
       // 빈 값인데도 debounceValue가 빈 값이면 debounceValue에 빈 값이 아닌 이전 값으로 설정
       setSearch(previousSearch => previousSearch);
-      console.log(search);
     }
   };
 
   const handleTranscript = (transcript) => {
     setSearch(transcript); // transcript 값을 search에 할당
-    console.log(search);
   };
 
 
@@ -70,27 +66,25 @@ function Searchpage() {
     const fetchData = async () => {
 
       try {
-        if (debounceValue !== null) {
-          const response = await axios.get(`https://hello00back.net/search/?Searchword=${debounceValue}`);
+        const response = await axios.get(`https://hello00back.net/search/?Searchword=${debounceValue}`);
 
-          if (response.status === 200) {
-            const videos = response.data.data;
-            // console.log(videos);
-            console.log(debounceValue);
+        if (response.status === 200) {
+          const videos = response.data.data;
+          // console.log(videos);
+          console.log(debounceValue);
 
-            let limitedVods = (videos.slice(0, 21)).map(item => item); // Limit the videos to 20 elements
-            setVods(limitedVods); // Set the state with the limited videos array
+          let limitedVods = (videos.slice(0, 21)).map(item => item); // Limit the videos to 20 elements
+          setVods(limitedVods); // Set the state with the limited videos array
 
-          } else {
-            console.log("response 오류")
-          }
+        } else {
+          console.log("response 오류")
         }
       } catch (error) {
         console.error('Error:', error);
       }
     };
     fetchData();
-  }, [debounceValue]);
+  }, [debounceValue, search]);
 
 
   return (
@@ -147,41 +141,38 @@ function Searchpage() {
               </div>
 
               <div className='ml-[5.5%] mt-[2%] mb-[10%] relative left-0 flex flex-col'>
-                {search === '' (
+                {search === '' ? (
                   <div>
                     <div className='font-yogi text-[23px]'>
                       주간 베스트
-                      <Default poster={rank1} />
+                      <Default poster={rank1} ></Default>
                     </div>
                     <div className='font-yogi text-[23px]'>
                       드라마 베스트
-                      <Default poster={rank2} />
+                      <Default poster={rank2} ></Default>
                     </div>
                     <div className='font-yogi text-[23px]'>
                       영화 베스트
-                      <Default poster={rank3} />
+                      <Default poster={rank3} ></Default>
                     </div>
                   </div>
+                ) : vods.length > 0 ? (
+                  <div className='pb-[50%] '>
+                    <text className='font-yogi text-[25px]'>
+                      "<span style={{ color: 'red' }}>{search}</span>" 에 대한 검색 결과
+                    </text>
+                    <Searchlist rankposter={vods} />
+                  </div>
+                ) : (
+                  <div className="flex justify-center items-start h-screen">
+                    <div className='font-yogi mt-[10%] text-[50px]'>
+                      입력한 "<span style={{ color: 'red' }}>{search}</span>"에 대한 결과가 없습니다.
+                    </div>
+                  </div>
+
                 )}
-                {search !== '' ? (
-                  vods.length > 0 ? (
-                    <div className='pb-[50%]'>
-                      <text className='font-yogi text-[25px]'>
-                        "<span style={{ color: 'red' }}>{search}</span>" 에 대한 검색 결과
-                      </text>
-                      <Searchlist rankposter={vods} />
-                    </div>
-                  ) : (
-                    <div className="flex justify-center items-start h-screen">
-                      <div className='font-yogi mt-[10%] text-[50px]'>
-                        입력한 "<span style={{ color: 'red' }}>{search}</span>"에 대한 결과가 없습니다.
-                      </div>
-                    </div>
-                  )
-                ) : NotFound}
+
               </div>
-
-
             </div>
           </CSSTransition>
         </div>
