@@ -32,11 +32,17 @@ const Voice = ({ onTranscript }) => {
     ];
     // 수정 후 빈 객체가 삭제되었습니다.
 
-    useEffect (() => {
-}, [onTranscript]);
+
     const { transcript, resetTranscript } = useSpeechRecognition({ commands });
     const [isListening, setIsListening] = useState(false);
     const microphoneRef = useRef(null);
+    
+    useEffect(() => {
+        if (transcript !== '') {
+            onTranscript(transcript); // onTranscript 함수에 최종 transcript를 전달
+            resetTranscript(); // 최종 transcript를 처리한 후 reset
+        }
+    }, [onTranscript, transcript, resetTranscript]);
 
     if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
         return (
@@ -66,7 +72,6 @@ const Voice = ({ onTranscript }) => {
     };
 
     console.log(transcript)
-
 
     return (
         <div className='microphone-wrapper'>

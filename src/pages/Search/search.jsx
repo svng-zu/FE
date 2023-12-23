@@ -29,9 +29,9 @@ function Searchpage() {
 
 
   const name = localStorage.getItem('name');
-  const rank1 = ((JSON.parse(localStorage.getItem('rank1'))).slice(7)).map(item => item);
-  const rank2 = ((JSON.parse(localStorage.getItem('rank2'))).slice(7)).map(item => item);
-  const rank3 = ((JSON.parse(localStorage.getItem('rank3'))).slice(7)).map(item => item);
+  const rank1 = ((JSON.parse(localStorage.getItem('rank1'))).slice(0, 7)).map(item => item);
+  const rank2 = ((JSON.parse(localStorage.getItem('rank2'))).slice(0, 7)).map(item => item);
+  const rank3 = ((JSON.parse(localStorage.getItem('rank3'))).slice(0, 7)).map(item => item);
 
 
 
