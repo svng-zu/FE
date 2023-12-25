@@ -89,7 +89,7 @@ const Voice = ({ onTranscript }) => {
                 </div>
                 <div className='microphone-status'>
                     {isListening ? "음성 입력 중입니다" : ""}
-                    {isListening !== true ? "입력 혹은 수정은 클릭!" : ""}
+                    {isListening !== true ? "음성 입력 혹은 수정은 클릭!" : ""}
                 </div>
 
 
