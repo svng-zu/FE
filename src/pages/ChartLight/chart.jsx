@@ -21,7 +21,7 @@ const CP = () => {
     useEffect(() => {
         const getdata = async () => {
             try {
-                const response = await axios.get('https://hello00back.net/chart_sample/');
+                const response = await axios.get('https://hello00back.net/chart_sample');
                 // const response = await axios.get('http://127.0.0.1:8000/chart_sample/');
                 if (response.status === 200) {
                     console.log('good')
