@@ -18,6 +18,11 @@ function Searchpage() {
   const debounceValue = useDebounce(search, 300);
   const navigate = useNavigate();
 
+  const rank1 = ((JSON.parse(localStorage.getItem('rank1'))).slice(0, 7)).map(item => item);
+  const rank2 = ((JSON.parse(localStorage.getItem('rank2'))).slice(0, 7)).map(item => item);
+  const rank3 = ((JSON.parse(localStorage.getItem('rank3'))).slice(0, 7)).map(item => item);
+
+
   localStorage.setItem('page', 5);
 
 
@@ -27,10 +32,7 @@ function Searchpage() {
 
 
   const name = localStorage.getItem('name');
-  const rank1 = ((JSON.parse(localStorage.getItem('rank1'))).slice(7)).map(item => item);
-  const rank2 = ((JSON.parse(localStorage.getItem('rank2'))).slice(7)).map(item => item);
-  const rank3 = ((JSON.parse(localStorage.getItem('rank3'))).slice(7)).map(item => item);
-
+  // const access = localStorage.getItem('access_token');
 
 
   const handleInputChange = (e) => {
@@ -44,8 +46,8 @@ function Searchpage() {
   };
 
   const handleTranscript = (transcript) => {
-      setSearch(transcript); // transcript 값을 search에 할당
-    };
+    setSearch(transcript); // transcript 값을 search에 할당
+  };
 
 
 

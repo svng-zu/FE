@@ -809,10 +809,10 @@ function FamilyHomeLightPage() {
                           size="txtYogi"
                         >
                           <span className="text-black-900 text-left font-yogi">
-                            당신과 비슷한 유저들이 즐겨봐요{" "}
+                            오직 당신 만을 위한 추천!{" "}
                           </span>
                           <span className="md:text-[46px] sm:text-[40px] text-red-A400 font-yellowtail text-left text-[50px]">
-                            User{" "}
+                            For You{" "}
                           </span>
 
 

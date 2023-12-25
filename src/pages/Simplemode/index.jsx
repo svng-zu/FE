@@ -13,10 +13,97 @@ const Simplemode = () => {
   const navigate = useNavigate();
   localStorage.setItem('page', 4);
   localStorage.setItem('name', 1);
-
+  const access = localStorage.getItem('access_token')
   useEffect(() => {
     setShowPage(true);
   }, [])
+  useEffect(() => {
+    const fetchData1 = async () => {
+      try {
+        const access = localStorage.getItem('access_token')
+        if (!access) {
+          navigate('/');
+          return; // 로그인 페이지로 이동 후 함수 종료
+        }
+
+
+
+      } catch (error) {
+        //   let loadingTimer = setTimeout(() => {
+        //     setLoading(false); // 10초 후에 로딩 완료
+        //     // 실패 로직 필요시 추가
+        //     clearTimeout(loadingTimer); // 타이머 초기화
+        //   }, 10000);
+        //   console.error('Error fetching data:', error);
+      }
+
+
+
+      try {
+
+          const response = await axios.get('https://hello00back.net/vodrec', {
+            headers: {
+              Authorization: access,
+            },
+
+          });
+          //드라마
+          const response1 = await axios.get('https://hello00back.net/home/drama', {
+            headers: {
+              Authorization: access,
+            },
+          });
+          //영화
+          const response2 = await axios.get('https://hello00back.net/home/movie', {
+            headers: {
+              Authorization: access,
+            },
+
+          });
+
+          if (response.status === 200 && response1.status === 200 && response2.status === 200) {
+            const data = response.data.data;
+            const rankposter = data[1].map(item => item);
+
+            // setLoading(false);
+
+            //드라마 데이터 받아오기
+            const data1 = response1.data.data; //포스터 데이터
+            const rankItems1 = data1[0];
+            const rankposter1 = (rankItems1.map(item => item)).slice(0, 7);
+
+
+            //영화 데이터
+            const data2 = response2.data.data; //포스터 데이터
+            const rankItems2 = data2[0];
+            const rankposter11 = rankItems2.map(item => item);
+
+            localStorage.setItem('rank1', JSON.stringify(rankposter));
+            localStorage.setItem('rank2', JSON.stringify(rankposter1));
+            localStorage.setItem('rank3', JSON.stringify(rankposter11));
+
+
+
+
+
+          
+        }
+
+
+      } catch (error) {
+        // let loadingTimer = setTimeout(() => {
+        //   setLoading(false); // 10초 후에 로딩 완료
+        //   // 실패 로직 필요시 추가
+        //   clearTimeout(loadingTimer); // 타이머 초기화
+        // }, 10000);
+        // console.error('Error fetching:', error);
+      }
+
+
+    };
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    fetchData1();
+  }, [navigate, access]);
   const fetchData = async (buttonId) => {
     try {
       if (buttonId !== null) {
