@@ -41,20 +41,21 @@ const Voice = ({ onTranscript }) => {
 
     const handleListening = () => {
         if (isListening === false) {
-        resetTranscript();
-        
-        setIsListening(true);
-        microphoneRef.current.classList.add('listening');
-        SpeechRecognition.startListening({
-            continuous: true,
-            language: 'ko'
-        });
-        }else {
+            resetTranscript();
+
+            setIsListening(true);
+            microphoneRef.current.classList.add('listening');
+            SpeechRecognition.startListening({
+                continuous: true,
+                language: 'ko'
+            });
+        } else {
             setIsListening(false);
             microphoneRef.current.classList.remove('listening');
             SpeechRecognition.stopListening({
                 continuous: false,
             });
+
         }
     };
 
@@ -73,21 +74,25 @@ const Voice = ({ onTranscript }) => {
     return (
         <div className='microphone-wrapper'>
             <div className='microphone-container'>
+
                 <div
                     className='microphone-icon-container'
                     ref={microphoneRef}
                     onClick={handleListening}
                     style={{
                         animation: isListening ? 'pulse 0.5s infinite' : 'none'
-                      }}
+                    }}
                 >
+
                     <img src={microphoneIcon} className='microphone-icon' alt='icon' />
+
                 </div>
                 <div className='microphone-status'>
                     {isListening ? "음성 입력 중입니다" : ""}
+                    {isListening !== true ? "입력 혹은 수정은 클릭!" : ""}
                 </div>
-               
-                
+
+
             </div>
         </div>
     );

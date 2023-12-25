@@ -140,7 +140,9 @@ function Searchpage() {
               />
 
               <div className='absolute mt-[-6%] ml-[90%]'>
-                <Voice onTranscript={handleTranscript} />
+
+                <Voice onTranscript={handleTranscript}/>
+
               </div>
 
               <div className='ml-[5.5%] mt-[2%] mb-[10%] relative left-0 flex flex-col'>
