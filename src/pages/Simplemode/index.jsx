@@ -171,17 +171,17 @@ const Simplemode = () => {
               <div className="flex flex-col gap-[33px] items-center justify-start w-full">
                 <div className="z-10 !sticky top-[0] overflow-block relative flex bg-red-A400 flex md:flex-col flex-row md:gap-5 items-start justify-end pb-1.5 px-1.5 w-full">
                   <Img
-                    className="button common-pointer absolute h-[45px] w-[45px] left-4 md:mt-0 mt-[26px]"
+                    className="button common-pointer absolute h-[45px] w-[45px] left-4 md:mt-0 mt-[24px]"
                     src="images/img_arrowdown.svg"
                     alt="arrowdown"
                     onClick={() => navigate('/frontpagelight')}
                   />
 
-                  <Img className="absolute font-yogi font-lighter left-[8%] mt-[1%] w-[10%] tracking-[-0.30px]"
+                  <Img className="absolute font-yogi font-lighter left-[10%] mt-[1%] w-[10%] tracking-[-0.30px]"
                     src="/images/teamlogo.png">
                   </Img>
                   <Img
-                    className="search filter-white absolute left-[73%] md:mt-0 mt-[1.2%]"
+                    className="search filter-white absolute left-[5.2%] md:mt-0 mt-[1.2%] w-[3%]"
                     src="images/img_search.svg"
                     alt="rewind"
                     onClick={() => navigate("/familyhomelight/search")}
@@ -190,7 +190,7 @@ const Simplemode = () => {
                   <Text className="absolute font-yogi font-lighter left-[43%] mt-[1.7%] md:text-3xl text-4xl text-white-A700 tracking-[-0.30px]">
                     SIMPLE MODE
                   </Text>
-                  <div className="relative h-[80px] w-[13%] mr-[1%] mt-[4px] w-[15%] md:w-full">
+                  <div className="relative w-[12%] mr-[1%] mt-[4px] md:w-full">
                     <Weather />
                   </div>
                   <div
