@@ -106,9 +106,9 @@ function Searchpage() {
               alt="arrowdown"
               onClick={handleClick}
             />
-            <Text className="absolute font-yogi font-lighter left-[10%] mt-[2%] md:text-2xl text-2xl text-white-A700 tracking-[-0.30px]">
-              HELLO 00
-            </Text>
+            <Img className="absolute font-yogi font-lighter left-[8%] mt-[1%] w-[10%] tracking-[-0.30px]"
+              src="/images/teamlogo.png">
+            </Img>
             <Text className="absolute font-yogi font-lighter left-[43%] mt-[1.7%] md:text-3xl text-4xl text-white-A700 tracking-[-0.30px]">
               SEARCH
             </Text>
@@ -141,7 +141,7 @@ function Searchpage() {
 
               <div className='absolute mt-[-6%] ml-[90%]'>
 
-                <Voice onTranscript={handleTranscript}/>
+                <Voice onTranscript={handleTranscript} />
 
               </div>
 

@@ -137,9 +137,9 @@ const handleLogin = async () => {
       <div className="bg-gray-100 border border-black-800 border-solid flex flex-col sm:gap-10 md:gap-10 gap-[156px] items-center justify-start mx-auto w-full">
         <div className="z-10 !sticky top-[0] overflow-block h-[90px] relative flex bg-red-A400 flex md:flex-col flex-row md:gap-5 items-start justify-end pb-1.5 px-1.5 w-full">
 
-            <Text className="absolute font-yogi font-lighter left-[2%] mt-[2%] md:text-2xl text-2xl text-white-A700 tracking-[-0.30px]">
-              HELLO 00
-            </Text>
+            <Img className="absolute font-yogi font-lighter left-[2%] mt-[1%] w-[10%] tracking-[-0.30px]"
+            src="/images/teamlogo.png">
+            </Img>
             <Text className="absolute font-yogi font-lighter left-[43%] mt-[1.7%] md:text-3xl text-4xl text-white-A700 tracking-[-0.30px]">
               HELLO 00 TV
             </Text>

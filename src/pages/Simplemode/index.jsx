@@ -41,52 +41,52 @@ const Simplemode = () => {
 
       try {
 
-          const response = await axios.get('https://hello00back.net/vodrec', {
-            headers: {
-              Authorization: access,
-            },
+        const response = await axios.get('https://hello00back.net/vodrec', {
+          headers: {
+            Authorization: access,
+          },
 
-          });
-          //드라마
-          const response1 = await axios.get('https://hello00back.net/home/drama', {
-            headers: {
-              Authorization: access,
-            },
-          });
-          //영화
-          const response2 = await axios.get('https://hello00back.net/home/movie', {
-            headers: {
-              Authorization: access,
-            },
+        });
+        //드라마
+        const response1 = await axios.get('https://hello00back.net/home/drama', {
+          headers: {
+            Authorization: access,
+          },
+        });
+        //영화
+        const response2 = await axios.get('https://hello00back.net/home/movie', {
+          headers: {
+            Authorization: access,
+          },
 
-          });
+        });
 
-          if (response.status === 200 && response1.status === 200 && response2.status === 200) {
-            const data = response.data.data;
-            const rankposter = data[1].map(item => item);
+        if (response.status === 200 && response1.status === 200 && response2.status === 200) {
+          const data = response.data.data;
+          const rankposter = data[1].map(item => item);
 
-            // setLoading(false);
+          // setLoading(false);
 
-            //드라마 데이터 받아오기
-            const data1 = response1.data.data; //포스터 데이터
-            const rankItems1 = data1[0];
-            const rankposter1 = (rankItems1.map(item => item)).slice(0, 7);
-
-
-            //영화 데이터
-            const data2 = response2.data.data; //포스터 데이터
-            const rankItems2 = data2[0];
-            const rankposter11 = rankItems2.map(item => item);
-
-            localStorage.setItem('rank1', JSON.stringify(rankposter));
-            localStorage.setItem('rank2', JSON.stringify(rankposter1));
-            localStorage.setItem('rank3', JSON.stringify(rankposter11));
+          //드라마 데이터 받아오기
+          const data1 = response1.data.data; //포스터 데이터
+          const rankItems1 = data1[0];
+          const rankposter1 = (rankItems1.map(item => item)).slice(0, 7);
 
 
+          //영화 데이터
+          const data2 = response2.data.data; //포스터 데이터
+          const rankItems2 = data2[0];
+          const rankposter11 = rankItems2.map(item => item);
+
+          localStorage.setItem('rank1', JSON.stringify(rankposter));
+          localStorage.setItem('rank2', JSON.stringify(rankposter1));
+          localStorage.setItem('rank3', JSON.stringify(rankposter11));
 
 
 
-          
+
+
+
         }
 
 
@@ -176,16 +176,16 @@ const Simplemode = () => {
                     alt="arrowdown"
                     onClick={() => navigate('/frontpagelight')}
                   />
+
+                  <Img className="absolute font-yogi font-lighter left-[8%] mt-[1%] w-[10%] tracking-[-0.30px]"
+                    src="/images/teamlogo.png">
+                  </Img>
                   <Img
-                    className="search filter-white  absolute left-[8%] md:mt-0 mt-[18px]"
+                    className="search filter-white absolute left-[73%] md:mt-0 mt-[1.2%]"
                     src="images/img_search.svg"
                     alt="rewind"
                     onClick={() => navigate("/familyhomelight/search")}
                   />
-                  <Text className="absolute font-yogi font-lighter left-[14%] mt-[2%] md:text-2xl text-2xl text-white-A700 tracking-[-0.30px]">
-                    HELLO 00
-                  </Text>
-
 
                   <Text className="absolute font-yogi font-lighter left-[43%] mt-[1.7%] md:text-3xl text-4xl text-white-A700 tracking-[-0.30px]">
                     SIMPLE MODE
@@ -269,7 +269,7 @@ const Simplemode = () => {
                           alt="rectangle198"
                         />
                         <div className="absolute bottom-[5%] flex flex-col md:gap-10 gap-[170px] inset-x-[0] justify-center mx-auto w-[90%]"
-                        onClick={redirectToSeasonMarket}>
+                          onClick={redirectToSeasonMarket}>
                           <div className="bg-opacity-30">
                             <div
                               className="absolute bg-gray-500  left-[5%] mt-[-17%] bg-opacity-50 md:ml-[0] sm:text-[17px] p-[5px] md:text-[19px] text-[21px] font-yogi text-white-A700 tracking-[-0.10px]"
@@ -287,7 +287,7 @@ const Simplemode = () => {
                               alt="Five"
                             />
                             <Button className="bg-gray-500 bg-opacity-50 cursor-pointer font-yogi h-[40px] mb-[10px] mt-[41px] text-[22px] text-white-A700 text-center sm:text-lg md:text-xl tracking-[-0.11px] w-[174px]"
-                            onClick={redirectToSeasonMarket}>
+                              onClick={redirectToSeasonMarket}>
                               바로 구매하기
                             </Button>
                           </div>

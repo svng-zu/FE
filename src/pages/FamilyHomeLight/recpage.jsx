@@ -549,16 +549,16 @@ function FamilyHomeLightPage() {
                   alt="arrowdown"
                   onClick={() => navigate('/frontpagelight')}
                 />
-                <Text className="absolute font-yogi font-lighter left-[8%] mt-[2%] md:text-2xl text-2xl text-white-A700 tracking-[-0.30px]">
-                  HELLO 00
-                </Text>
+                <Img className="absolute font-yogi font-lighter left-[8%] mt-[1%] w-[10%] tracking-[-0.30px]"
+                  src="/images/teamlogo.png">
+                </Img>
                 <Text className="absolute font-yogi font-lighter left-[43%] mt-[1.7%] md:text-3xl text-4xl text-white-A700 tracking-[-0.30px]">
                   BASIC MODE
                 </Text>
                 <Img
-                src='/images/wpcjf.png'
-                className='button absolute w-[80px] mr-[10%] mt-[0.2%]'
-                onClick={redirectToSeasonMarket}></Img>
+                  src='/images/wpcjf.png'
+                  className='button absolute w-[80px] mr-[10%] mt-[0.2%]'
+                  onClick={redirectToSeasonMarket}></Img>
                 <Text
                   className="ml-9 md:ml-[0] mr-[2%] md:mt-0 mt-[25px] md:text-3xl sm:text-[28px] text-[32px] text-center text-white-A700 tracking-[-0.16px]"
                   size="txtInterSemiBold32"
@@ -725,11 +725,11 @@ function FamilyHomeLightPage() {
 
                     {yetposter !== null && yetposter.length > 0 && (
                       <div className="flex flex-1 flex-col items-start justify-start w-full pb-[200px]">
-                      <div className="flex flex-col items-center justify-start" style={{ marginTop: '6%' }}>
-                        <Text
-                          className="leading-[10.00px] pl-[50px] ml-[5%] sm:text-[30px] md:text-[50px] text-[25px] text-black-900 tracking-[-0.13px] w-full font-yogi inline-block"
-                          size="txtYogi"
-                        >
+                        <div className="flex flex-col items-center justify-start" style={{ marginTop: '6%' }}>
+                          <Text
+                            className="leading-[10.00px] pl-[50px] ml-[5%] sm:text-[30px] md:text-[50px] text-[25px] text-black-900 tracking-[-0.13px] w-full font-yogi inline-block"
+                            size="txtYogi"
+                          >
 
                             <span className="text-black-900 text-left font-yogi">
                               당신이 시청중인{" "}
