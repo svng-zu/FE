@@ -140,9 +140,7 @@ const handleLogin = async () => {
             <Img className="absolute font-yogi font-lighter left-[2%] mt-[1%] w-[10%] tracking-[-0.30px]"
             src="/images/teamlogo.png">
             </Img>
-            <Text className="absolute font-yogi font-lighter left-[43%] mt-[1.7%] md:text-3xl text-4xl text-white-A700 tracking-[-0.30px]">
-              HELLO 00 TV
-            </Text>
+
 
             <Text
               className="ml-9 md:ml-[0] mr-[2%] md:mt-0 mt-[25px] md:text-3xl sm:text-[28px] text-[32px] text-center text-white-A700 tracking-[-0.16px]"
