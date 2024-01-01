@@ -121,4 +121,4 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 <a href="https://docs.dhiwise.com/docs/react/intro"><img src="https://global-uploads.webflow.com/618e36726d3c0f19c9284e56/62383865d5477f2e4f6b6e2e_main-monogram-p-500.png" width="60" alt="DhiWise Documentation"></a>
 
 시연 영상
-[![Video Label](http://img.youtube.com/vi/tEMPvnau6BHUuPHw/0.jpg)]([https://youtu.be/uLR1RNqJ1Mw?t=0s](https://youtu.be/4hEDoCwRhBE?si=tEMPvnau6BHUuPHw)https://youtu.be/4hEDoCwRhBE?si=tEMPvnau6BHUuPHw)
+[![Video Label]([https://youtu.be/uLR1RNqJ1Mw?t=0s](https://youtu.be/4hEDoCwRhBE?si=tEMPvnau6BHUuPHw)https://youtu.be/4hEDoCwRhBE?si=tEMPvnau6BHUuPHw)]
